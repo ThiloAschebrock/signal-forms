@@ -27,7 +27,7 @@
     "moment": "^2.29.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.1"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^20.2.2",
