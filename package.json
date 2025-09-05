@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@allianz/ng-aquila": "^20.0.0",
+    "@allianz/ng-aquila": "^20.3.0",
     "@angular/animations": "^20.2.4",
     "@angular/cdk": "^20.2.2",
     "@angular/common": "^20.2.4",
