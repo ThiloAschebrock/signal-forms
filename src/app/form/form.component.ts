@@ -36,12 +36,13 @@ import { NxButtonComponent } from '@allianz/ng-aquila/button';
 import { NxMessageComponent } from '@allianz/ng-aquila/message';
 import { NxCheckboxComponent } from '@allianz/ng-aquila/checkbox';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
-import { YesNo } from '../../yes-no/yes-no';
+import { YesNo } from '../yes-no/yes-no';
 import {
   NxCircleToggleComponent,
   NxCircleToggleGroupComponent,
 } from '@allianz/ng-aquila/circle-toggle';
 import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
+import { Toggle } from '../toggle/toggle';
 
 @Component({
   selector: 'app-form',
@@ -65,6 +66,7 @@ import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
     YesNo,
     NxDatepickerComponent,
     NxDatepickerToggleComponent,
+    Toggle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -77,26 +79,34 @@ export class FormComponent {
     same: boolean;
     birthday: string | null;
     married: boolean | null;
+    tooManyQuestions: boolean | null;
   }>({
     firstName: '',
     lastName: '',
     birthday: '1989-04-04',
     same: false,
     married: null,
+    tooManyQuestions: null,
   });
   protected readonly model = linkedSignal(this.initalState);
   protected readonly form = form(this.model, (path) => {
     disabled(path, () => this.isPending());
+    readonly(path, () => this.readonly());
     required(path.birthday);
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
     });
     validate(path.married, customRequired('Answer if married'));
+    validate(
+      path.tooManyQuestions,
+      customRequired('Answer if too many questions')
+    );
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
   });
 
   protected readonly isPending = signal(false);
+  protected readonly readonly = signal(false);
 
   private readonly firstName = computed(() => this.form.firstName().value());
   private readonly same = computed(() => this.form.same().value());
@@ -118,6 +128,8 @@ export class FormComponent {
 
   protected setName(): void {
     this.form.firstName().value.set('Thilo');
+    this.form.married().value.set(false);
+    this.form.tooManyQuestions().value.set(false);
   }
 
   protected syncLastNameEffect = effect(() => {

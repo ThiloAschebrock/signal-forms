@@ -17,7 +17,11 @@
       {{ form.lastName().errors().at(0)?.message }}
     </nx-error>
   </nx-formfield>
-  <nx-checkbox [control]="form.same" class="nx-margin-bottom-s">
+  <nx-checkbox
+    [control]="form.same"
+    [readonly]="form.same().readonly()"
+    class="nx-margin-bottom-s"
+  >
     Last name is same as first name
   </nx-checkbox>
   <nx-formfield label="Birthday">
@@ -27,19 +31,18 @@
       max="2020-12-31"
       [control]="form.birthday"
       [datepicker]="myDatepicker"
+      [readonly]="form.birthday().readonly()"
     />
     <span nxFormfieldHint>MM/DD/YYYY</span>
-    <nx-datepicker-toggle
-      [for]="myDatepicker"
-      nxFormfieldSuffix
-    ></nx-datepicker-toggle>
-    <nx-datepicker #myDatepicker></nx-datepicker>
+    <nx-datepicker-toggle [for]="myDatepicker" nxFormfieldSuffix />
+    <nx-datepicker #myDatepicker />
     <nx-error nxFormfieldError>
       {{ form.birthday().errors() | json }}
     </nx-error>
   </nx-formfield>
 
   <app-yes-no [control]="form.married" />
+  <app-toggle [control]="form.tooManyQuestions" />
   <button
     nxButton="primary"
     class="nx-margin-right-xs"
@@ -68,6 +71,15 @@
     [disabled]="isPending()"
   >
     Reset (without values)
+  </button>
+  <button
+    nxButton="secondary"
+    class="nx-margin-right-xs"
+    type="button"
+    (click)="readonly.set(!readonly())"
+    [disabled]="isPending()"
+  >
+    {{ readonly() ? "Unset readonly" : "Set readonly" }}
   </button>
   <button
     nxButton="secondary"

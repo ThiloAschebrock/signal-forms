@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: 'page1',
     loadComponent: () =>
-      import('./components/form/form.component').then(
+      import('./form/form.component').then(
         ({ FormComponent }) => FormComponent
       ),
   },

@@ -1,9 +1,21 @@
-<nx-circle-toggle-group [control]="control()" class="nx-margin-bottom-s">
+<nx-circle-toggle-group
+  [control]="control()"
+  [readonly]="control()().readonly()"
+  class="nx-margin-bottom-s"
+>
   <nx-label>Are you married?</nx-label>
-  <nx-circle-toggle [value]="true" circleText="Yes" />
-  <nx-circle-toggle [value]="false" circleText="No" />
+  <nx-circle-toggle
+    [value]="true"
+    circleText="Yes"
+    (selectionChange)="markTouchedAndDirty()"
+  />
+  <nx-circle-toggle
+    [value]="false"
+    circleText="No"
+    (selectionChange)="markTouchedAndDirty()"
+  />
   <nx-error class="nx-margin-top-xs">
     {{control()().errors().at(0)?.message}}
   </nx-error>
 </nx-circle-toggle-group>
-<div>Dirty: {{ control()().dirty()}}</div>
+<div>Dirty: {{ control()().dirty()}}, Touched: {{ control()().touched()}}</div>
