@@ -1,59 +1,29 @@
-# TanstackForm
+# Testing Signal Forms
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+- [x] Regular validation
+- [x] Custom validator
+- [x] Conditional validation
+- [x] Disabled the hole state on condtion
+- [ ] Optional fields on the model (MaybeField)
+- [ ] Hide inputs
+- [x] Readonly inputs
+- [x] Conditionally sync values
+- [x] Extracting into simple input components
+- [ ] Extracting into complex input components
+- [ ] Validation with Zod
+- [ ] Validation with Vest
+- [ ] Async validation on a single input field
+- [ ] Async validation on submit
+- [x] Date inputs with build-in validators
+- [ ] Dropdowns
+- [ ] Autocomplete
+- [ ] NxMask
 
-## Development server
+## What's not working
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Effects that watch values changes of individual fields trigger on any change, this causes too many computed or effect executions and can lead to inifinite-effects, e.g., if they trigger a value change;
+2. Required validator does not allow `false`, which is in conflict with the current old required valiation and an issue when using it with a nullable boolean, e.g., when a yes-no selection is required.
+3. NDBX components with field inputs do not update when the submitted status chagnes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
+4. Dirty flags does not change when circular-toggle changes the value -> NDBX or Angular bug?
+5. Datepicker: Input is cleared completly when a value is change to have an invalid format
+6. Datepicker: Min and max validation via directives is not (yet) working?

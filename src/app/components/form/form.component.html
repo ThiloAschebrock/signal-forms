@@ -1,0 +1,90 @@
+<form>
+  <nx-formfield label="First name (optional)">
+    <input nxInput [control]="form.firstName" [maxLength]="20" />
+    @let firstNameLength = form.firstName().value().length;
+    <span nxFormfieldHint>
+      {{ firstNameLength ? `${firstNameLength}/20 characters` : "max. 20 characters" }}</span
+    >
+    <nx-error nxFormfieldError>
+      {{ form.firstName().errors().at(0)?.message }}
+    </nx-error>
+  </nx-formfield>
+  <nx-formfield
+    [label]="`Last name ${form.firstName().value().trim() ? '' : '(optional)'}`"
+  >
+    <input nxInput [control]="form.lastName" />
+    <nx-error nxFormfieldError>
+      {{ form.lastName().errors().at(0)?.message }}
+    </nx-error>
+  </nx-formfield>
+  <nx-checkbox [control]="form.same" class="nx-margin-bottom-s">
+    Last name is same as first name
+  </nx-checkbox>
+  <nx-formfield label="Birthday">
+    <input
+      nxDatefield
+      nxInput
+      max="2020-12-31"
+      [control]="form.birthday"
+      [datepicker]="myDatepicker"
+    />
+    <span nxFormfieldHint>MM/DD/YYYY</span>
+    <nx-datepicker-toggle
+      [for]="myDatepicker"
+      nxFormfieldSuffix
+    ></nx-datepicker-toggle>
+    <nx-datepicker #myDatepicker></nx-datepicker>
+    <nx-error nxFormfieldError>
+      {{ form.birthday().errors() | json }}
+    </nx-error>
+  </nx-formfield>
+
+  <app-yes-no [control]="form.married" />
+  <button
+    nxButton="primary"
+    class="nx-margin-right-xs"
+    type="button"
+    (click)="submit()"
+    [disabled]="isPending()"
+  >
+    @if(isPending()){
+    <nx-spinner size="small" class="nx-margin-right-xs" />
+    } Submit
+  </button>
+  <button
+    nxButton="secondary"
+    class="nx-margin-right-xs"
+    type="button"
+    (click)="reset()"
+    [disabled]="isPending()"
+  >
+    Reset
+  </button>
+  <button
+    nxButton="secondary"
+    class="nx-margin-right-xs"
+    type="button"
+    (click)="form().reset()"
+    [disabled]="isPending()"
+  >
+    Reset (without values)
+  </button>
+  <button
+    nxButton="secondary"
+    type="button"
+    (click)="setName()"
+    [disabled]="isPending()"
+  >
+    Set name to "Thilo"
+  </button>
+  <div class="nx-margin-top-m">{{ model() | json }}</div>
+  <div class="nx-margin-top-m">
+    Touched: {{ form().touched() ? "true" : "false" }}, Dirty:
+    {{ form().dirty() ? "true" : "false" }}
+  </div>
+  @for (error of form().errorSummary(); track $index) {
+  <nx-message context="warning" class="nx-margin-top-m">{{
+    error | json
+  }}</nx-message>
+  }
+</form>
