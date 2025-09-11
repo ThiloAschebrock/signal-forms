@@ -7,12 +7,12 @@
   <nx-circle-toggle
     [value]="true"
     circleText="Yes"
-    (selectionChange)="markTouchedAndDirty()"
+    (selectionChange)="markDirty()"
   />
   <nx-circle-toggle
     [value]="false"
     circleText="No"
-    (selectionChange)="markTouchedAndDirty()"
+    (selectionChange)="markDirty()"
   />
   <nx-error class="nx-margin-top-xs">
     {{control()().errors().at(0)?.message}}

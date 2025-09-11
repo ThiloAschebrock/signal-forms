@@ -32,10 +32,9 @@ export class YesNo {
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
-  protected markTouchedAndDirty(): void {
+  protected markDirty(): void {
     // Workaround as this is not happning out of the box
     this.control()().markAsDirty();
-    this.control()().markAsTouched();
   }
 
   // This is required show and hide and errors when submit/reset was triggered
