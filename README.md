@@ -18,7 +18,7 @@
 - [x] Date inputs with build-in validators
 - [ ] Dropdowns
 - [ ] Autocomplete
-- [ ] NxMask
+- [ ] NxMask, e.g., for ABN
 
 ## What's not working
 
@@ -29,5 +29,5 @@
 3. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 4. Touched flag on circular toggle needs a focus outside
 5. Datepicker: Input is cleared completly when a value is change to have an invalid format -> Requires and NDBX bug
-6. Datepicker: Min and max validation via directives is not (yet) working?
+6. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit
 7. FormValueControl cannot change to dirty -> https://github.com/angular/angular/issues/63623
