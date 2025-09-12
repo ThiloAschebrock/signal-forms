@@ -17,7 +17,11 @@ import {
   disabled,
   validate,
   customError,
-  FieldValidator,
+  FieldPath,
+  PathKind,
+  aggregateProperty,
+  REQUIRED,
+  LogicFn,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -97,11 +101,11 @@ export class FormComponent {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
     });
-    validate(path.married, customRequired('Answer if married'));
-    validate(
-      path.tooManyQuestions,
-      customRequired('Answer if too many questions')
-    );
+    requireNonNull(path.married, { message: 'Answer if married' });
+    requireNonNull(path.tooManyQuestions, {
+      message: 'Answer if too many questions',
+      when: ({ valueOf }) => !!valueOf(path.married),
+    });
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
   });
 
@@ -148,7 +152,21 @@ export class FormComponent {
     });
   });
 }
-function customRequired(message: string): FieldValidator<boolean | null> {
-  return ({ value }) =>
-    value() === null ? customError({ kind: 'required', message }) : null;
+
+function requireNonNull<TValue, TPathKind extends PathKind = PathKind.Root>(
+  path: FieldPath<TValue, TPathKind>,
+  {
+    message,
+    when = () => true,
+  }: Partial<{
+    message: string;
+    when: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
+  }>
+): void {
+  aggregateProperty(path, REQUIRED, when);
+  validate(path, (context) =>
+    when(context) && context.value() === null
+      ? customError({ kind: 'required', message })
+      : null
+  );
 }
