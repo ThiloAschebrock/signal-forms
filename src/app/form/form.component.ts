@@ -22,6 +22,10 @@ import {
   aggregateProperty,
   REQUIRED,
   LogicFn,
+  hidden,
+  minLength,
+  min,
+  max,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -47,6 +51,8 @@ import {
 } from '@allianz/ng-aquila/circle-toggle';
 import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
 import { Toggle } from '../toggle/toggle';
+import { NgxMaskDirective } from 'ngx-mask';
+import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 
 @Component({
   selector: 'app-form',
@@ -71,6 +77,8 @@ import { Toggle } from '../toggle/toggle';
     NxDatepickerComponent,
     NxDatepickerToggleComponent,
     Toggle,
+    NgxMaskDirective,
+    NxMaskDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -84,6 +92,10 @@ export class FormComponent {
     birthday: string | null;
     married: boolean | null;
     tooManyQuestions: boolean | null;
+    spouse: {
+      income: number;
+      abn: string;
+    };
   }>({
     firstName: '',
     lastName: '',
@@ -91,37 +103,47 @@ export class FormComponent {
     same: false,
     married: null,
     tooManyQuestions: null,
+    spouse: { income: NaN, abn: '' },
   });
   protected readonly model = linkedSignal(this.initalState);
   protected readonly form = form(this.model, (path) => {
-    disabled(path, () => this.isPending());
+    disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
     required(path.birthday);
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
     });
-    requireNonNull(path.married, { message: 'Answer if married' });
-    requireNonNull(path.tooManyQuestions, {
+    requireBoolean(path.married, { message: 'Answer if married' });
+    hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
+
+    required(path.spouse.income, { message: 'Spouse income is required' });
+    min(path.spouse.income, 1, { message: 'Minium income is 1' });
+
+    required(path.spouse.abn, { message: 'ABN is required' });
+    minLength(path.spouse.abn, 11, { message: 'ABN is too short' });
+
+    requireBoolean(path.tooManyQuestions, {
       message: 'Answer if too many questions',
       when: ({ valueOf }) => !!valueOf(path.married),
     });
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
   });
 
-  protected readonly isPending = signal(false);
   protected readonly readonly = signal(false);
+
+  protected readonly isLastNameRequired = computed(() =>
+    this.form.lastName().property(REQUIRED)()
+  );
 
   private readonly firstName = computed(() => this.form.firstName().value());
   private readonly same = computed(() => this.form.same().value());
 
   protected submit(): void {
     submit(this.form, async () => {
-      this.isPending.set(true);
+      // TODO: Conditional remove data that has been hidden -> Can this be abstracted into a function?
       console.log('Submitted', this.model());
-      setTimeout(() => {
-        this.isPending.set(false);
-      }, 1_000);
+      await new Promise((resolve) => setTimeout(resolve, 1_000));
     });
   }
 
@@ -153,7 +175,7 @@ export class FormComponent {
   });
 }
 
-function requireNonNull<TValue, TPathKind extends PathKind = PathKind.Root>(
+function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
   path: FieldPath<TValue, TPathKind>,
   {
     message,
@@ -165,7 +187,7 @@ function requireNonNull<TValue, TPathKind extends PathKind = PathKind.Root>(
 ): void {
   aggregateProperty(path, REQUIRED, when);
   validate(path, (context) =>
-    when(context) && context.value() === null
+    when(context) && typeof context.value() !== 'boolean'
       ? customError({ kind: 'required', message })
       : null
   );

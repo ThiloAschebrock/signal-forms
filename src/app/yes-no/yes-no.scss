@@ -1,3 +1,11 @@
 :host {
   display: block;
 }
+
+nx-label[disabled="true"] {
+  ::ng-deep {
+    label {
+      color: var(--checkbox-label-disabled-color);
+    }
+  }
+}

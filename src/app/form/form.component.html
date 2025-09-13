@@ -10,7 +10,7 @@
     </nx-error>
   </nx-formfield>
   <nx-formfield
-    [label]="`Last name ${form.firstName().value().trim() ? '' : '(optional)'}`"
+    [label]="`Last name ${isLastNameRequired() ? '' : '(optional)'}`"
   >
     <input nxInput [control]="form.lastName" />
     <nx-error nxFormfieldError>
@@ -42,15 +42,48 @@
   </nx-formfield>
 
   <app-yes-no [control]="form.married" />
+  @if(!form.spouse().hidden()){
+  <fieldset>
+    <legend>Spouse</legend>
+    <nx-formfield label="Spouse Income">
+      <input
+        nxInput
+        [control]="form.spouse.income"
+        type="text"
+        inputmode="numeric"
+        mask="separator.0"
+        decimalMarker="."
+        thousandSeparator=","
+        separatorLimit="999999999"
+      />
+      <nx-error nxFormfieldError>
+        {{ form.spouse.income().errors().at(0)?.message }}
+      </nx-error>
+    </nx-formfield>
+    <nx-formfield label="ABN">
+      <input
+        nxInput
+        type="text"
+        inputmode="numeric"
+        [control]="form.spouse.abn"
+        nxMask="00 000 000 000"
+        dropSpecialCharacters
+      />
+      <nx-error nxFormfieldError>
+        {{ form.spouse.abn().errors().at(0)?.message }}
+      </nx-error>
+    </nx-formfield>
+  </fieldset>
+  }
   <app-toggle [control]="form.tooManyQuestions" />
   <button
     nxButton="primary"
     class="nx-margin-right-xs"
     type="button"
     (click)="submit()"
-    [disabled]="isPending()"
+    [disabled]="form().submitting()"
   >
-    @if(isPending()){
+    @if(form().submitting()){
     <nx-spinner size="small" class="nx-margin-right-xs" />
     } Submit
   </button>
@@ -59,7 +92,7 @@
     class="nx-margin-right-xs"
     type="button"
     (click)="reset()"
-    [disabled]="isPending()"
+    [disabled]="form().submitting()"
   >
     Reset
   </button>
@@ -68,7 +101,7 @@
     class="nx-margin-right-xs"
     type="button"
     (click)="form().reset()"
-    [disabled]="isPending()"
+    [disabled]="form().submitting()"
   >
     Reset (without values)
   </button>
@@ -77,7 +110,7 @@
     class="nx-margin-right-xs"
     type="button"
     (click)="readonly.set(!readonly())"
-    [disabled]="isPending()"
+    [disabled]="form().submitting()"
   >
     {{ readonly() ? "Unset readonly" : "Set readonly" }}
   </button>
@@ -85,7 +118,7 @@
     nxButton="secondary"
     type="button"
     (click)="setName()"
-    [disabled]="isPending()"
+    [disabled]="form().submitting()"
   >
     Set name to "Thilo"
   </button>

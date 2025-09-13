@@ -5,7 +5,7 @@
   (valueChange)="markAsTouched()"
   class="nx-margin-bottom-s"
 >
-  <nx-label>Are we asking too many questions?</nx-label>
+  <nx-label [disabled]="disabled()">Are we asking too many questions?</nx-label>
   <nx-circle-toggle
     [value]="true"
     circleText="Yes"
@@ -20,4 +20,6 @@
 @if (showError()) {
 <nx-error class="nx-margin-top-xs"> {{errors().at(0)?.message}} </nx-error>
 }
-<div>Dirty: {{ dirty()}}, Touched: {{ touched()}}</div>
+<div class="nx-margin-bottom-m">
+  Dirty: {{ dirty()}}, Touched: {{ touched()}}
+</div>
