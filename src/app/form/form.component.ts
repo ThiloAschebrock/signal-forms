@@ -93,7 +93,7 @@ export class FormComponent {
     married: boolean | null;
     employFamilyMembers: boolean | null;
     familyMembers: FamilyMember[];
-    spouse: Spouse;
+    spouse?: Spouse;
   }>({
     firstName: '',
     lastName: '',
@@ -101,7 +101,6 @@ export class FormComponent {
     same: false,
     married: null,
     employFamilyMembers: null,
-    spouse: { income: NaN, abn: '' },
     familyMembers: [],
   });
   protected readonly model = linkedSignal(this.initalState);
@@ -116,8 +115,10 @@ export class FormComponent {
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
     requireBoolean(path.married, { message: 'Answer if married' });
 
-    hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
-    apply(path.spouse, spouseSchema);
+    if (path.spouse) {
+      hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
+      apply(path.spouse, spouseSchema);
+    }
 
     requireBoolean(path.employFamilyMembers, {
       message: 'Answer if you employ family members',
@@ -132,6 +133,9 @@ export class FormComponent {
       message: 'Answer if you employ family members',
       when: ({ valueOf }) => !!valueOf(path.married),
     });
+    minLength(path.familyMembers, 2, {
+      message: 'Minium two family members are required',
+    });
   });
 
   protected readonly readonly = signal(false);
@@ -142,6 +146,7 @@ export class FormComponent {
 
   private readonly firstName = computed(() => this.form.firstName().value());
   private readonly same = computed(() => this.form.same().value());
+  private readonly married = computed(() => this.form.married().value());
 
   protected submit(): void {
     submit(this.form, async () => {
@@ -177,6 +182,24 @@ export class FormComponent {
 
     untracked(() => {
       this.form.lastName().value.set(firstName);
+    });
+  });
+
+  protected addSpouseWhenMarried = effect(() => {
+    const married = this.married();
+
+    untracked(() => {
+      if (married) {
+        this.model.update((model) => ({
+          ...model,
+          spouse: { income: NaN, abn: '' },
+        }));
+      } else {
+        this.model.update((model) => ({
+          ...model,
+          spouse: undefined,
+        }));
+      }
     });
   });
 

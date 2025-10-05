@@ -42,7 +42,7 @@
   </nx-formfield>
 
   <app-yes-no [control]="form.married" />
-  @if(!form.spouse().hidden()){
+  @if(form.spouse && !form.spouse().hidden()){
   <fieldset>
     <legend>Spouse</legend>
     <nx-formfield label="Spouse Income">

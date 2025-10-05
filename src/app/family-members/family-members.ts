@@ -80,6 +80,16 @@ export class FamilyMembers {
     });
   });
 
+  protected error = computed(() => {
+    const errors = this.control()().errors();
+    const touched = this.control()().touched();
+    if (!touched) {
+      return undefined;
+    }
+
+    return errors.at(0)?.message;
+  });
+
   protected addFamilyMember(): void {
     this.control()().value.update((members) => [
       ...members,
