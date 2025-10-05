@@ -41,4 +41,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 7. FormValueControl cannot change to dirty -> https://github.com/angular/angular/issues/63623
 8. Min and max validators do not allow for null -> https://github.com/angular/angular/issues/63789 raised
    - Workaround: One can only use NaN to represent empty number
-9. Standard-Schema validation does not forward the issue message as the formfield message
+9. Standard-Schema validation does not forward the issue message as the formfield message; Workaround is using instanceof - see error pipe; Should I open an issue with Angular?
