@@ -14,7 +14,7 @@
   >
     <input nxInput [control]="form.lastName" />
     <nx-error nxFormfieldError>
-      {{ form.lastName().errors().at(0)?.message }}
+      {{ form.lastName().errors() | error }}
     </nx-error>
   </nx-formfield>
   <nx-checkbox
@@ -37,7 +37,7 @@
     <nx-datepicker-toggle [for]="myDatepicker" nxFormfieldSuffix />
     <nx-datepicker #myDatepicker />
     <nx-error nxFormfieldError>
-      {{ form.birthday().errors() | json }}
+      {{ form.birthday().errors() | error }}
     </nx-error>
   </nx-formfield>
 
@@ -58,7 +58,7 @@
         separatorLimit="999999999"
       />
       <nx-error nxFormfieldError>
-        {{ form.spouse.income().errors().at(0)?.message }}
+        {{ form.spouse.income().errors() | error }}
       </nx-error>
     </nx-formfield>
     <nx-formfield label="ABN">
@@ -71,7 +71,7 @@
         dropSpecialCharacters
       />
       <nx-error nxFormfieldError>
-        {{ form.spouse.abn().errors().at(0)?.message }}
+        {{ form.spouse.abn().errors() | error }}
       </nx-error>
     </nx-formfield>
   </fieldset>
@@ -84,6 +84,16 @@
     [control]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
+  <nx-formfield label="Email">
+    <input nxInput [control]="form.email" [maxLength]="128" />
+    @let emailLengty = form.email().value().length;
+    <span nxFormfieldHint>
+      {{ emailLengty ? `${emailLengty}/128 characters` : "max. 128 characters" }}</span
+    >
+    <nx-error nxFormfieldError>
+      {{ form.email().errors() | error }}
+    </nx-error>
+  </nx-formfield>
   <button
     nxButton="primary"
     class="nx-margin-right-xs"

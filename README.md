@@ -17,7 +17,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Extracting into complex input components
 - [x] Min and max validation
 - [x] Length validation
-- [ ] Validation with Zod
+- [x] Validation with Zod
 - [ ] Validation with Vest -> StandardSchema is not yet exposed
 - [ ] Async validation on a single input field
 - [ ] Async validation on submit
@@ -41,3 +41,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 7. FormValueControl cannot change to dirty -> https://github.com/angular/angular/issues/63623
 8. Min and max validators do not allow for null -> https://github.com/angular/angular/issues/63789 raised
    - Workaround: One can only use NaN to represent empty number
+9. Standard-Schema validation does not forward the issue message as the formfield message

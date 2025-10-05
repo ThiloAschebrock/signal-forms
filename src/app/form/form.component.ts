@@ -8,6 +8,7 @@ import {
   signal,
   untracked,
 } from '@angular/core';
+import { z } from 'zod';
 import {
   form,
   Control,
@@ -28,6 +29,7 @@ import {
   schema,
   apply,
   applyEach,
+  validateStandardSchema,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -53,6 +55,7 @@ import { Toggle } from '../toggle/toggle';
 import { NgxMaskDirective } from 'ngx-mask';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembers } from '../family-members/family-members';
+import { ErrorPipe } from '../error-pipe';
 
 @Component({
   selector: 'app-form',
@@ -79,6 +82,7 @@ import { FamilyMember, FamilyMembers } from '../family-members/family-members';
     NgxMaskDirective,
     NxMaskDirective,
     FamilyMembers,
+    ErrorPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -94,6 +98,7 @@ export class FormComponent {
     employFamilyMembers: boolean | null;
     familyMembers: FamilyMember[];
     spouse?: Spouse;
+    email: string;
   }>({
     firstName: '',
     lastName: '',
@@ -102,12 +107,19 @@ export class FormComponent {
     married: null,
     employFamilyMembers: null,
     familyMembers: [],
+    email: '',
   });
   protected readonly model = linkedSignal(this.initalState);
   protected readonly form = form(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
-    required(path.birthday);
+    required(path.birthday, { message: 'Enter a birthday' });
+    validateStandardSchema(
+      path.birthday,
+      z.coerce
+        .date()
+        .max(new Date(), { error: 'Birthdate cannot be in the past' })
+    );
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
@@ -136,6 +148,12 @@ export class FormComponent {
     minLength(path.familyMembers, 2, {
       message: 'Minium two family members are required',
     });
+
+    required(path.email, { message: 'Enter an email' });
+    validateStandardSchema(
+      path,
+      z.object({ email: z.email({ error: 'Enter a valid email' }) })
+    );
   });
 
   protected readonly readonly = signal(false);
@@ -149,6 +167,7 @@ export class FormComponent {
   private readonly married = computed(() => this.form.married().value());
 
   protected submit(): void {
+    this.form.email().errors;
     submit(this.form, async () => {
       // TODO: Conditional remove data that has been hidden -> Can this be abstracted into a function?
       console.log('Submitted', this.model());
