@@ -5,7 +5,7 @@
   (valueChange)="markAsTouched()"
   class="nx-margin-bottom-s"
 >
-  <nx-label [disabled]="disabled()">Are we asking too many questions?</nx-label>
+  <nx-label [disabled]="disabled()">{{label()}}</nx-label>
   <nx-circle-toggle
     [value]="true"
     circleText="Yes"

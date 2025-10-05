@@ -30,6 +30,7 @@ import {
 })
 export class Toggle implements FormValueControl<boolean | undefined> {
   readonly value = model<boolean | undefined>();
+  readonly label = input.required<string>();
   readonly touched = model<boolean>(false);
   readonly readonly = input<boolean>(false);
   readonly errors = input<readonly WithOptionalField<ValidationError>[]>([]);

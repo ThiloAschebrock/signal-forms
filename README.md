@@ -14,7 +14,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Conditionally sync values
 - [x] Extracting into simple input component by passing control
 - [x] Extracting into simple input component by implementing FormValueControl
-- [ ] Extracting into complex input components
+- [x] Extracting into complex input components
 - [x] Min and max validation
 - [ ] Length validation
 - [ ] Validation with Zod
@@ -24,7 +24,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Date inputs with build-in validators
 - [ ] Dropdowns
 - [ ] Autocomplete
-- [ ] NxMask, e.g., for ABN: works, however, no mask validation
+- [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
 
 ## What's not working

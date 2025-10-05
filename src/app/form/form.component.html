@@ -46,6 +46,7 @@
   <fieldset>
     <legend>Spouse</legend>
     <nx-formfield label="Spouse Income">
+      <span nxFormfieldPrefix>$</span>
       <input
         nxInput
         [control]="form.spouse.income"
@@ -75,7 +76,14 @@
     </nx-formfield>
   </fieldset>
   }
-  <app-toggle [control]="form.tooManyQuestions" />
+  <app-toggle
+    label="Do you employ family members?"
+    [control]="form.employFamilyMembers"
+  />
+  <app-family-members
+    [control]="form.familyMembers"
+    (lastRemoved)="setEmployFamilyMembersToFalse()"
+  />
   <button
     nxButton="primary"
     class="nx-margin-right-xs"

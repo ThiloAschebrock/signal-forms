@@ -25,7 +25,9 @@ import {
   hidden,
   minLength,
   min,
-  max,
+  schema,
+  apply,
+  applyEach,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -37,6 +39,7 @@ import {
   NxFormfieldComponent,
   NxFormfieldErrorDirective,
   NxFormfieldHintDirective,
+  NxFormfieldPrefixDirective,
   NxFormfieldSuffixDirective,
 } from '@allianz/ng-aquila/formfield';
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
@@ -45,14 +48,11 @@ import { NxMessageComponent } from '@allianz/ng-aquila/message';
 import { NxCheckboxComponent } from '@allianz/ng-aquila/checkbox';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
 import { YesNo } from '../yes-no/yes-no';
-import {
-  NxCircleToggleComponent,
-  NxCircleToggleGroupComponent,
-} from '@allianz/ng-aquila/circle-toggle';
 import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
 import { Toggle } from '../toggle/toggle';
 import { NgxMaskDirective } from 'ngx-mask';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
+import { FamilyMember, FamilyMembers } from '../family-members/family-members';
 
 @Component({
   selector: 'app-form',
@@ -61,14 +61,13 @@ import { NxMaskDirective } from '@allianz/ng-aquila/mask';
     JsonPipe,
     NxButtonComponent,
     NxCheckboxComponent,
-    // NxCircleToggleComponent,
-    // NxCircleToggleGroupComponent,
     NxDatefieldDirective,
     NxErrorComponent,
     NxFormfieldComponent,
     NxFormfieldErrorDirective,
     NxFormfieldHintDirective,
     NxFormfieldSuffixDirective,
+    NxFormfieldPrefixDirective,
     NxInputDirective,
     NxIsoDateModule,
     NxMessageComponent,
@@ -79,6 +78,7 @@ import { NxMaskDirective } from '@allianz/ng-aquila/mask';
     Toggle,
     NgxMaskDirective,
     NxMaskDirective,
+    FamilyMembers,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -91,19 +91,18 @@ export class FormComponent {
     same: boolean;
     birthday: string | null;
     married: boolean | null;
-    tooManyQuestions: boolean | null;
-    spouse: {
-      income: number;
-      abn: string;
-    };
+    employFamilyMembers: boolean | null;
+    familyMembers: FamilyMember[];
+    spouse: Spouse;
   }>({
     firstName: '',
     lastName: '',
-    birthday: '1989-04-04',
+    birthday: '1989-04-01',
     same: false,
     married: null,
-    tooManyQuestions: null,
+    employFamilyMembers: null,
     spouse: { income: NaN, abn: '' },
+    familyMembers: [],
   });
   protected readonly model = linkedSignal(this.initalState);
   protected readonly form = form(this.model, (path) => {
@@ -114,20 +113,25 @@ export class FormComponent {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
     });
+    readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
     requireBoolean(path.married, { message: 'Answer if married' });
+
     hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
+    apply(path.spouse, spouseSchema);
 
-    required(path.spouse.income, { message: 'Spouse income is required' });
-    min(path.spouse.income, 1, { message: 'Minium income is 1' });
+    requireBoolean(path.employFamilyMembers, {
+      message: 'Answer if you employ family members',
+    });
+    hidden(
+      path.familyMembers,
+      ({ valueOf }) => !valueOf(path.employFamilyMembers)
+    );
+    applyEach(path.familyMembers, FamilyMembers.schema);
 
-    required(path.spouse.abn, { message: 'ABN is required' });
-    minLength(path.spouse.abn, 11, { message: 'ABN is too short' });
-
-    requireBoolean(path.tooManyQuestions, {
-      message: 'Answer if too many questions',
+    requireBoolean(path.employFamilyMembers, {
+      message: 'Answer if you employ family members',
       when: ({ valueOf }) => !!valueOf(path.married),
     });
-    readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
   });
 
   protected readonly readonly = signal(false);
@@ -154,8 +158,10 @@ export class FormComponent {
 
   protected setName(): void {
     this.form.firstName().value.set('Thilo');
+    this.form.lastName().value.set('Aschebrock');
+    this.form.birthday().value.set('1989-04-04');
     this.form.married().value.set(false);
-    this.form.tooManyQuestions().value.set(false);
+    this.form.employFamilyMembers().value.set(false);
   }
 
   protected syncLastNameEffect = effect(() => {
@@ -173,6 +179,10 @@ export class FormComponent {
       this.form.lastName().value.set(firstName);
     });
   });
+
+  protected setEmployFamilyMembersToFalse(): void {
+    this.form.employFamilyMembers().value.set(false);
+  }
 }
 
 function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
@@ -192,3 +202,15 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
       : null
   );
 }
+
+type Spouse = {
+  income: number;
+  abn: string;
+};
+
+const spouseSchema = schema<Spouse>((path) => {
+  required(path.income, { message: 'Spouse income is required' });
+  min(path.income, 1, { message: 'Minium income is 1' });
+  required(path.abn, { message: 'ABN is required' });
+  minLength(path.abn, 11, { message: 'ABN is too short' });
+});
