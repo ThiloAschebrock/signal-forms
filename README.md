@@ -18,7 +18,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Min and max validation
 - [x] Length validation
 - [x] Validation with Zod
-- [ ] Validation with Vest -> StandardSchema is not yet exposed
+- [ ] Validation with Vest -> Vest does not implement standard schema and would require a custom validation function
 - [ ] Async validation on a single input field
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
