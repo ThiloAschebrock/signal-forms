@@ -17,13 +17,13 @@
       {{ form.lastName().errors() | error }}
     </nx-error>
   </nx-formfield>
-  <nx-checkbox
+  <!-- <nx-checkbox
     [control]="form.same"
     [readonly]="form.same().readonly()"
     class="nx-margin-bottom-s"
   >
     Last name is same as first name
-  </nx-checkbox>
+  </nx-checkbox> -->
   <nx-formfield label="Birthday">
     <input
       nxDatefield
@@ -41,7 +41,7 @@
     </nx-error>
   </nx-formfield>
 
-  <app-yes-no [control]="form.married" />
+  <!-- <app-yes-no [control]="form.married" /> -->
   @if(form.spouse && !form.spouse().hidden()){
   <fieldset>
     <legend>Spouse</legend>
@@ -76,10 +76,10 @@
     </nx-formfield>
   </fieldset>
   }
-  <app-toggle
+  <!-- <app-toggle
     label="Do you employ family members?"
     [control]="form.employFamilyMembers"
-  />
+  /> -->
   <app-family-members
     [control]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
