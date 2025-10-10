@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 import {
   Control,
-  Field,
+  FieldTree,
   max,
   min,
   required,
@@ -55,7 +55,7 @@ export class FamilyMembers {
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
-  readonly control = input.required<Field<FamilyMember[]>>();
+  readonly control = input.required<FieldTree<FamilyMember[]>>();
   readonly lastRemoved = output<void>();
 
   // This is required show and hide and errors when submit/reset was triggered

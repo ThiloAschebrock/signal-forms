@@ -11,7 +11,7 @@ import {
   NxCircleToggleComponent,
   NxCircleToggleGroupComponent,
 } from '@allianz/ng-aquila/circle-toggle';
-import { Control, Field } from '@angular/forms/signals';
+import { Control, FieldTree } from '@angular/forms/signals';
 import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
 
 @Component({
@@ -28,7 +28,7 @@ import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YesNo {
-  readonly control = input.required<Field<boolean | null>>();
+  readonly control = input.required<FieldTree<boolean | null>>();
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
