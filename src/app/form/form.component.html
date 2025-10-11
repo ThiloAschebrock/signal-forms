@@ -1,22 +1,9 @@
 <form>
-  <nx-formfield label="First name (optional)">
-    <input nxInput [control]="form.firstName" [maxLength]="20" />
-    @let firstNameLength = form.firstName().value().length;
-    <span nxFormfieldHint>
-      {{ firstNameLength ? `${firstNameLength}/20 characters` : "max. 20 characters" }}</span
-    >
-    <nx-error nxFormfieldError>
-      {{ form.firstName().errors().at(0)?.message }}
-    </nx-error>
-  </nx-formfield>
-  <nx-formfield
-    [label]="`Last name ${isLastNameRequired() ? '' : '(optional)'}`"
-  >
-    <input nxInput [control]="form.lastName" />
-    <nx-error nxFormfieldError>
-      {{ form.lastName().errors() | error }}
-    </nx-error>
-  </nx-formfield>
+  <app-input-with-character-count
+    [control]="form.firstName"
+    label="First name"
+  />
+  <app-input-with-character-count [control]="form.lastName" label="Last name" />
   <!-- <nx-checkbox
     [control]="form.same"
     [readonly]="form.same().readonly()"
@@ -42,39 +29,39 @@
   </nx-formfield>
 
   <!-- <app-yes-no [control]="form.married" /> -->
-  @if(form.spouse && !form.spouse().hidden()){
-  <fieldset>
-    <legend>Spouse</legend>
-    <nx-formfield label="Spouse Income">
-      <span nxFormfieldPrefix>$</span>
-      <input
-        nxInput
-        [control]="form.spouse.income"
-        type="text"
-        inputmode="numeric"
-        mask="separator.0"
-        decimalMarker="."
-        thousandSeparator=","
-        separatorLimit="999999999"
-      />
-      <nx-error nxFormfieldError>
-        {{ form.spouse.income().errors() | error }}
-      </nx-error>
-    </nx-formfield>
-    <nx-formfield label="ABN">
-      <input
-        nxInput
-        type="text"
-        inputmode="numeric"
-        [control]="form.spouse.abn"
-        nxMask="00 000 000 000"
-        dropSpecialCharacters
-      />
-      <nx-error nxFormfieldError>
-        {{ form.spouse.abn().errors() | error }}
-      </nx-error>
-    </nx-formfield>
-  </fieldset>
+  @if (form.spouse && !form.spouse().hidden()) {
+    <fieldset>
+      <legend>Spouse</legend>
+      <nx-formfield label="Spouse Income">
+        <span nxFormfieldPrefix>$</span>
+        <input
+          nxInput
+          [control]="form.spouse.income"
+          type="text"
+          inputmode="numeric"
+          mask="separator.0"
+          decimalMarker="."
+          thousandSeparator=","
+          separatorLimit="999999999"
+        />
+        <nx-error nxFormfieldError>
+          {{ form.spouse.income().errors() | error }}
+        </nx-error>
+      </nx-formfield>
+      <nx-formfield label="ABN">
+        <input
+          nxInput
+          type="text"
+          inputmode="numeric"
+          [control]="form.spouse.abn"
+          nxMask="00 000 000 000"
+          dropSpecialCharacters
+        />
+        <nx-error nxFormfieldError>
+          {{ form.spouse.abn().errors() | error }}
+        </nx-error>
+      </nx-formfield>
+    </fieldset>
   }
   <!-- <app-toggle
     label="Do you employ family members?"
@@ -88,7 +75,9 @@
     <input nxInput [control]="form.email" [maxLength]="128" />
     @let emailLengty = form.email().value().length;
     <span nxFormfieldHint>
-      {{ emailLengty ? `${emailLengty}/128 characters` : "max. 128 characters" }}</span
+      {{
+        emailLengty ? `${emailLengty}/128 characters` : "max. 128 characters"
+      }}</span
     >
     <nx-error nxFormfieldError>
       {{ form.email().errors() | error }}
@@ -101,9 +90,10 @@
     (click)="submit()"
     [disabled]="form().submitting()"
   >
-    @if(form().submitting()){
-    <nx-spinner size="small" class="nx-margin-right-xs" />
-    } Submit
+    @if (form().submitting()) {
+      <nx-spinner size="small" class="nx-margin-right-xs" />
+    }
+    Submit
   </button>
   <button
     nxButton="secondary"
@@ -146,8 +136,8 @@
     {{ form().dirty() ? "true" : "false" }}
   </div>
   @for (error of form().errorSummary(); track $index) {
-  <nx-message context="warning" class="nx-margin-top-m">{{
-    error | json
-  }}</nx-message>
+    <nx-message context="warning" class="nx-margin-top-m">{{
+      error | json
+    }}</nx-message>
   }
 </form>

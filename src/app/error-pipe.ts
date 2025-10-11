@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {
   StandardSchemaValidationError,
   ValidationError,
+  WithOptionalField,
 } from '@angular/forms/signals';
 
 @Pipe({
@@ -9,7 +10,7 @@ import {
   pure: true,
 })
 export class ErrorPipe implements PipeTransform {
-  transform(value: ValidationError[]): string {
+  transform(value: readonly WithOptionalField<ValidationError>[]): string {
     const error = value.at(0);
 
     if (!error) {

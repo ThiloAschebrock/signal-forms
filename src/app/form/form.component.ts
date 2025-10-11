@@ -25,6 +25,7 @@ import {
   LogicFn,
   hidden,
   minLength,
+  maxLength,
   min,
   schema,
   apply,
@@ -56,6 +57,7 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembers } from '../family-members/family-members';
 import { ErrorPipe } from '../error-pipe';
+import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
 
 @Component({
   selector: 'app-form',
@@ -83,6 +85,7 @@ import { ErrorPipe } from '../error-pipe';
     NxMaskDirective,
     FamilyMembers,
     ErrorPipe,
+    InputWithCharacterCount,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -114,16 +117,18 @@ export class FormComponent {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
     required(path.birthday, { message: 'Enter a birthday' });
+    maxLength(path.firstName, 20);
     validateStandardSchema(
       path.birthday,
       z.coerce
         .date()
-        .max(new Date(), { error: 'Birthdate cannot be in the past' })
+        .max(new Date(), { error: 'Birthdate cannot be in the past' }),
     );
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
     });
+    maxLength(path.lastName, 25);
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
     requireBoolean(path.married, { message: 'Answer if married' });
 
@@ -137,7 +142,7 @@ export class FormComponent {
     });
     hidden(
       path.familyMembers,
-      ({ valueOf }) => !valueOf(path.employFamilyMembers)
+      ({ valueOf }) => !valueOf(path.employFamilyMembers),
     );
     applyEach(path.familyMembers, FamilyMembers.schema);
 
@@ -152,14 +157,14 @@ export class FormComponent {
     required(path.email, { message: 'Enter an email' });
     validateStandardSchema(
       path,
-      z.object({ email: z.email({ error: 'Enter a valid email' }) })
+      z.object({ email: z.email({ error: 'Enter a valid email' }) }),
     );
   });
 
   protected readonly readonly = signal(false);
 
   protected readonly isLastNameRequired = computed(() =>
-    this.form.lastName().property(REQUIRED)()
+    this.form.lastName().property(REQUIRED)(),
   );
 
   private readonly firstName = computed(() => this.form.firstName().value());
@@ -235,13 +240,13 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
   }: Partial<{
     message: string;
     when: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
-  }>
+  }>,
 ): void {
   aggregateProperty(path, REQUIRED, when);
   validate(path, (context) =>
     when(context) && typeof context.value() !== 'boolean'
       ? customError({ kind: 'required', message })
-      : null
+      : null,
   );
 }
 

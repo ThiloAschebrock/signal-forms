@@ -99,7 +99,7 @@ export class FamilyMembers {
 
   protected removeFamilyMember(indexToRemove: number): void {
     this.control()().value.update((members) =>
-      members.filter((__values, index) => index !== indexToRemove)
+      members.filter((__values, index) => index !== indexToRemove),
     );
 
     if (!this.control()().value().length) {

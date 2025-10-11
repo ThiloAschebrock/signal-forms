@@ -38,7 +38,7 @@ export class Toggle implements FormValueControl<boolean | undefined> {
   readonly disabled = input<boolean>(false);
 
   protected readonly showError = computed(
-    () => this.touched() && !!this.errors().length
+    () => this.touched() && !!this.errors().length,
   );
 
   protected markAsTouched() {

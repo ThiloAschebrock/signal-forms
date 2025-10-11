@@ -1,0 +1,15 @@
+<nx-formfield [label]="required() ? label() : `${label()} (optional)`">
+  <input
+    nxInput
+    [(ngModel)]="value"
+    (blur)="markTouched()"
+    [maxLength]="maxLength()"
+    [required]="required()"
+    [readonly]="readonly()"
+    [disabled]="disabled()"
+  />
+  @if(hint()){
+  <span nxFormfieldHint> {{hint()}} </span>
+  }
+  <nx-error nxFormfieldError> {{ errors() | error}} </nx-error>
+</nx-formfield>
