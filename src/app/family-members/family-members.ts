@@ -18,7 +18,7 @@ import {
   untracked,
 } from '@angular/core';
 import {
-  Control,
+  Field,
   FieldTree,
   max,
   min,
@@ -37,7 +37,7 @@ export type FamilyMember = { name: string; income: number };
     NxInputDirective,
     NgxMaskDirective,
     NxErrorComponent,
-    Control,
+    Field,
     NxButtonComponent,
     NxFormfieldErrorDirective,
   ],

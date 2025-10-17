@@ -1,11 +1,8 @@
 <form>
-  <app-input-with-character-count
-    [control]="form.firstName"
-    label="First name"
-  />
-  <app-input-with-character-count [control]="form.lastName" label="Last name" />
+  <app-input-with-character-count [field]="form.firstName" label="First name" />
+  <app-input-with-character-count [field]="form.lastName" label="Last name" />
   <!-- <nx-checkbox
-    [control]="form.same"
+    [field]="form.same"
     [readonly]="form.same().readonly()"
     class="nx-margin-bottom-s"
   >
@@ -16,7 +13,7 @@
       nxDatefield
       nxInput
       max="2020-12-31"
-      [control]="form.birthday"
+      [field]="form.birthday"
       [datepicker]="myDatepicker"
       [readonly]="form.birthday().readonly()"
     />
@@ -28,7 +25,7 @@
     </nx-error>
   </nx-formfield>
 
-  <!-- <app-yes-no [control]="form.married" /> -->
+  <!-- <app-yes-no [field]="form.married" /> -->
   @if (form.spouse && !form.spouse().hidden()) {
     <fieldset>
       <legend>Spouse</legend>
@@ -36,7 +33,7 @@
         <span nxFormfieldPrefix>$</span>
         <input
           nxInput
-          [control]="form.spouse.income"
+          [field]="form.spouse.income"
           type="text"
           inputmode="numeric"
           mask="separator.0"
@@ -53,7 +50,7 @@
           nxInput
           type="text"
           inputmode="numeric"
-          [control]="form.spouse.abn"
+          [field]="form.spouse.abn"
           nxMask="00 000 000 000"
           dropSpecialCharacters
         />
@@ -65,14 +62,14 @@
   }
   <!-- <app-toggle
     label="Do you employ family members?"
-    [control]="form.employFamilyMembers"
+    [field]="form.employFamilyMembers"
   /> -->
   <app-family-members
-    [control]="form.familyMembers"
+    [field]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
   <nx-formfield label="Email">
-    <input nxInput [control]="form.email" [maxLength]="128" />
+    <input nxInput [field]="form.email" [maxLength]="128" />
     @let emailLengty = form.email().value().length;
     <span nxFormfieldHint>
       {{

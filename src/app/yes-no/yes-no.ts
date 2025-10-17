@@ -11,7 +11,7 @@ import {
   NxCircleToggleComponent,
   NxCircleToggleGroupComponent,
 } from '@allianz/ng-aquila/circle-toggle';
-import { Control, FieldTree } from '@angular/forms/signals';
+import { Field, FieldTree } from '@angular/forms/signals';
 import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
 
 @Component({
@@ -19,7 +19,7 @@ import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
   imports: [
     NxCircleToggleComponent,
     NxCircleToggleGroupComponent,
-    Control,
+    Field,
     NxErrorComponent,
     NxLabelComponent,
   ],

@@ -11,7 +11,7 @@ import {
 import { z } from 'zod';
 import {
   form,
-  Control,
+  Field,
   required,
   submit,
   readonly,
@@ -62,7 +62,7 @@ import { InputWithCharacterCount } from '../input-with-character-count/input-wit
 @Component({
   selector: 'app-form',
   imports: [
-    Control,
+    Field,
     JsonPipe,
     NxButtonComponent,
     // NxCheckboxComponent,

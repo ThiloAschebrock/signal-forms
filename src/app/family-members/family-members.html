@@ -4,7 +4,7 @@
   <fieldset>
     <legend>Family member {{ $index + 1 }}</legend>
     <nx-formfield label="Name">
-      <input nxInput type="text" [control]="member.name" />
+      <input nxInput type="text" [field]="member.name" />
       <nx-error nxFormfieldError>
         {{ member.name().errors().at(0)?.message }}
       </nx-error>
@@ -13,7 +13,7 @@
       <span nxFormfieldPrefix>$</span>
       <input
         nxInput
-        [control]="member.income"
+        [field]="member.income"
         type="text"
         inputmode="numeric"
         mask="separator.0"
