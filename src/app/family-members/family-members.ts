@@ -55,23 +55,23 @@ export class FamilyMembers {
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
-  readonly control = input.required<FieldTree<FamilyMember[]>>();
+  readonly field = input.required<FieldTree<FamilyMember[]>>();
   readonly lastRemoved = output<void>();
 
   // This is required show and hide and errors when submit/reset was triggered
   protected readonly triggerChangeWhenTouchedEffect = effect(() => {
-    this.control()().touched();
-    this.control()().valid();
+    this.field()().touched();
+    this.field()().valid();
 
     untracked(() => this.changeDetectionRef.detectChanges());
   });
 
   protected readonly addFamilyMembersEffect = effect(() => {
-    if (!this.control()().hidden()) {
+    if (!this.field()().hidden()) {
       return;
     }
 
-    if (this.control()().value().length) {
+    if (this.field()().value().length) {
       return;
     }
 
@@ -81,8 +81,8 @@ export class FamilyMembers {
   });
 
   protected error = computed(() => {
-    const errors = this.control()().errors();
-    const touched = this.control()().touched();
+    const errors = this.field()().errors();
+    const touched = this.field()().touched();
     if (!touched) {
       return undefined;
     }
@@ -91,18 +91,18 @@ export class FamilyMembers {
   });
 
   protected addFamilyMember(): void {
-    this.control()().value.update((members) => [
+    this.field()().value.update((members) => [
       ...members,
       { name: '', income: NaN },
     ]);
   }
 
   protected removeFamilyMember(indexToRemove: number): void {
-    this.control()().value.update((members) =>
+    this.field()().value.update((members) =>
       members.filter((__values, index) => index !== indexToRemove),
     );
 
-    if (!this.control()().value().length) {
+    if (!this.field()().value().length) {
       console.log('Emit');
       this.lastRemoved.emit();
     }

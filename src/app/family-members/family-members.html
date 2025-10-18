@@ -1,6 +1,6 @@
-@if(!control()().hidden()){
+@if(!field()().hidden()){
 <fieldset>
-  @for(member of control(); track member){
+  @for(member of field(); track member){
   <fieldset>
     <legend>Family member {{ $index + 1 }}</legend>
     <nx-formfield label="Name">

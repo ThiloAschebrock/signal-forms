@@ -28,19 +28,19 @@ import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YesNo {
-  readonly control = input.required<FieldTree<boolean | null>>();
+  readonly field = input.required<FieldTree<boolean | null>>();
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
   protected markDirty(): void {
     // Workaround as this is not happning out of the box
-    this.control()().markAsDirty();
+    this.field()().markAsDirty();
   }
 
   // This is required show and hide and errors when submit/reset was triggered
   protected readonly triggerChangeWhenTouchedEffect = effect(() => {
-    this.control()().touched();
-    this.control()().valid();
+    this.field()().touched();
+    this.field()().valid();
 
     untracked(() => this.changeDetectionRef.detectChanges());
   });
