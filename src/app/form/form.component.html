@@ -24,6 +24,21 @@
       {{ form.birthday().errors() | error }}
     </nx-error>
   </nx-formfield>
+  <nx-formfield label="Postcode">
+    <input
+      nxDatefield
+      nxInput
+      [field]="form.postcode"
+      type="text"
+      inputmode="numeric"
+    />
+    @if (this.form.postcode().pending()) {
+      <nx-spinner nxFormfieldSuffix />
+    }
+    <nx-error nxFormfieldError>
+      {{ form.postcode().errors() | error }}
+    </nx-error>
+  </nx-formfield>
 
   <!-- <app-yes-no [field]="form.married" /> -->
   @if (form.spouse && !form.spouse().hidden()) {
