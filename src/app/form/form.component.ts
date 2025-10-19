@@ -8,6 +8,7 @@ import {
   signal,
   resource,
   untracked,
+  inject,
 } from '@angular/core';
 import { z } from 'zod';
 import {
@@ -35,6 +36,10 @@ import {
   validateAsync,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
+import {
+  QueryClient,
+  queryOptions,
+} from '@tanstack/angular-query-experimental';
 import {
   NxDatefieldDirective,
   NxDatepickerComponent,
@@ -118,6 +123,7 @@ export class FormComponent {
     email: '',
   });
   protected readonly model = linkedSignal(this.initalState);
+  private readonly validatePostcode = postcodeValidator();
   protected readonly form = form(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
@@ -125,7 +131,7 @@ export class FormComponent {
     required(path.postcode, { message: 'Postcode is required' });
     minLength(path.postcode, 4, { message: 'Postcode is too short' });
     maxLength(path.postcode, 4, { message: 'Postcode is too long' });
-    validatePostcode(path.postcode);
+    this.validatePostcode(path.postcode);
     maxLength(path.firstName, 20);
     validateStandardSchema(
       path.birthday,
@@ -271,29 +277,42 @@ const spouseSchema = schema<Spouse>((path) => {
   minLength(path.abn, 11, { message: 'ABN is too short' });
 });
 
-function validatePostcode<TPathKind extends PathKind = PathKind.Root>(
-  path: FieldPath<string, TPathKind>,
-) {
-  validateAsync(path, {
-    params: ({ value }) => {
-      return value().length === 4 ? value() : undefined;
-    },
-    factory: (params) =>
-      resource({
-        params,
-        loader: ({ params }) =>
-          params ? isValidPostcode(params) : Promise.resolve(true),
-      }),
-    errors: (result) =>
-      result
-        ? null
-        : customError({ kind: 'invalid', message: 'Postcode does not exist' }),
-  });
-}
-
 async function isValidPostcode(postcode: string) {
   const validPostcodes = new Set(['3121', '3000', '2000', '1000']);
   console.log('Validating', postcode);
   await new Promise((resolve) => setTimeout(resolve, 1_000));
   return validPostcodes.has(postcode);
+}
+
+function postcodeValidator() {
+  const queryClient = inject(QueryClient);
+  const options = (postcode: string) =>
+    queryOptions({
+      queryKey: ['postcode', postcode],
+      queryFn: () => isValidPostcode(postcode ?? ''),
+      enabled: postcode?.length === 4,
+    });
+
+  return <TPathKind extends PathKind = PathKind.Root>(
+    path: FieldPath<string, TPathKind>,
+  ) => {
+    validateAsync(path, {
+      params: ({ value }) => {
+        const postcode = value();
+        return postcode.length === 4 ? postcode : undefined;
+      },
+      factory: (params) =>
+        resource({
+          params,
+          loader: ({ params }) => queryClient.ensureQueryData(options(params)),
+        }),
+      errors: (valid) =>
+        valid
+          ? null
+          : customError({
+              kind: 'invalid',
+              message: 'Postcode does not exist',
+            }),
+    });
+  };
 }
