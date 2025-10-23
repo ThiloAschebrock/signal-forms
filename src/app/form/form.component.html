@@ -1,13 +1,13 @@
 <form>
   <app-input-with-character-count [field]="form.firstName" label="First name" />
   <app-input-with-character-count [field]="form.lastName" label="Last name" />
-  <!-- <nx-checkbox
+  <nx-checkbox
     [field]="form.same"
     [readonly]="form.same().readonly()"
     class="nx-margin-bottom-s"
   >
     Last name is same as first name
-  </nx-checkbox> -->
+  </nx-checkbox>
   <nx-formfield label="Birthday">
     <input
       nxDatefield
@@ -25,13 +25,7 @@
     </nx-error>
   </nx-formfield>
   <nx-formfield label="Postcode">
-    <input
-      nxDatefield
-      nxInput
-      [field]="form.postcode"
-      type="text"
-      inputmode="numeric"
-    />
+    <input nxInput [field]="form.postcode" type="text" inputmode="numeric" />
     @if (this.form.postcode().pending()) {
       <nx-spinner nxFormfieldSuffix />
     }
@@ -40,7 +34,7 @@
     </nx-error>
   </nx-formfield>
 
-  <!-- <app-yes-no [field]="form.married" /> -->
+  <app-yes-no [field]="form.married" />
   @if (form.spouse && !form.spouse().hidden()) {
     <fieldset>
       <legend>Spouse</legend>
@@ -75,10 +69,10 @@
       </nx-formfield>
     </fieldset>
   }
-  <!-- <app-toggle
+  <app-toggle
     label="Do you employ family members?"
     [field]="form.employFamilyMembers"
-  /> -->
+  />
   <app-family-members
     [field]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"

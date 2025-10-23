@@ -40,8 +40,4 @@ export class Toggle implements FormValueControl<boolean | undefined> {
   protected readonly showError = computed(
     () => this.touched() && !!this.errors().length,
   );
-
-  protected markAsTouched() {
-    this.touched.set(true);
-  }
 }

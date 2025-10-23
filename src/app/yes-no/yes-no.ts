@@ -32,11 +32,6 @@ export class YesNo {
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
-  protected markDirty(): void {
-    // Workaround as this is not happning out of the box
-    this.field()().markAsDirty();
-  }
-
   // This is required show and hide and errors when submit/reset was triggered
   protected readonly triggerChangeWhenTouchedEffect = effect(() => {
     this.field()().touched();

@@ -6,13 +6,17 @@ import {
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   computed,
+  effect,
+  inject,
   input,
-  model,
-  output,
+  untracked,
 } from '@angular/core';
 import {
+  Field,
+  FieldTree,
   FormValueControl,
   ValidationError,
   WithOptionalField,
@@ -28,6 +32,7 @@ import { NxErrorComponent } from '@allianz/ng-aquila/base';
     NxFormfieldComponent,
     NxFormfieldHintDirective,
     NxFormfieldErrorDirective,
+    Field,
     ErrorPipe,
     NxErrorComponent,
     FormsModule,
@@ -36,31 +41,30 @@ import { NxErrorComponent } from '@allianz/ng-aquila/base';
   styleUrl: './input-with-character-count.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputWithCharacterCount implements FormValueControl<string> {
-  readonly value = model<string>('');
+export class InputWithCharacterCount {
+  readonly field = input.required<FieldTree<string>>();
   readonly label = input.required<string>();
-  readonly errors = input<readonly WithOptionalField<ValidationError>[]>([]);
-  readonly disabled = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly touched = output<boolean>();
-  readonly dirty = input<boolean>(false);
-  readonly required = input<boolean>(false);
-  readonly minLength = input<number>();
-  readonly maxLength = input<number>();
+  protected readonly fieldState = computed(() => this.field()());
 
   protected readonly hint = computed(() => {
-    const maxLength = this.maxLength();
+    const maxLength = this.fieldState().maxLength?.();
 
     if (maxLength === undefined) {
       return undefined;
     }
-    const currentLength = this.value().length;
+    const currentLength = this.fieldState().value().length;
     return currentLength
       ? `${currentLength}/${maxLength} characters`
       : `max ${maxLength} characters`;
   });
 
-  protected markTouched() {
-    this.touched.emit(true);
-  }
+  private readonly changeDetectionRef = inject(ChangeDetectorRef);
+
+  // This is required show and hide and errors when submit/reset was triggered
+  protected readonly triggerChangeWhenTouchedEffect = effect(() => {
+    this.field()().touched();
+    this.field()().valid();
+
+    untracked(() => this.changeDetectionRef.detectChanges());
+  });
 }
