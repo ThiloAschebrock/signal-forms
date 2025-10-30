@@ -19,10 +19,8 @@ import {
   readonly,
   disabled,
   validate,
-  customError,
   FieldPath,
   PathKind,
-  aggregateProperty,
   REQUIRED,
   LogicFn,
   hidden,
@@ -34,6 +32,7 @@ import {
   applyEach,
   validateStandardSchema,
   validateAsync,
+  aggregateMetadata,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -179,7 +178,7 @@ export class FormComponent {
   protected readonly readonly = signal(false);
 
   protected readonly isLastNameRequired = computed(() =>
-    this.form.lastName().property(REQUIRED)(),
+    this.form.lastName().metadata(REQUIRED)(),
   );
 
   private readonly firstName = computed(() => this.form.firstName().value());
@@ -257,10 +256,10 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
     when: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
   }>,
 ): void {
-  aggregateProperty(path, REQUIRED, when);
+  aggregateMetadata(path, REQUIRED, when);
   validate(path, (context) =>
     when(context) && typeof context.value() !== 'boolean'
-      ? customError({ kind: 'required', message })
+      ? { kind: 'required', message }
       : null,
   );
 }
@@ -281,6 +280,10 @@ async function isValidPostcode(postcode: string) {
   const validPostcodes = new Set(['3121', '3000', '2000', '1000']);
   console.log('Validating', postcode);
   await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+  if (postcode === '9999') {
+    throw new Error('Simulated network error');
+  }
   return validPostcodes.has(postcode);
 }
 
@@ -306,13 +309,17 @@ function postcodeValidator() {
           params,
           loader: ({ params }) => queryClient.ensureQueryData(options(params)),
         }),
-      errors: (valid) =>
+      onError: () => ({
+        kind: 'validation',
+        message: 'Error validating postcode',
+      }),
+      onSuccess: (valid) =>
         valid
           ? null
-          : customError({
+          : {
               kind: 'invalid',
               message: 'Postcode does not exist',
-            }),
+            },
     });
   };
 }

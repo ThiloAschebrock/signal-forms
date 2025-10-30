@@ -32,7 +32,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 
 1. Effects that watch values changes of individual fields trigger on any change, this causes too many computed or effect executions and can lead to inifinite-effects, e.g., if they trigger a value change; -> https://github.com/angular/angular/issues/63627
    - Work-around: Stabilize using `computed`.
-2. Required validator does not allow `false`, which is in conflict with the current old required valiation and an issue when using it with a nullable boolean, e.g., when a yes-no selection is required. -> https://github.com/angular/angular/issues/63624
+2. Required validator does not allow `false`, which is in conflict with the current old required valiation and an issue when using it with a nullable boolean, e.g., when a yes-no selection is required. -> https://github.com/angular/angular/issues/63624 (Closed as not planned)
    - Work-around: One can implement their own custom validator
 3. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 4. Touched flag on circular toggle needs a focus outside -> This is consisten with radio group and by desing unreleated to signal forms
@@ -41,5 +41,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 7. Min and max validators do not allow for null -> https://github.com/angular/angular/issues/63789 raised
    - Workaround: One can only use NaN to represent empty number
 8. Standard-Schema validation does not forward the issue message as the formfield message; Workaround is using instanceof - see error pipe; Should I open an issue with Angular?
-9. ERROR RuntimeError: NG0600: https://github.com/angular/angular/issues/64614
-10. ABN mask input (NDBX) does not allow to delete whitepsaces via backspace
+9. ABN mask input (NDBX) does not allow to delete whitepsaces via backspace
