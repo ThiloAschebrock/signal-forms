@@ -78,10 +78,10 @@
           "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "tsconfig.spec.json",
-            "setupFiles": ["src/test-setup.ts"],
             "providersFile": "src/test-providers.ts",
             "runner": "vitest",
-            "buildTarget": "::development"
+            "buildTarget": "::development",
+            "browsers": ["ChromiumHeadless"]
           }
         },
         "extract-i18n": {
