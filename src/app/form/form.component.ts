@@ -45,7 +45,6 @@ import {
   NxDatepickerToggleComponent,
 } from '@allianz/ng-aquila/datefield';
 import {
-  NxFormfieldAppendixDirective,
   NxFormfieldComponent,
   NxFormfieldErrorDirective,
   NxFormfieldHintDirective,
