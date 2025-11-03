@@ -62,8 +62,8 @@ export class InputWithCharacterCount {
 
   // This is required show and hide and errors when submit/reset was triggered
   protected readonly triggerChangeWhenTouchedEffect = effect(() => {
-    this.field()().touched();
-    this.field()().valid();
+    this.fieldState().touched();
+    this.fieldState().valid();
 
     untracked(() => this.changeDetectionRef.detectChanges());
   });
