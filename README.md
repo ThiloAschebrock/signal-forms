@@ -42,3 +42,5 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
    - Workaround: One can only use NaN to represent empty number
 8. Standard-Schema validation does not forward the issue message as the formfield message; Workaround is using instanceof - see error pipe; Should I open an issue with Angular?
 9. ABN mask input (NDBX) does not allow to delete whitepsaces via backspace
+10. Need to use $any() to bind number fields to numeric input
+11. Attributes such as reaodnly are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template

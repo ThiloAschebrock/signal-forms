@@ -28,8 +28,8 @@ import {
   styleUrl: './toggle.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Toggle implements FormValueControl<boolean | undefined> {
-  readonly value = model<boolean | undefined>();
+export class Toggle implements FormValueControl<boolean | null> {
+  readonly value = model<boolean | null>(null);
   readonly label = input.required<string>();
   readonly touched = model<boolean>(false);
   readonly readonly = input<boolean>(false);

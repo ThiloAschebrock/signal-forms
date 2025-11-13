@@ -1,21 +1,22 @@
 <form>
   <app-input-with-character-count [field]="form.firstName" label="First name" />
   <app-input-with-character-count [field]="form.lastName" label="Last name" />
-  <nx-checkbox
-    [field]="form.same"
-    [readonly]="form.same().readonly()"
-    class="nx-margin-bottom-s"
-  >
+  <!-- Re-add readonly attribute to checkbox 
+    [readonly]="form.same().readonly()" 
+    -->
+  <nx-checkbox [field]="form.same" class="nx-margin-bottom-s">
     Last name is same as first name
   </nx-checkbox>
   <nx-formfield label="Birthday">
+    <!-- Readd readonly and max attribute 
+      max="2020-12-31"
+    [readonly]="form.birthday().readonly()" 
+    -->
     <input
       nxDatefield
       nxInput
-      max="2020-12-31"
       [field]="form.birthday"
       [datepicker]="myDatepicker"
-      [readonly]="form.birthday().readonly()"
     />
     <span nxFormfieldHint>MM/DD/YYYY</span>
     <nx-datepicker-toggle [for]="myDatepicker" nxFormfieldSuffix />
@@ -42,7 +43,7 @@
         <span nxFormfieldPrefix>$</span>
         <input
           nxInput
-          [field]="form.spouse.income"
+          [field]="$any(form.spouse.income)"
           type="text"
           inputmode="numeric"
           mask="separator.0"
@@ -78,7 +79,7 @@
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
   <nx-formfield label="Email">
-    <input nxInput [field]="form.email" [maxLength]="128" />
+    <input nxInput type="email" [field]="form.email" />
     @let emailLengty = form.email().value().length;
     <span nxFormfieldHint>
       {{

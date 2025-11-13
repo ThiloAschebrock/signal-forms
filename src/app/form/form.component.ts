@@ -19,7 +19,7 @@ import {
   readonly,
   disabled,
   validate,
-  FieldPath,
+  SchemaPath,
   PathKind,
   REQUIRED,
   LogicFn,
@@ -33,6 +33,7 @@ import {
   validateStandardSchema,
   validateAsync,
   aggregateMetadata,
+  SchemaPathRules,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
@@ -103,7 +104,7 @@ export class FormComponent {
     lastName: string;
     same: boolean;
     postcode: string;
-    birthday: string | null;
+    birthday: string;
     married: boolean | null;
     employFamilyMembers: boolean | null;
     familyMembers: FamilyMember[];
@@ -125,18 +126,20 @@ export class FormComponent {
   protected readonly form = form(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
+
     required(path.birthday, { message: 'Enter a birthday' });
-    required(path.postcode, { message: 'Postcode is required' });
-    minLength(path.postcode, 4, { message: 'Postcode is too short' });
-    maxLength(path.postcode, 4, { message: 'Postcode is too long' });
-    this.validatePostcode(path.postcode);
-    maxLength(path.firstName, 20);
     validateStandardSchema(
       path.birthday,
       z.coerce
         .date()
         .max(new Date(), { error: 'Birthdate cannot be in the past' }),
     );
+
+    required(path.postcode, { message: 'Postcode is required' });
+    minLength(path.postcode, 4, { message: 'Postcode is too short' });
+    maxLength(path.postcode, 4, { message: 'Postcode is too long' });
+    this.validatePostcode(path.postcode);
+    maxLength(path.firstName, 20);
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
       when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
@@ -167,6 +170,7 @@ export class FormComponent {
       message: 'Minium two family members are required',
     });
 
+    maxLength(path.email, 128);
     required(path.email, { message: 'Enter an email' });
     validateStandardSchema(
       path,
@@ -246,7 +250,7 @@ export class FormComponent {
 }
 
 function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
-  path: FieldPath<TValue, TPathKind>,
+  path: SchemaPath<TValue, SchemaPathRules.Supported, TPathKind>,
   {
     message,
     when = () => true,
@@ -296,7 +300,7 @@ function postcodeValidator() {
     });
 
   return <TPathKind extends PathKind = PathKind.Root>(
-    path: FieldPath<string, TPathKind>,
+    path: SchemaPath<string, SchemaPathRules.Supported, TPathKind>,
   ) => {
     validateAsync(path, {
       params: ({ value }) => {
