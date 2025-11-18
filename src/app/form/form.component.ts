@@ -132,7 +132,7 @@ export class FormComponent {
       path.birthday,
       z.coerce
         .date()
-        .max(new Date(), { error: 'Birthdate cannot be in the past' }),
+        .max(new Date(), { error: 'Birthdate has to be in the past.' }),
     );
 
     required(path.postcode, { message: 'Postcode is required' });
@@ -233,7 +233,7 @@ export class FormComponent {
       if (married) {
         this.model.update((model) => ({
           ...model,
-          spouse: { income: NaN, abn: '' },
+          spouse: { income: null, abn: '' },
         }));
       } else {
         this.model.update((model) => ({
@@ -268,7 +268,7 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
 }
 
 type Spouse = {
-  income: number;
+  income: number | null;
   abn: string;
 };
 

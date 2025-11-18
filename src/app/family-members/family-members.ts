@@ -27,7 +27,7 @@ import {
 } from '@angular/forms/signals';
 import { NgxMaskDirective } from 'ngx-mask';
 
-export type FamilyMember = { name: string; income: number };
+export type FamilyMember = { name: string; income: number | null };
 
 @Component({
   selector: 'app-family-members',
@@ -93,7 +93,7 @@ export class FamilyMembers {
   protected addFamilyMember(): void {
     this.field()().value.update((members) => [
       ...members,
-      { name: '', income: NaN },
+      { name: '', income: null },
     ]);
   }
 
@@ -103,7 +103,6 @@ export class FamilyMembers {
     );
 
     if (!this.field()().value().length) {
-      console.log('Emit');
       this.lastRemoved.emit();
     }
   }

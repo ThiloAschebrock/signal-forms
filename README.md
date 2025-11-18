@@ -28,6 +28,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] ngxmask for numbers: works
 - [ ] Try filtering hidden inputs on submit
 - [ ] Try new debounce option
+- [ ] Try new compatForm with datepicker
 
 ## What's not working
 
@@ -39,9 +40,5 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 4. Touched flag on circular toggle needs a focus outside -> This is consisten with radio group and by desing unreleated to signal forms
 5. Datepicker: Input is cleared completly when a value is change to have an invalid format -> Requires and NDBX bug ticket
 6. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit
-7. Min and max validators do not allow for null -> https://github.com/angular/angular/issues/63789 raised
-   - Workaround: One can only use NaN to represent empty number
-8. Standard-Schema validation does not forward the issue message as the formfield message; Workaround is using instanceof - see error pipe; Should I open an issue with Angular?
-9. Need to use $any() to bind number fields to numeric input
-10. Attributes such as reaodnly are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template
-11. compatForm is not exposed via public API in RC-2
+7. Need to use $any() to bind number fields to numeric input
+8. Attributes such as reaodnly or max are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template

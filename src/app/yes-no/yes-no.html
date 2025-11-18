@@ -1,7 +1,8 @@
-<!-- Re-add readonly 
-   [readonly]="field()().readonly()"
-    -->
-<nx-circle-toggle-group [field]="field()" class="nx-margin-bottom-s">
+<nx-circle-toggle-group
+  [field]="field()"
+  [readonly]="field()().readonly()"
+  class="nx-margin-bottom-s"
+>
   <nx-label [disabled]="field()().disabled()">Are you married?</nx-label>
   <nx-circle-toggle [value]="true" circleText="Yes" />
   <nx-circle-toggle [value]="false" circleText="No" />

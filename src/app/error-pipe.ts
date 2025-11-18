@@ -17,10 +17,6 @@ export class ErrorPipe implements PipeTransform {
       return '';
     }
 
-    if (error instanceof StandardSchemaValidationError) {
-      return error.issue.message;
-    }
-
     return error.message ?? 'Unkown error';
   }
 }

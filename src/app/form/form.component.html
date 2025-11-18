@@ -1,10 +1,11 @@
 <form>
   <app-input-with-character-count [field]="form.firstName" label="First name" />
   <app-input-with-character-count [field]="form.lastName" label="Last name" />
-  <!-- Re-add readonly attribute to checkbox 
-    [readonly]="form.same().readonly()" 
-    -->
-  <nx-checkbox [field]="form.same" class="nx-margin-bottom-s">
+  <nx-checkbox
+    [field]="form.same"
+    class="nx-margin-bottom-s"
+    [readonly]="form.same().readonly()"
+  >
     Last name is same as first name
   </nx-checkbox>
   <nx-formfield label="Birthday">
