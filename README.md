@@ -27,7 +27,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
 - [ ] Try filtering hidden inputs on submit
-- [ ] Try new debounce option
+- [x] Try new debounce option
 - [x] Try new compatForm with datepicker
 
 ## What's not working
@@ -42,3 +42,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 6. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
 7. Need to use $any() to bind number fields to numeric input despite having a control value acessor
 8. Attributes such as reaodnly or max are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template
+9. Debounced values do not automatically contribute to pending state

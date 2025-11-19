@@ -30,7 +30,10 @@
   </nx-formfield>
   <nx-formfield label="Postcode">
     <input nxInput [field]="form.postcode" type="text" inputmode="numeric" />
-    @if (this.form.postcode().pending()) {
+    @if (
+      this.form.postcode().pending() ||
+      this.form.postcode().value() !== this.form.postcode().controlValue()
+    ) {
       <nx-spinner nxFormfieldSuffix />
     }
     <nx-error nxFormfieldError>

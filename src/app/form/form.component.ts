@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { z } from 'zod';
 import {
-  form,
+  debounce,
   Field,
   required,
   submit,
@@ -133,6 +133,7 @@ export class FormComponent {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
 
+    debounce(path.postcode, 200);
     required(path.postcode, { message: 'Postcode is required' });
     minLength(path.postcode, 4, { message: 'Postcode is too short' });
     maxLength(path.postcode, 4, { message: 'Postcode is too long' });
