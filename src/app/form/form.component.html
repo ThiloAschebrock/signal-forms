@@ -16,8 +16,10 @@
     <input
       nxDatefield
       nxInput
-      [field]="form.birthday"
+      max="2020-12-31"
       [datepicker]="myDatepicker"
+      [formControl]="form.birthday().control()"
+      [readonly]="form.birthday().readonly()"
     />
     <span nxFormfieldHint>MM/DD/YYYY</span>
     <nx-datepicker-toggle [for]="myDatepicker" nxFormfieldSuffix />
@@ -138,7 +140,6 @@
   >
     Set name to "Thilo"
   </button>
-  <div class="nx-margin-top-m">{{ model() | json }}</div>
   <div class="nx-margin-top-m">
     Touched: {{ form().touched() ? "true" : "false" }}, Dirty:
     {{ form().dirty() ? "true" : "false" }}

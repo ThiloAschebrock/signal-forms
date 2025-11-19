@@ -17,6 +17,10 @@ export class ErrorPipe implements PipeTransform {
       return '';
     }
 
-    return error.message ?? 'Unkown error';
+    if (error.message) {
+      return error.message;
+    }
+
+    return error.kind;
   }
 }

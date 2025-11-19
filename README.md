@@ -28,7 +28,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] ngxmask for numbers: works
 - [ ] Try filtering hidden inputs on submit
 - [ ] Try new debounce option
-- [ ] Try new compatForm with datepicker
+- [x] Try new compatForm with datepicker
 
 ## What's not working
 
@@ -38,7 +38,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
    - Work-around: One can implement their own custom validator
 3. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 4. Touched flag on circular toggle needs a focus outside -> This is consisten with radio group and by desing unreleated to signal forms
-5. Datepicker: Input is cleared completly when a value is change to have an invalid format -> Requires and NDBX bug ticket
-6. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit
-7. Need to use $any() to bind number fields to numeric input
+5. Datepicker: Input is cleared completly when a value is change to have an invalid format -> NDBX Ticket created; Workaround with compatForm
+6. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
+7. Need to use $any() to bind number fields to numeric input despite having a control value acessor
 8. Attributes such as reaodnly or max are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template

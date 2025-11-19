@@ -35,6 +35,7 @@ import {
   aggregateMetadata,
   SchemaPathRules,
 } from '@angular/forms/signals';
+import { compatForm } from '@angular/forms/signals/compat';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
   QueryClient,
@@ -65,6 +66,7 @@ import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembers } from '../family-members/family-members';
 import { ErrorPipe } from '../error-pipe';
 import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -93,6 +95,7 @@ import { InputWithCharacterCount } from '../input-with-character-count/input-wit
     FamilyMembers,
     ErrorPipe,
     InputWithCharacterCount,
+    ReactiveFormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -104,7 +107,7 @@ export class FormComponent {
     lastName: string;
     same: boolean;
     postcode: string;
-    birthday: string;
+    birthday: FormControl<string | null>;
     married: boolean | null;
     employFamilyMembers: boolean | null;
     familyMembers: FamilyMember[];
@@ -114,7 +117,10 @@ export class FormComponent {
     firstName: '',
     lastName: '',
     postcode: '',
-    birthday: '1989-04-01',
+    birthday: new FormControl<string | null>(null, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     same: false,
     married: null,
     employFamilyMembers: null,
@@ -123,17 +129,9 @@ export class FormComponent {
   });
   protected readonly model = linkedSignal(this.initalState);
   private readonly validatePostcode = postcodeValidator();
-  protected readonly form = form(this.model, (path) => {
+  protected readonly form = compatForm(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
-
-    required(path.birthday, { message: 'Enter a birthday' });
-    validateStandardSchema(
-      path.birthday,
-      z.coerce
-        .date()
-        .max(new Date(), { error: 'Birthdate has to be in the past.' }),
-    );
 
     required(path.postcode, { message: 'Postcode is required' });
     minLength(path.postcode, 4, { message: 'Postcode is too short' });
@@ -190,9 +188,9 @@ export class FormComponent {
 
   protected submit(): void {
     this.form.email().errors;
-    submit(this.form, async () => {
+    submit(this.form, async (form) => {
       // TODO: Conditional remove data that has been hidden -> Can this be abstracted into a function?
-      console.log('Submitted', this.model());
+      console.log('Submitted', form().value());
       await new Promise((resolve) => setTimeout(resolve, 1_000));
     });
   }
