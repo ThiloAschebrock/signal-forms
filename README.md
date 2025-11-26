@@ -40,6 +40,5 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 4. Datepicker: Input is cleared completly when a value is change to have an invalid format -> NDBX Ticket created; Workaround with compatForm
 5. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
 6. Need to use $any() to bind number fields to numeric input despite having a control value acessor
-7. Attributes such as readonly or max are not forwarded and cannot be bound to NG_VALUE_ACCESSOR in the template
-8. Debounced values do not automatically contribute to pending state
-9. Compat fields are not disabled
+7. Debounced values do not automatically contribute to pending state
+8. Compat fields are not disabled
