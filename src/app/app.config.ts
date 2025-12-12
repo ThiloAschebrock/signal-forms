@@ -25,6 +25,5 @@ export const appConfig: ApplicationConfig = {
       outputTransformFn: (value) => (typeof value === 'string' ? null : value),
     }),
     provideTanStackQuery(new QueryClient(), withDevtools()),
-    provideAnimations(),
   ],
 };

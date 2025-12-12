@@ -32,8 +32,8 @@ import {
   applyEach,
   validateStandardSchema,
   validateAsync,
-  aggregateMetadata,
   SchemaPathRules,
+  metadata,
 } from '@angular/forms/signals';
 import { compatForm } from '@angular/forms/signals/compat';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
@@ -180,12 +180,8 @@ export class FormComponent {
   protected readonly readonly = signal(false);
 
   protected readonly isLastNameRequired = computed(() =>
-    this.form.lastName().metadata(REQUIRED)(),
+    this.form.lastName().required(),
   );
-
-  private readonly firstName = computed(() => this.form.firstName().value());
-  private readonly same = computed(() => this.form.same().value());
-  private readonly married = computed(() => this.form.married().value());
 
   protected submit(): void {
     this.form.email().errors;
@@ -210,15 +206,11 @@ export class FormComponent {
   }
 
   protected syncLastNameEffect = effect(() => {
-    // Note: Using this.model().firstName or
-    // this.form.firstName().value()
-    // would result in an infinite effect.
-
-    if (!this.same()) {
+    if (!this.form.same().value()) {
       return;
     }
 
-    const firstName = this.firstName();
+    const firstName = this.form.firstName().value();
 
     untracked(() => {
       this.form.lastName().value.set(firstName);
@@ -226,7 +218,7 @@ export class FormComponent {
   });
 
   protected addSpouseWhenMarried = effect(() => {
-    const married = this.married();
+    const married = this.form.married().value();
 
     untracked(() => {
       if (married) {
@@ -258,7 +250,7 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
     when: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
   }>,
 ): void {
-  aggregateMetadata(path, REQUIRED, when);
+  metadata(path, REQUIRED, when);
   validate(path, (context) =>
     when(context) && typeof context.value() !== 'boolean'
       ? { kind: 'required', message }
