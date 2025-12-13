@@ -129,6 +129,7 @@ export class FormComponent {
   });
   protected readonly model = linkedSignal(this.initalState);
   private readonly validatePostcode = postcodeValidator();
+
   protected readonly form = compatForm(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
@@ -175,6 +176,18 @@ export class FormComponent {
       path,
       z.object({ email: z.email({ error: 'Enter a valid email' }) }),
     );
+  });
+
+  protected readonly syncCompatFormDisablement = effect(() => {
+    const disabled = this.form.birthday().disabled();
+
+    untracked(() => {
+      if (disabled) {
+        this.form.birthday().control().disable();
+      } else {
+        this.form.birthday().control().enable();
+      }
+    });
   });
 
   protected readonly readonly = signal(false);
