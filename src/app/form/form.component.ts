@@ -128,7 +128,6 @@ export class FormComponent {
     email: '',
   });
   protected readonly model = linkedSignal(this.initalState);
-  private readonly validatePostcode = postcodeValidator();
 
   protected readonly form = compatForm(this.model, (path) => {
     disabled(path, () => this.form().submitting());
@@ -138,7 +137,7 @@ export class FormComponent {
     required(path.postcode, { message: 'Postcode is required' });
     minLength(path.postcode, 4, { message: 'Postcode is too short' });
     maxLength(path.postcode, 4, { message: 'Postcode is too long' });
-    this.validatePostcode(path.postcode);
+    validatePostcode(path.postcode);
     maxLength(path.firstName, 20);
     required(path.lastName, {
       message: 'Last name is required when a first name was entered',
@@ -294,7 +293,9 @@ async function isValidPostcode(postcode: string) {
   return validPostcodes.has(postcode);
 }
 
-function postcodeValidator() {
+const validatePostcode = <TPathKind extends PathKind = PathKind.Root>(
+  path: SchemaPath<string, SchemaPathRules.Supported, TPathKind>,
+) => {
   const queryClient = inject(QueryClient);
   const options = (postcode: string) =>
     queryOptions({
@@ -303,30 +304,26 @@ function postcodeValidator() {
       enabled: postcode?.length === 4,
     });
 
-  return <TPathKind extends PathKind = PathKind.Root>(
-    path: SchemaPath<string, SchemaPathRules.Supported, TPathKind>,
-  ) => {
-    validateAsync(path, {
-      params: ({ value }) => {
-        const postcode = value();
-        return postcode.length === 4 ? postcode : undefined;
-      },
-      factory: (params) =>
-        resource({
-          params,
-          loader: ({ params }) => queryClient.ensureQueryData(options(params)),
-        }),
-      onError: () => ({
-        kind: 'validation',
-        message: 'Error validating postcode',
+  validateAsync(path, {
+    params: ({ value }) => {
+      const postcode = value();
+      return postcode.length === 4 ? postcode : undefined;
+    },
+    factory: (params) =>
+      resource({
+        params,
+        loader: ({ params }) => queryClient.ensureQueryData(options(params)),
       }),
-      onSuccess: (valid) =>
-        valid
-          ? null
-          : {
-              kind: 'invalid',
-              message: 'Postcode does not exist',
-            },
-    });
-  };
-}
+    onError: () => ({
+      kind: 'validation',
+      message: 'Error validating postcode',
+    }),
+    onSuccess: (valid) =>
+      valid
+        ? null
+        : {
+            kind: 'invalid',
+            message: 'Postcode does not exist',
+          },
+  });
+};
