@@ -1,11 +1,7 @@
 <form>
   <app-input-with-character-count [field]="form.firstName" label="First name" />
   <app-input-with-character-count [field]="form.lastName" label="Last name" />
-  <nx-checkbox
-    [field]="form.same"
-    class="nx-margin-bottom-s"
-    [readonly]="form.same().readonly()"
-  >
+  <nx-checkbox [field]="form.same" class="nx-margin-bottom-s">
     Last name is same as first name
   </nx-checkbox>
   <nx-formfield label="Birthday">
