@@ -37,6 +37,6 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 2. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 3. Datepicker: Input is cleared completly when a value is change to have an invalid format -> NDBX Ticket created; Workaround with compatForm
 4. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
-5. Need to use $any() to bind number fields to numeric input despite having a control value acessor
-6. Debounced values do not automatically contribute to pending state
-7. Compat fields are not disabled
+5. Debounced values do not automatically contribute to pending state
+6. Compat fields are not disabled
+7. ngmask for numbers no longer works
