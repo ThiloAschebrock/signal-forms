@@ -1,7 +1,13 @@
 <form>
-  <app-input-with-character-count [field]="form.firstName" label="First name" />
-  <app-input-with-character-count [field]="form.lastName" label="Last name" />
-  <nx-checkbox [field]="form.same" class="nx-margin-bottom-s">
+  <app-input-with-character-count
+    [formField]="form.firstName"
+    label="First name"
+  />
+  <app-input-with-character-count
+    [formField]="form.lastName"
+    label="Last name"
+  />
+  <nx-checkbox [formField]="form.same" class="nx-margin-bottom-s">
     Last name is same as first name
   </nx-checkbox>
   <nx-formfield label="Birthday">
@@ -21,7 +27,12 @@
     </nx-error>
   </nx-formfield>
   <nx-formfield label="Postcode">
-    <input nxInput [field]="form.postcode" type="text" inputmode="numeric" />
+    <input
+      nxInput
+      [formField]="form.postcode"
+      type="text"
+      inputmode="numeric"
+    />
     @if (
       this.form.postcode().pending() ||
       this.form.postcode().value() !== this.form.postcode().controlValue()
@@ -33,7 +44,7 @@
     </nx-error>
   </nx-formfield>
 
-  <app-yes-no [field]="form.married" />
+  <app-yes-no [formField]="form.married" />
   @if (form.spouse && !form.spouse().hidden()) {
     <fieldset>
       <legend>Spouse</legend>
@@ -41,7 +52,7 @@
         <span nxFormfieldPrefix>$</span>
         <input
           nxInput
-          [field]="form.spouse.income"
+          [formField]="form.spouse.income"
           type="text"
           inputmode="numeric"
           mask="separator.0"
@@ -58,7 +69,7 @@
           nxInput
           type="text"
           inputmode="numeric"
-          [field]="form.spouse.abn"
+          [formField]="form.spouse.abn"
           nxMask="00 000 000 000"
           dropSpecialCharacters
         />
@@ -70,14 +81,14 @@
   }
   <app-toggle
     label="Do you employ family members?"
-    [field]="form.employFamilyMembers"
+    [formField]="form.employFamilyMembers"
   />
   <app-family-members
-    [field]="form.familyMembers"
+    [formField]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
   <nx-formfield label="Email">
-    <input nxInput type="email" [field]="form.email" />
+    <input nxInput type="email" [formField]="form.email" />
     @let emailLengty = form.email().value().length;
     <span nxFormfieldHint>
       {{

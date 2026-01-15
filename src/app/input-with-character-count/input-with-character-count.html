@@ -1,7 +1,7 @@
 <nx-formfield
   [label]="fieldState().required() ? label() : `${label()} (optional)`"
 >
-  <input nxInput [field]="field()" />
+  <input nxInput [formField]="formField()" />
   @if(hint()){
   <span nxFormfieldHint> {{hint()}} </span>
   }

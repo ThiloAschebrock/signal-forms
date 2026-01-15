@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import {
   provideTanStackQuery,
@@ -22,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(NxIsoDateModule),
     provideEnvironmentNgxMask({
-      outputTransformFn: (value) => (typeof value === 'string' ? null : value),
+      outputTransformFn: (value) => (value === '' ? null : value),
     }),
     provideTanStackQuery(new QueryClient(), withDevtools()),
   ],

@@ -29,6 +29,8 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Try filtering hidden inputs on submit
 - [x] Try new debounce option
 - [x] Try new compatForm with datepicker
+- [ ] Try to focus first input with error
+- [ ] Try maskito
 
 ## What's not working
 
@@ -39,4 +41,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 4. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
 5. Debounced values do not automatically contribute to pending state
 6. Compat fields are not disabled
-7. ngmask for numbers no longer works
+7. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.

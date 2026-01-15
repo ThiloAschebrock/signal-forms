@@ -1,10 +1,10 @@
-@if(!field()().hidden()){
+@if(!formField()().hidden()){
 <fieldset>
-  @for(member of field(); track member){
+  @for(member of formField(); track member){
   <fieldset>
     <legend>Family member {{ $index + 1 }}</legend>
     <nx-formfield label="Name">
-      <input nxInput type="text" [field]="member.name" />
+      <input nxInput type="text" [formField]="member.name" />
       <nx-error nxFormfieldError>
         {{ member.name().errors().at(0)?.message }}
       </nx-error>
@@ -13,7 +13,7 @@
       <span nxFormfieldPrefix>$</span>
       <input
         nxInput
-        [field]="member.income"
+        [formField]="member.income"
         type="text"
         inputmode="numeric"
         mask="separator.0"

@@ -1,11 +1,11 @@
-<nx-circle-toggle-group [field]="field()" class="nx-margin-bottom-s">
-  <nx-label [disabled]="field()().disabled()">Are you married?</nx-label>
+<nx-circle-toggle-group [formField]="formField()" class="nx-margin-bottom-s">
+  <nx-label [disabled]="formField()().disabled()">Are you married?</nx-label>
   <nx-circle-toggle [value]="true" circleText="Yes" />
   <nx-circle-toggle [value]="false" circleText="No" />
   <nx-error class="nx-margin-top-xs">
-    {{field()().errors().at(0)?.message}}
+    {{formField()().errors().at(0)?.message}}
   </nx-error>
 </nx-circle-toggle-group>
 <div class="nx-margin-bottom-m">
-  Dirty: {{ field()().dirty()}}, Touched: {{ field()().touched()}}
+  Dirty: {{ formField()().dirty()}}, Touched: {{ formField()().touched()}}
 </div>

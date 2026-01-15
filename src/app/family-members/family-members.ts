@@ -18,7 +18,7 @@ import {
   untracked,
 } from '@angular/core';
 import {
-  Field,
+  FormField,
   FieldTree,
   max,
   min,
@@ -32,14 +32,14 @@ export type FamilyMember = { name: string; income: number | null };
 @Component({
   selector: 'app-family-members',
   imports: [
+    FormField,
+    NgxMaskDirective,
+    NxButtonComponent,
+    NxErrorComponent,
     NxFormfieldComponent,
+    NxFormfieldErrorDirective,
     NxFormfieldPrefixDirective,
     NxInputDirective,
-    NgxMaskDirective,
-    NxErrorComponent,
-    Field,
-    NxButtonComponent,
-    NxFormfieldErrorDirective,
   ],
   templateUrl: './family-members.html',
   styleUrl: './family-members.scss',
@@ -55,23 +55,23 @@ export class FamilyMembers {
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);
 
-  readonly field = input.required<FieldTree<FamilyMember[]>>();
+  readonly formField = input.required<FieldTree<FamilyMember[]>>();
   readonly lastRemoved = output<void>();
 
   // This is required show and hide and errors when submit/reset was triggered
   protected readonly triggerChangeWhenTouchedEffect = effect(() => {
-    this.field()().touched();
-    this.field()().valid();
+    this.formField()().touched();
+    this.formField()().valid();
 
     untracked(() => this.changeDetectionRef.detectChanges());
   });
 
   protected readonly addFamilyMembersEffect = effect(() => {
-    if (!this.field()().hidden()) {
+    if (!this.formField()().hidden()) {
       return;
     }
 
-    if (this.field()().value().length) {
+    if (this.formField()().value().length) {
       return;
     }
 
@@ -81,8 +81,8 @@ export class FamilyMembers {
   });
 
   protected error = computed(() => {
-    const errors = this.field()().errors();
-    const touched = this.field()().touched();
+    const errors = this.formField()().errors();
+    const touched = this.formField()().touched();
     if (!touched) {
       return undefined;
     }
@@ -91,18 +91,18 @@ export class FamilyMembers {
   });
 
   protected addFamilyMember(): void {
-    this.field()().value.update((members) => [
+    this.formField()().value.update((members) => [
       ...members,
       { name: '', income: null },
     ]);
   }
 
   protected removeFamilyMember(indexToRemove: number): void {
-    this.field()().value.update((members) =>
+    this.formField()().value.update((members) =>
       members.filter((__values, index) => index !== indexToRemove),
     );
 
-    if (!this.field()().value().length) {
+    if (!this.formField()().value().length) {
       this.lastRemoved.emit();
     }
   }
