@@ -67,6 +67,7 @@ import { FamilyMember, FamilyMembers } from '../family-members/family-members';
 import { ErrorPipe } from '../error-pipe';
 import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
 import { Dropdown, DropdownOption } from '../dropdown/dropdown';
+import { Autocomplete, AutocompleteOption } from '../autocomplete/autocomplete';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -98,6 +99,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
     Toggle,
     YesNo,
     Dropdown,
+    Autocomplete,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -116,6 +118,7 @@ export class FormComponent {
     spouse?: Spouse;
     email: string;
     cars: string;
+    city: string;
   }>({
     firstName: '',
     lastName: '',
@@ -130,6 +133,7 @@ export class FormComponent {
     familyMembers: [],
     email: '',
     cars: '',
+    city: '',
   });
   protected readonly model = linkedSignal(this.initalState);
 
@@ -140,6 +144,17 @@ export class FormComponent {
     { label: 'Mercedes', value: 'Mercedes' },
     { label: 'Porsche', value: 'Porsche' },
     { label: 'Tesla', value: 'Tesla', disabled: true },
+  ];
+
+  protected readonly cityOptions: AutocompleteOption[] = [
+    { label: 'Berlin', value: 'Berlin' },
+    { label: 'Munich', value: 'Munich' },
+    { label: 'Hamburg', value: 'Hamburg' },
+    { label: 'Cologne', value: 'Cologne' },
+    { label: 'Frankfurt', value: 'Frankfurt' },
+    { label: 'Stuttgart', value: 'Stuttgart' },
+    { label: 'Düsseldorf', value: 'Düsseldorf' },
+    { label: 'Leipzig', value: 'Leipzig', disabled: true },
   ];
 
   protected readonly form = compatForm(this.model, (path) => {
@@ -183,6 +198,7 @@ export class FormComponent {
     });
 
     required(path.cars, { message: 'Please select a car' });
+    required(path.city, { message: 'Please select a city' });
     maxLength(path.email, 128);
     required(path.email, { message: 'Enter an email' });
     validateStandardSchema(

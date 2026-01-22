@@ -1,0 +1,22 @@
+<nx-formfield [label]="label()">
+  <input
+    type="text"
+    nxInput
+    [formField]="formField()"
+    [placeholder]="placeholder()"
+    [nxAutocomplete]="auto"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  <nx-autocomplete #auto="nxAutocomplete">
+    @for (option of filteredOptions(); track option.value) {
+    <nx-autocomplete-option [value]="option.value" [disabled]="option.disabled">
+      {{ option.label }}
+    </nx-autocomplete-option>
+    }
+  </nx-autocomplete>
+  @if (hint()) {
+  <div nxFormfieldHint>{{ hint() }}</div>
+  }
+  <nx-error nxFormfieldError> {{ formField()().errors() | error }} </nx-error>
+</nx-formfield>

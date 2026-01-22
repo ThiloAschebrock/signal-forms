@@ -88,6 +88,12 @@
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
   <app-dropdown [formField]="form.cars" label="Cars" [options]="carOptions" />
+  <app-autocomplete
+    [formField]="form.city"
+    label="City"
+    [options]="cityOptions"
+    hint="Search or select a city"
+  />
   <nx-formfield label="Email">
     <input nxInput type="email" [formField]="form.email" />
     @let emailLengty = form.email().value().length;
