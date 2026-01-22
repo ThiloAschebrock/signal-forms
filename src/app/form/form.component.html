@@ -87,6 +87,7 @@
     [formField]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
   />
+  <app-dropdown [formField]="form.cars" label="Cars" [options]="carOptions" />
   <nx-formfield label="Email">
     <input nxInput type="email" [formField]="form.email" />
     @let emailLengty = form.email().value().length;

@@ -66,6 +66,7 @@ import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembers } from '../family-members/family-members';
 import { ErrorPipe } from '../error-pipe';
 import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
+import { Dropdown, DropdownOption } from '../dropdown/dropdown';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -96,6 +97,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
     ReactiveFormsModule,
     Toggle,
     YesNo,
+    Dropdown,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -113,6 +115,7 @@ export class FormComponent {
     familyMembers: FamilyMember[];
     spouse?: Spouse;
     email: string;
+    cars: string;
   }>({
     firstName: '',
     lastName: '',
@@ -126,8 +129,18 @@ export class FormComponent {
     employFamilyMembers: null,
     familyMembers: [],
     email: '',
+    cars: '',
   });
   protected readonly model = linkedSignal(this.initalState);
+
+  protected readonly carOptions: DropdownOption[] = [
+    { label: 'BMW', value: 'BMW' },
+    { label: 'Audi', value: 'Audi' },
+    { label: 'VW', value: 'VW' },
+    { label: 'Mercedes', value: 'Mercedes' },
+    { label: 'Porsche', value: 'Porsche' },
+    { label: 'Tesla', value: 'Tesla', disabled: true },
+  ];
 
   protected readonly form = compatForm(this.model, (path) => {
     disabled(path, () => this.form().submitting());
@@ -169,6 +182,7 @@ export class FormComponent {
       message: 'Minium two family members are required',
     });
 
+    required(path.cars, { message: 'Please select a car' });
     maxLength(path.email, 128);
     required(path.email, { message: 'Enter an email' });
     validateStandardSchema(
@@ -215,6 +229,7 @@ export class FormComponent {
     this.form.birthday().value.set('1989-04-04');
     this.form.married().value.set(false);
     this.form.employFamilyMembers().value.set(false);
+    this.form.cars().value.set('BMW');
   }
 
   protected syncLastNameEffect = effect(() => {

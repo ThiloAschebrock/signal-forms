@@ -22,7 +22,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Async validation on a single input field
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
-- [ ] Dropdowns
+- [x] Dropdowns
 - [ ] Autocomplete
 - [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
