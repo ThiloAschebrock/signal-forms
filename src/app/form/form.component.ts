@@ -69,6 +69,7 @@ import { InputWithCharacterCount } from '../input-with-character-count/input-wit
 import { Dropdown, DropdownOption } from '../dropdown/dropdown';
 import { Autocomplete, AutocompleteOption } from '../autocomplete/autocomplete';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { omitHiddenFields } from './omit-hidden-fields';
 
 @Component({
   selector: 'app-form',
@@ -228,8 +229,8 @@ export class FormComponent {
   protected submit(): void {
     this.form.email().errors;
     submit(this.form, async (form) => {
-      // TODO: Conditional remove data that has been hidden -> Can this be abstracted into a function?
-      console.log('Submitted', form().value());
+      const filteredValue = omitHiddenFields(form);
+      console.log('Submitted', filteredValue);
       await new Promise((resolve) => setTimeout(resolve, 1_000));
     });
   }
