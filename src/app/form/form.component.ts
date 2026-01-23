@@ -147,14 +147,14 @@ export class FormComponent {
   ];
 
   protected readonly cityOptions: AutocompleteOption[] = [
-    { label: 'Berlin', value: 'Berlin' },
-    { label: 'Munich', value: 'Munich' },
-    { label: 'Hamburg', value: 'Hamburg' },
-    { label: 'Cologne', value: 'Cologne' },
-    { label: 'Frankfurt', value: 'Frankfurt' },
-    { label: 'Stuttgart', value: 'Stuttgart' },
-    { label: 'Düsseldorf', value: 'Düsseldorf' },
-    { label: 'Leipzig', value: 'Leipzig', disabled: true },
+    { label: 'Berlin', value: 'BER' },
+    { label: 'Munich', value: 'MUC' },
+    { label: 'Hamburg', value: 'HAM' },
+    { label: 'Cologne', value: 'CGN' },
+    { label: 'Frankfurt', value: 'FRA' },
+    { label: 'Stuttgart', value: 'STR' },
+    { label: 'Düsseldorf', value: 'DUS' },
+    { label: 'Leipzig', value: 'LEJ', disabled: true },
   ];
 
   protected readonly form = compatForm(this.model, (path) => {
@@ -246,6 +246,9 @@ export class FormComponent {
     this.form.married().value.set(false);
     this.form.employFamilyMembers().value.set(false);
     this.form.cars().value.set('BMW');
+    this.form.postcode().value.set('3121');
+    this.form.city().value.set('MUC');
+    this.form.email().value.set('thilo.aschebrock@tngtech.com');
   }
 
   protected syncLastNameEffect = effect(() => {
