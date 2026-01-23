@@ -23,7 +23,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
   - [x] Dropdowns
-  - [x] Autocomplete
+  - [ ] Autocomplete -> Not yet working well, especially if the full option needs to be stored
   - [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
 - [ ] Try filtering hidden inputs on submit
