@@ -52,7 +52,7 @@
         <span nxFormfieldPrefix>$</span>
         <input
           nxInput
-          [formField]="form.spouse.income"
+          [formField]="$any(form.spouse.income)"
           type="text"
           inputmode="numeric"
           mask="separator.0"

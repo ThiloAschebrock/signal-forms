@@ -31,6 +31,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Try new compatForm with datepicker
 - [ ] Try to focus first input with error
 - [ ] Try maskito
+- [ ] Numeric text mode inputs require $any to accept number type
 
 ## What's not working
 
