@@ -2,10 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/angular';
 import { page } from 'vitest/browser';
 import { FormComponent } from './form.component';
-import {
-  provideQueryClient,
-  QueryClient,
-} from '@tanstack/angular-query-experimental';
+import { provideQueryClient, QueryClient } from '@tanstack/angular-query-experimental';
 
 describe('FormComponent', () => {
   async function renderComponent() {

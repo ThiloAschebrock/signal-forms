@@ -43,10 +43,10 @@ This project demonstrates Angular's modern reactive forms with signals:
 - Use named imports for better tree-shaking
 - Example:
   ```ts
-  import { Component, signal, computed } from "@angular/core";
-  import { z } from "zod";
-  import { FormField, required } from "@angular/forms/signals";
-  import { NxButtonComponent } from "@allianz/ng-aquila/button";
+  import { Component, signal, computed } from '@angular/core';
+  import { z } from 'zod';
+  import { FormField, required } from '@angular/forms/signals';
+  import { NxButtonComponent } from '@allianz/ng-aquila/button';
   ```
 
 ### Angular Component Setup

@@ -17,14 +17,7 @@ import {
   output,
   untracked,
 } from '@angular/core';
-import {
-  FormField,
-  FieldTree,
-  max,
-  min,
-  required,
-  schema,
-} from '@angular/forms/signals';
+import { FormField, FieldTree, max, min, required, schema } from '@angular/forms/signals';
 import { NgxMaskDirective } from 'ngx-mask';
 
 export type FamilyMember = { name: string; income: number | null };
@@ -91,10 +84,7 @@ export class FamilyMembers {
   });
 
   protected addFamilyMember(): void {
-    this.formField()().value.update((members) => [
-      ...members,
-      { name: '', income: null },
-    ]);
+    this.formField()().value.update((members) => [...members, { name: '', income: null }]);
   }
 
   protected removeFamilyMember(indexToRemove: number): void {

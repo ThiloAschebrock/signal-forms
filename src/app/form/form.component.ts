@@ -37,10 +37,7 @@ import {
 } from '@angular/forms/signals';
 import { compatForm } from '@angular/forms/signals/compat';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
-import {
-  QueryClient,
-  queryOptions,
-} from '@tanstack/angular-query-experimental';
+import { QueryClient, queryOptions } from '@tanstack/angular-query-experimental';
 import {
   NxDatefieldDirective,
   NxDatepickerComponent,
@@ -184,10 +181,7 @@ export class FormComponent {
     requireBoolean(path.employFamilyMembers, {
       message: 'Answer if you employ family members',
     });
-    hidden(
-      path.familyMembers,
-      ({ valueOf }) => !valueOf(path.employFamilyMembers),
-    );
+    hidden(path.familyMembers, ({ valueOf }) => !valueOf(path.employFamilyMembers));
     applyEach(path.familyMembers, FamilyMembers.schema);
 
     requireBoolean(path.employFamilyMembers, {
@@ -202,10 +196,7 @@ export class FormComponent {
     required(path.city, { message: 'Please select a city' });
     maxLength(path.email, 128);
     required(path.email, { message: 'Enter an email' });
-    validateStandardSchema(
-      path,
-      z.object({ email: z.email({ error: 'Enter a valid email' }) }),
-    );
+    validateStandardSchema(path, z.object({ email: z.email({ error: 'Enter a valid email' }) }));
   });
 
   protected readonly syncCompatFormDisablement = effect(() => {
@@ -222,9 +213,7 @@ export class FormComponent {
 
   protected readonly readonly = signal(false);
 
-  protected readonly isLastNameRequired = computed(() =>
-    this.form.lastName().required(),
-  );
+  protected readonly isLastNameRequired = computed(() => this.form.lastName().required());
 
   protected submit(): void {
     this.form.email().errors;
@@ -299,9 +288,7 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
 ): void {
   metadata(path, REQUIRED, when);
   validate(path, (context) =>
-    when(context) && typeof context.value() !== 'boolean'
-      ? { kind: 'required', message }
-      : null,
+    when(context) && typeof context.value() !== 'boolean' ? { kind: 'required', message } : null,
   );
 }
 

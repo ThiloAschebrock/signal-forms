@@ -1,14 +1,14 @@
 {
   "name": "signal-forms",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "format": "prettier --write ."
+    "format": "oxfmt"
   },
-  "private": true,
   "dependencies": {
     "@allianz/ng-aquila": "^21.2.0",
     "@angular/cdk": "21.1.4",
@@ -39,7 +39,7 @@
     "@vitest/browser": "^4.0.18",
     "@vitest/browser-playwright": "^4.0.18",
     "jsdom": "^28.0.0",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.32.0",
     "typescript": "~5.9.3",
     "vitest": "^4.0.18"
   }

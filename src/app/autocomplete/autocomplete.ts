@@ -66,8 +66,7 @@ export class Autocomplete {
     if (!text) return allOptions;
     return allOptions.filter(
       (option) =>
-        option.label.toLowerCase().includes(text) ||
-        option.value.toLowerCase().includes(text),
+        option.label.toLowerCase().includes(text) || option.value.toLowerCase().includes(text),
     );
   });
 
@@ -88,8 +87,7 @@ export class Autocomplete {
       const currentValue = this.formField()().value();
       const allOptions = this.options();
       const isValidOption = allOptions.some(
-        (option) =>
-          option.value === currentValue || option.label === currentValue,
+        (option) => option.value === currentValue || option.label === currentValue,
       );
       if (!isValidOption) {
         untracked(() => {

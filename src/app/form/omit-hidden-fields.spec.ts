@@ -8,9 +8,7 @@ import { FormControl } from '@angular/forms';
 
 describe('omitHiddenFields', () => {
   it('should return value for a primitive field', () => {
-    const formTree = TestBed.runInInjectionContext(() =>
-      form(signal<string>('test')),
-    );
+    const formTree = TestBed.runInInjectionContext(() => form(signal<string>('test')));
     const result = omitHiddenFields(formTree);
     expect(result).toBe('test');
   });
@@ -46,17 +44,13 @@ describe('omitHiddenFields', () => {
   });
 
   it('should return value for number field', () => {
-    const formTree = TestBed.runInInjectionContext(() =>
-      form(signal<number>(42)),
-    );
+    const formTree = TestBed.runInInjectionContext(() => form(signal<number>(42)));
     const result = omitHiddenFields(formTree);
     expect(result).toBe(42);
   });
 
   it('should return value for boolean field', () => {
-    const formTree = TestBed.runInInjectionContext(() =>
-      form(signal<boolean>(true)),
-    );
+    const formTree = TestBed.runInInjectionContext(() => form(signal<boolean>(true)));
     const result = omitHiddenFields(formTree);
     expect(result).toBe(true);
   });
@@ -346,8 +340,6 @@ describe('omitHiddenFields', () => {
       data: { 1: 'one', 2: 'two' },
       age: 30,
     });
-    expect(result && 'data' in result && !Array.isArray(result.data)).toBe(
-      true,
-    );
+    expect(result && 'data' in result && !Array.isArray(result.data)).toBe(true);
   });
 });

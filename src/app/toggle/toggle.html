@@ -5,20 +5,10 @@
   class="nx-margin-bottom-s"
 >
   <nx-label [disabled]="disabled()">{{label()}}</nx-label>
-  <nx-circle-toggle
-    [value]="true"
-    circleText="Yes"
-    [class.has-error]="showError()"
-  />
-  <nx-circle-toggle
-    [value]="false"
-    circleText="No"
-    [class.has-error]="showError()"
-  />
+  <nx-circle-toggle [value]="true" circleText="Yes" [class.has-error]="showError()" />
+  <nx-circle-toggle [value]="false" circleText="No" [class.has-error]="showError()" />
 </nx-circle-toggle-group>
 @if (showError()) {
 <nx-error class="nx-margin-top-xs"> {{errors().at(0)?.message}} </nx-error>
 }
-<div class="nx-margin-bottom-m">
-  Dirty: {{ dirty()}}, Touched: {{ touched()}}
-</div>
+<div class="nx-margin-bottom-m">Dirty: {{ dirty()}}, Touched: {{ touched()}}</div>

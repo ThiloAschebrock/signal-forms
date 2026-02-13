@@ -1,12 +1,6 @@
 <form>
-  <app-input-with-character-count
-    [formField]="form.firstName"
-    label="First name"
-  />
-  <app-input-with-character-count
-    [formField]="form.lastName"
-    label="Last name"
-  />
+  <app-input-with-character-count [formField]="form.firstName" label="First name" />
+  <app-input-with-character-count [formField]="form.lastName" label="Last name" />
   <nx-checkbox [formField]="form.same" class="nx-margin-bottom-s">
     Last name is same as first name
   </nx-checkbox>
@@ -27,12 +21,7 @@
     </nx-error>
   </nx-formfield>
   <nx-formfield label="Postcode">
-    <input
-      nxInput
-      [formField]="form.postcode"
-      type="text"
-      inputmode="numeric"
-    />
+    <input nxInput [formField]="form.postcode" type="text" inputmode="numeric" />
     @if (
       this.form.postcode().pending() ||
       this.form.postcode().value() !== this.form.postcode().controlValue()
@@ -79,10 +68,7 @@
       </nx-formfield>
     </fieldset>
   }
-  <app-toggle
-    label="Do you employ family members?"
-    [formField]="form.employFamilyMembers"
-  />
+  <app-toggle label="Do you employ family members?" [formField]="form.employFamilyMembers" />
   <app-family-members
     [formField]="form.familyMembers"
     (lastRemoved)="setEmployFamilyMembersToFalse()"
@@ -98,9 +84,7 @@
     <input nxInput type="email" [formField]="form.email" />
     @let emailLengty = form.email().value().length;
     <span nxFormfieldHint>
-      {{
-        emailLengty ? `${emailLengty}/128 characters` : "max. 128 characters"
-      }}</span
+      {{ emailLengty ? `${emailLengty}/128 characters` : 'max. 128 characters' }}</span
     >
     <nx-error nxFormfieldError>
       {{ form.email().errors() | error }}
@@ -143,23 +127,16 @@
     (click)="readonly.set(!readonly())"
     [disabled]="form().submitting()"
   >
-    {{ readonly() ? "Unset readonly" : "Set readonly" }}
+    {{ readonly() ? 'Unset readonly' : 'Set readonly' }}
   </button>
-  <button
-    nxButton="secondary"
-    type="button"
-    (click)="setName()"
-    [disabled]="form().submitting()"
-  >
+  <button nxButton="secondary" type="button" (click)="setName()" [disabled]="form().submitting()">
     Set name to "Thilo"
   </button>
   <div class="nx-margin-top-m">
-    Touched: {{ form().touched() ? "true" : "false" }}, Dirty:
-    {{ form().dirty() ? "true" : "false" }}
+    Touched: {{ form().touched() ? 'true' : 'false' }}, Dirty:
+    {{ form().dirty() ? 'true' : 'false' }}
   </div>
   @for (error of form().errorSummary(); track $index) {
-    <nx-message context="warning" class="nx-margin-top-m">{{
-      error | json
-    }}</nx-message>
+    <nx-message context="warning" class="nx-margin-top-m">{{ error | json }}</nx-message>
   }
 </form>

@@ -9,14 +9,8 @@ import {
 } from '@angular/core';
 import { FormField, FieldTree } from '@angular/forms/signals';
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
-import {
-  NxFormfieldComponent,
-  NxFormfieldErrorDirective,
-} from '@allianz/ng-aquila/formfield';
-import {
-  NxDropdownComponent,
-  NxDropdownItemComponent,
-} from '@allianz/ng-aquila/dropdown';
+import { NxFormfieldComponent, NxFormfieldErrorDirective } from '@allianz/ng-aquila/formfield';
+import { NxDropdownComponent, NxDropdownItemComponent } from '@allianz/ng-aquila/dropdown';
 import { ErrorPipe } from '../error-pipe';
 
 export interface DropdownOption {

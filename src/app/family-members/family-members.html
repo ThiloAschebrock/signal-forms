@@ -5,9 +5,7 @@
     <legend>Family member {{ $index + 1 }}</legend>
     <nx-formfield label="Name">
       <input nxInput type="text" [formField]="member.name" />
-      <nx-error nxFormfieldError>
-        {{ member.name().errors().at(0)?.message }}
-      </nx-error>
+      <nx-error nxFormfieldError> {{ member.name().errors().at(0)?.message }} </nx-error>
     </nx-formfield>
     <nx-formfield label="Family member income">
       <span nxFormfieldPrefix>$</span>
@@ -21,18 +19,12 @@
         thousandSeparator=","
         separatorLimit="999999999"
       />
-      <nx-error nxFormfieldError>
-        {{ member.income().errors().at(0)?.message }}
-      </nx-error>
+      <nx-error nxFormfieldError> {{ member.income().errors().at(0)?.message }} </nx-error>
     </nx-formfield>
-    <button nxButton="tertiary" type="button" (click)="removeFamilyMember(0)">
-      Remove
-    </button>
+    <button nxButton="tertiary" type="button" (click)="removeFamilyMember(0)">Remove</button>
   </fieldset>
   }
-  <button nxButton="secondary" type="button" (click)="addFamilyMember()">
-    Add family member
-  </button>
+  <button nxButton="secondary" type="button" (click)="addFamilyMember()">Add family member</button>
 </fieldset>
 } @if(error(); as error){
 <nx-error class="nx-margin-bottom-s"> {{ error }} </nx-error>

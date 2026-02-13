@@ -8,9 +8,7 @@ type DeepPartial<T> = T extends (infer U)[]
       ? { [K in keyof T]?: DeepPartial<T[K]> }
       : T;
 
-export function omitHiddenFields<T>(
-  form: FieldTree<T>,
-): DeepPartial<T> | undefined {
+export function omitHiddenFields<T>(form: FieldTree<T>): DeepPartial<T> | undefined {
   const fieldState = form();
 
   if (fieldState.hidden()) {

@@ -3,18 +3,8 @@ import {
   NxCircleToggleComponent,
   NxCircleToggleGroupComponent,
 } from '@allianz/ng-aquila/circle-toggle';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  model,
-} from '@angular/core';
-import {
-  FormValueControl,
-  ValidationError,
-  WithOptionalField,
-} from '@angular/forms/signals';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-toggle',
@@ -37,7 +27,5 @@ export class Toggle implements FormValueControl<boolean | null> {
   readonly dirty = input<boolean>(false);
   readonly disabled = input<boolean>(false);
 
-  protected readonly showError = computed(
-    () => this.touched() && !!this.errors().length,
-  );
+  protected readonly showError = computed(() => this.touched() && !!this.errors().length);
 }
