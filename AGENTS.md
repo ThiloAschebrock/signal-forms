@@ -5,24 +5,24 @@ Development guidelines for this Angular 21 signals-based forms application using
 ## Build, Lint & Test Commands
 
 ```bash
-npm start              # Start dev server (http://localhost:4200)
-npm run build          # Production build to dist/signal-forms
-npm test              # Run all tests (Vitest with @testing-library/angular)
-npm run test:watch    # Run tests in watch mode
-npm run format        # Format all files with Prettier
+pnpm start              # Start dev server (http://localhost:4200)
+pnpm run build          # Production build to dist/signal-forms
+pnpm test              # Run all tests (Vitest with @testing-library/angular)
+pnpm run test:watch    # Run tests in watch mode
+pnpm run format        # Format all files with Prettier
 ```
 
 ### Running Single Tests
 
 ```bash
 # Run a single test file
-npx vitest src/app/form/form.component.spec.ts
+pnpm vitest src/app/form/form.component.spec.ts
 
 # Run tests matching a pattern
-npx vitest --run --grep "should work"
+pnpm exec vitest --run --grep "should work"
 
 # Run in watch mode with file filter
-npx vitest --watch form.component.spec.ts
+pnpm exec vitest --watch form.component.spec.ts
 ```
 
 ## Project Architecture
