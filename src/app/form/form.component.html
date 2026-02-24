@@ -8,10 +8,10 @@
     <input
       nxDatefield
       nxInput
-      max="2020-12-31"
+      [min]="minBirthday"
+      [max]="maxBirthday"
       [datepicker]="myDatepicker"
-      [formControl]="form.birthday().control()"
-      [readonly]="form.birthday().readonly()"
+      [formField]="form.birthday"
     />
     <span nxFormfieldHint>MM/DD/YYYY</span>
     <nx-datepicker-toggle [for]="myDatepicker" nxFormfieldSuffix />

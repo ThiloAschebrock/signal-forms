@@ -34,8 +34,8 @@ import {
   validateAsync,
   SchemaPathRules,
   metadata,
+  form,
 } from '@angular/forms/signals';
-import { compatForm } from '@angular/forms/signals/compat';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import { QueryClient, queryOptions } from '@tanstack/angular-query-experimental';
 import {
@@ -65,8 +65,9 @@ import { ErrorPipe } from '../error-pipe';
 import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
 import { Dropdown, DropdownOption } from '../dropdown/dropdown';
 import { Autocomplete, AutocompleteOption } from '../autocomplete/autocomplete';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-form',
@@ -89,7 +90,6 @@ import { omitHiddenFields } from './omit-hidden-fields';
     NxFormfieldPrefixDirective,
     NxFormfieldSuffixDirective,
     NxInputDirective,
-    NxIsoDateModule,
     NxMaskDirective,
     NxMessageComponent,
     NxSpinnerComponent,
@@ -104,12 +104,12 @@ import { omitHiddenFields } from './omit-hidden-fields';
   styleUrl: './form.component.scss',
 })
 export class FormComponent {
-  private readonly initalState = signal<{
+  private readonly initialState = signal<{
     firstName: string;
     lastName: string;
     same: boolean;
     postcode: string;
-    birthday: FormControl<string | null>;
+    birthday: string | null;
     married: boolean | null;
     employFamilyMembers: boolean | null;
     familyMembers: FamilyMember[];
@@ -121,10 +121,7 @@ export class FormComponent {
     firstName: '',
     lastName: '',
     postcode: '',
-    birthday: new FormControl<string | null>(null, {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
+    birthday: '',
     same: false,
     married: null,
     employFamilyMembers: null,
@@ -133,7 +130,7 @@ export class FormComponent {
     cars: '',
     city: '',
   });
-  protected readonly model = linkedSignal(this.initalState);
+  protected readonly model = linkedSignal(this.initialState);
 
   protected readonly carOptions: DropdownOption[] = [
     { label: 'BMW', value: 'BMW' },
@@ -155,7 +152,13 @@ export class FormComponent {
     { label: 'Leipzig', value: 'LEJ', disabled: true },
   ];
 
-  protected readonly form = compatForm(this.model, (path) => {
+  private readonly MAX_BIRTHDAY = dayjs().subtract(18, 'years').endOf('day');
+  private readonly MIN_BIRTHDAY = dayjs().subtract(100, 'years').startOf('day');
+
+  protected readonly maxBirthday = this.MAX_BIRTHDAY.format('YYYY-MM-DD');
+  protected readonly minBirthday = this.MIN_BIRTHDAY.format('YYYY-MM-DD');
+
+  protected readonly form = form(this.model, (path) => {
     disabled(path, () => this.form().submitting());
     readonly(path, () => this.readonly());
 
@@ -172,6 +175,19 @@ export class FormComponent {
     maxLength(path.lastName, 25);
     readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
     requireBoolean(path.married, { message: 'Answer if married' });
+
+    required(path.birthday, { message: 'Birthday is required' });
+    validateStandardSchema(
+      path.birthday,
+      z.coerce
+        .date()
+        .max(this.MAX_BIRTHDAY.toDate(), {
+          message: 'Age must be at least 18 years',
+        })
+        .min(this.MIN_BIRTHDAY.toDate(), {
+          message: 'Birthday cannot be more than 100 years ago',
+        }),
+    );
 
     if (path.spouse) {
       hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
@@ -196,19 +212,7 @@ export class FormComponent {
     required(path.city, { message: 'Please select a city' });
     maxLength(path.email, 128);
     required(path.email, { message: 'Enter an email' });
-    validateStandardSchema(path, z.object({ email: z.email({ error: 'Enter a valid email' }) }));
-  });
-
-  protected readonly syncCompatFormDisablement = effect(() => {
-    const disabled = this.form.birthday().disabled();
-
-    untracked(() => {
-      if (disabled) {
-        this.form.birthday().control().disable();
-      } else {
-        this.form.birthday().control().enable();
-      }
-    });
+    validateStandardSchema(path.email, z.email({ error: 'Enter a valid email' }));
   });
 
   protected readonly readonly = signal(false);
@@ -225,7 +229,7 @@ export class FormComponent {
   }
 
   protected reset(): void {
-    this.initalState.update((value) => ({ ...value }));
+    this.initialState.update((value) => ({ ...value }));
     this.form().reset();
   }
 

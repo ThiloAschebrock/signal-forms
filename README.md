@@ -35,10 +35,10 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 
 ## What's not working
 
-1. Required validator does not allow `false`, which is in conflict with the current old required valiation and an issue when using it with a nullable boolean, e.g., when a yes-no selection is required. -> https://github.com/angular/angular/issues/63624 (Closed as not planned)
+1. Required validator does not allow `false`, which is in conflict with the current old required validation and an issue when using it with a nullable boolean, e.g., when a yes-no selection is required. -> https://github.com/angular/angular/issues/63624 (Closed as not planned)
    - Work-around: One can implement their own custom validator
 2. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
-3. Datepicker: Input is cleared completly when a value is change to have an invalid format -> NDBX Ticket created; Workaround with compatForm
+3. Datepicker: Resetting the input to null does not work, only '' works -> Can this be reproduced with Angular Material?
 4. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
 5. Debounced values do not automatically contribute to pending state
 6. Compat fields are not disabled

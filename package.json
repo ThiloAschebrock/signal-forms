@@ -10,7 +10,7 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^21.2.0",
+    "@allianz/ng-aquila": "^21.3.1",
     "@angular/cdk": "21.1.5",
     "@angular/common": "21.1.5",
     "@angular/compiler": "21.1.5",
@@ -31,15 +31,15 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@angular/build": "21.1.4",
-    "@angular/cli": "21.1.4",
+    "@angular/build": "21.1.5",
+    "@angular/cli": "21.1.5",
     "@angular/compiler-cli": "21.1.5",
     "@testing-library/angular": "^19.1.0",
     "@testing-library/dom": "^10.4.1",
     "@vitest/browser": "^4.0.18",
     "@vitest/browser-playwright": "^4.0.18",
     "jsdom": "^28.1.0",
-    "oxfmt": "^0.34.0",
+    "oxfmt": "^0.35.0",
     "typescript": "~5.9.3",
     "vitest": "^4.0.18"
   }
