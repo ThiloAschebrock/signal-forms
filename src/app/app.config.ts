@@ -1,6 +1,5 @@
 import {
   ApplicationConfig,
-  importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
@@ -9,14 +8,14 @@ import { routes } from './app.routes';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { withDevtools } from '@tanstack/angular-query-experimental/devtools';
-import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
+import { provideLocaleDate } from './date.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    importProvidersFrom(NxIsoDateModule),
+    provideLocaleDate(),
     provideEnvironmentNgxMask({
       outputTransformFn: (value) => (value === '' ? null : value),
     }),
