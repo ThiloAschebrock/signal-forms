@@ -1,4 +1,4 @@
-<form>
+<form [formRoot]="form">
   <app-input-with-character-count [formField]="form.firstName" label="First name" />
   <app-input-with-character-count [formField]="form.lastName" label="Last name" />
   <nx-checkbox [formField]="form.same" class="nx-margin-bottom-s">
@@ -82,9 +82,9 @@
   />
   <nx-formfield label="Email">
     <input nxInput type="email" [formField]="form.email" />
-    @let emailLengty = form.email().value().length;
+    @let emailLength = form.email().value().length;
     <span nxFormfieldHint>
-      {{ emailLengty ? `${emailLengty}/128 characters` : 'max. 128 characters' }}</span
+      {{ emailLength ? `${emailLength}/128 characters` : 'max. 128 characters' }}</span
     >
     <nx-error nxFormfieldError>
       {{ form.email().errors() | error }}
@@ -93,9 +93,8 @@
   <button
     nxButton="primary"
     class="nx-margin-right-xs"
-    type="button"
-    (click)="submit()"
-    [disabled]="form().submitting()"
+    type="submit"
+    [disabled]="form().submitting() || form().pending()"
   >
     @if (form().submitting()) {
       <nx-spinner size="small" class="nx-margin-right-xs" />

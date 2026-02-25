@@ -35,6 +35,7 @@ import {
   SchemaPathRules,
   metadata,
   form,
+  FormRoot,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import { QueryClient, queryOptions } from '@tanstack/angular-query-experimental';
@@ -72,9 +73,12 @@ import dayjs from 'dayjs';
 @Component({
   selector: 'app-form',
   imports: [
+    Autocomplete,
+    Dropdown,
     ErrorPipe,
     FamilyMembers,
     FormField,
+    FormRoot,
     InputWithCharacterCount,
     JsonPipe,
     NgxMaskDirective,
@@ -96,8 +100,6 @@ import dayjs from 'dayjs';
     ReactiveFormsModule,
     Toggle,
     YesNo,
-    Dropdown,
-    Autocomplete,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -158,75 +160,82 @@ export class FormComponent {
   protected readonly maxBirthday = this.MAX_BIRTHDAY.format('YYYY-MM-DD');
   protected readonly minBirthday = this.MIN_BIRTHDAY.format('YYYY-MM-DD');
 
-  protected readonly form = form(this.model, (path) => {
-    disabled(path, () => this.form().submitting());
-    readonly(path, () => this.readonly());
+  protected readonly form = form(
+    this.model,
+    (path) => {
+      disabled(path, () => this.form().submitting());
+      readonly(path, () => this.readonly());
 
-    debounce(path.postcode, 200);
-    required(path.postcode, { message: 'Postcode is required' });
-    minLength(path.postcode, 4, { message: 'Postcode is too short' });
-    maxLength(path.postcode, 4, { message: 'Postcode is too long' });
-    validatePostcode(path.postcode);
-    maxLength(path.firstName, 20);
-    required(path.lastName, {
-      message: 'Last name is required when a first name was entered',
-      when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
-    });
-    maxLength(path.lastName, 25);
-    readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
-    requireBoolean(path.married, { message: 'Answer if married' });
+      debounce(path.postcode, 200);
+      required(path.postcode, { message: 'Postcode is required' });
+      minLength(path.postcode, 4, { message: 'Postcode is too short' });
+      maxLength(path.postcode, 4, { message: 'Postcode is too long' });
+      validatePostcode(path.postcode);
+      maxLength(path.firstName, 20);
+      required(path.lastName, {
+        message: 'Last name is required when a first name was entered',
+        when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
+      });
+      maxLength(path.lastName, 25);
+      readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
+      requireBoolean(path.married, { message: 'Answer if married' });
 
-    required(path.birthday, { message: 'Birthday is required' });
-    validateStandardSchema(
-      path.birthday,
-      z.coerce
-        .date()
-        .max(this.MAX_BIRTHDAY.toDate(), {
-          message: 'Age must be at least 18 years',
-        })
-        .min(this.MIN_BIRTHDAY.toDate(), {
-          message: 'Birthday cannot be more than 100 years ago',
-        }),
-    );
+      required(path.birthday, { message: 'Birthday is required' });
+      validateStandardSchema(
+        path.birthday,
+        z.coerce
+          .date()
+          .max(this.MAX_BIRTHDAY.toDate(), {
+            message: 'Age must be at least 18 years',
+          })
+          .min(this.MIN_BIRTHDAY.toDate(), {
+            message: 'Birthday cannot be more than 100 years ago',
+          }),
+      );
 
-    if (path.spouse) {
-      hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
-      apply(path.spouse, spouseSchema);
-    }
+      if (path.spouse) {
+        hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
+        apply(path.spouse, spouseSchema);
+      }
 
-    requireBoolean(path.employFamilyMembers, {
-      message: 'Answer if you employ family members',
-    });
-    hidden(path.familyMembers, ({ valueOf }) => !valueOf(path.employFamilyMembers));
-    applyEach(path.familyMembers, FamilyMembers.schema);
+      requireBoolean(path.employFamilyMembers, {
+        message: 'Answer if you employ family members',
+      });
+      hidden(path.familyMembers, ({ valueOf }) => !valueOf(path.employFamilyMembers));
+      applyEach(path.familyMembers, FamilyMembers.schema);
 
-    requireBoolean(path.employFamilyMembers, {
-      message: 'Answer if you employ family members',
-      when: ({ valueOf }) => !!valueOf(path.married),
-    });
-    minLength(path.familyMembers, 2, {
-      message: 'Minium two family members are required',
-    });
+      requireBoolean(path.employFamilyMembers, {
+        message: 'Answer if you employ family members',
+        when: ({ valueOf }) => !!valueOf(path.married),
+      });
+      minLength(path.familyMembers, 2, {
+        message: 'Minium two family members are required',
+      });
 
-    required(path.cars, { message: 'Please select a car' });
-    required(path.city, { message: 'Please select a city' });
-    maxLength(path.email, 128);
-    required(path.email, { message: 'Enter an email' });
-    validateStandardSchema(path.email, z.email({ error: 'Enter a valid email' }));
-  });
+      required(path.cars, { message: 'Please select a car' });
+      required(path.city, { message: 'Please select a city' });
+      maxLength(path.email, 128);
+      required(path.email, { message: 'Enter an email' });
+      validateStandardSchema(path.email, z.email({ error: 'Enter a valid email' }));
+    },
+    {
+      submission: {
+        action: async (form) => {
+          const filteredValue = omitHiddenFields(form);
+          console.log('Submitted', filteredValue);
+          await new Promise((resolve) => setTimeout(resolve, 1_000));
+        },
+        onInvalid: (form) => {
+          console.warn('Invalid submission', form().errorSummary());
+        },
+        ignoreValidators: 'none',
+      },
+    },
+  );
 
   protected readonly readonly = signal(false);
 
   protected readonly isLastNameRequired = computed(() => this.form.lastName().required());
-
-  protected submit(): void {
-    this.form.email().errors;
-    submit(this.form, async (form) => {
-      const filteredValue = omitHiddenFields(form);
-      console.log('Submitted', filteredValue);
-      await new Promise((resolve) => setTimeout(resolve, 1_000));
-    });
-  }
 
   protected reset(): void {
     this.initialState.update((value) => ({ ...value }));
@@ -311,7 +320,7 @@ const spouseSchema = schema<Spouse>((path) => {
 async function isValidPostcode(postcode: string) {
   const validPostcodes = new Set(['3121', '3000', '2000', '1000']);
   console.log('Validating', postcode);
-  await new Promise((resolve) => setTimeout(resolve, 1_000));
+  await new Promise((resolve) => setTimeout(resolve, 3_000));
 
   if (postcode === '9999') {
     throw new Error('Simulated network error');
