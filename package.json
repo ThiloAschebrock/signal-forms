@@ -10,8 +10,8 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^21.3.1",
-    "@angular/cdk": "21.2.0",
+    "@allianz/ng-aquila": "^21.4.0",
+    "@angular/cdk": "21.2.1",
     "@angular/common": "21.2.1",
     "@angular/compiler": "21.2.1",
     "@angular/core": "21.2.1",
