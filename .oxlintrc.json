@@ -5,6 +5,6 @@
     // "typeCheck": true,
   },
   "env": {
-    "builtin": true,
-  },
+    "builtin": true
+  }
 }
