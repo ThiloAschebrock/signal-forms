@@ -4,10 +4,10 @@ import { FormValueControl } from '@angular/forms/signals';
 @Component({
   selector: 'app-select',
   imports: [],
-  templateUrl: './select.html',
-  styleUrl: './select.scss',
+  templateUrl: './select.component.html',
+  styleUrl: './select.component.scss',
 })
-export class Select implements FormValueControl<boolean | undefined> {
+export class SelectComponent implements FormValueControl<boolean | undefined> {
   readonly value = model<boolean | undefined>();
 
   readonly touched = model<boolean>(false);

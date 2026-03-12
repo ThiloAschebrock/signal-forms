@@ -44,11 +44,11 @@ export interface AutocompleteOption {
     NxFormfieldHintDirective,
     NxInputDirective,
   ],
-  templateUrl: './autocomplete.html',
-  styleUrl: './autocomplete.scss',
+  templateUrl: './autocomplete.component.html',
+  styleUrl: './autocomplete.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Autocomplete {
+export class AutocompleteComponent {
   readonly formField = input.required<FieldTree<string>>();
 
   readonly options = input.required<AutocompleteOption[]>();

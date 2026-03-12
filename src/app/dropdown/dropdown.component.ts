@@ -30,11 +30,11 @@ export interface DropdownOption {
     NxFormfieldComponent,
     NxFormfieldErrorDirective,
   ],
-  templateUrl: './dropdown.html',
-  styleUrl: './dropdown.scss',
+  templateUrl: './dropdown.component.html',
+  styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Dropdown {
+export class DropdownComponent {
   readonly formField = input.required<FieldTree<string>>();
 
   readonly options = input.required<DropdownOption[]>();

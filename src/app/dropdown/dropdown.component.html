@@ -1,9 +1,9 @@
 <nx-formfield [label]="label()">
   <nx-dropdown [formField]="formField()" [placeholder]="placeholder()">
     @for (option of options(); track option.value) {
-    <nx-dropdown-item [value]="option.value" [disabled]="option.disabled">
-      {{ option.label }}
-    </nx-dropdown-item>
+      <nx-dropdown-item [value]="option.value" [disabled]="option.disabled">
+        {{ option.label }}
+      </nx-dropdown-item>
     }
   </nx-dropdown>
   <nx-error nxFormfieldError> {{ formField()().errors() | error }} </nx-error>

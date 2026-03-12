@@ -56,16 +56,15 @@ import { NxButtonComponent } from '@allianz/ng-aquila/button';
 import { NxMessageComponent } from '@allianz/ng-aquila/message';
 import { NxCheckboxComponent } from '@allianz/ng-aquila/checkbox';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
-import { YesNo } from '../yes-no/yes-no';
-import { NxIsoDateModule } from '@allianz/ng-aquila/iso-date-adapter';
-import { Toggle } from '../toggle/toggle';
+import { YesNoComponent } from '../yes-no/yes-no.component';
+import { ToggleComponent } from '../toggle/toggle.component';
 import { NgxMaskDirective } from 'ngx-mask';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
-import { FamilyMember, FamilyMembers } from '../family-members/family-members';
+import { FamilyMember, FamilyMembersComponent } from '../family-members/family-members.component';
 import { ErrorPipe } from '../error-pipe';
-import { InputWithCharacterCount } from '../input-with-character-count/input-with-character-count';
-import { Dropdown, DropdownOption } from '../dropdown/dropdown';
-import { Autocomplete, AutocompleteOption } from '../autocomplete/autocomplete';
+import { InputWithCharacterCountComponent } from '../input-with-character-count/input-with-character-count.component';
+import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.component';
+import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
 import dayjs from 'dayjs';
@@ -73,13 +72,13 @@ import dayjs from 'dayjs';
 @Component({
   selector: 'app-form',
   imports: [
-    Autocomplete,
-    Dropdown,
+    AutocompleteComponent,
+    DropdownComponent,
     ErrorPipe,
-    FamilyMembers,
+    FamilyMembersComponent,
     FormField,
     FormRoot,
-    InputWithCharacterCount,
+    InputWithCharacterCountComponent,
     JsonPipe,
     NgxMaskDirective,
     NxButtonComponent,
@@ -98,8 +97,8 @@ import dayjs from 'dayjs';
     NxMessageComponent,
     NxSpinnerComponent,
     ReactiveFormsModule,
-    Toggle,
-    YesNo,
+    ToggleComponent,
+    YesNoComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
@@ -202,7 +201,7 @@ export class FormComponent {
         message: 'Answer if you employ family members',
       });
       hidden(path.familyMembers, ({ valueOf }) => !valueOf(path.employFamilyMembers));
-      applyEach(path.familyMembers, FamilyMembers.schema);
+      applyEach(path.familyMembers, FamilyMembersComponent.schema);
 
       requireBoolean(path.employFamilyMembers, {
         message: 'Answer if you employ family members',

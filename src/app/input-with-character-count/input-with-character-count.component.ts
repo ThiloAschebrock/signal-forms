@@ -29,11 +29,11 @@ import { NxErrorComponent } from '@allianz/ng-aquila/base';
     NxFormfieldHintDirective,
     NxInputDirective,
   ],
-  templateUrl: './input-with-character-count.html',
-  styleUrl: './input-with-character-count.scss',
+  templateUrl: './input-with-character-count.component.html',
+  styleUrl: './input-with-character-count.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputWithCharacterCount {
+export class InputWithCharacterCountComponent {
   readonly formField = input.required<FieldTree<string>>();
   readonly label = input.required<string>();
   protected readonly fieldState = computed(() => this.formField()());

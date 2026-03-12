@@ -23,11 +23,11 @@ import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
     NxErrorComponent,
     NxLabelComponent,
   ],
-  templateUrl: './yes-no.html',
-  styleUrl: './yes-no.scss',
+  templateUrl: './yes-no.component.html',
+  styleUrl: './yes-no.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class YesNo {
+export class YesNoComponent {
   readonly formField = input.required<FieldTree<boolean | null>>();
 
   private readonly changeDetectionRef = inject(ChangeDetectorRef);

@@ -38,7 +38,7 @@ export type FamilyMember = { name: string; income: number | null };
   styleUrl: './family-members.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FamilyMembers {
+export class FamilyMembersComponent {
   static readonly schema = schema<FamilyMember>((path) => {
     required(path.name, { message: 'Family member name is required.' });
     required(path.income, { message: 'Family member income is required.' });
