@@ -44,10 +44,7 @@ export function omitHiddenFields<T>(form: FieldTree<T>): DeepPartial<T> | undefi
   return result as DeepPartial<T>;
 }
 
-function processChildField<T>(
-  key: string,
-  fieldTree: FieldTree<T>,
-): DeepPartial<unknown> | undefined {
+function processChildField<T>(key: string, fieldTree: FieldTree<T>): unknown {
   const childField = (fieldTree as Record<string, unknown>)[key];
   if (!childField) {
     return undefined;

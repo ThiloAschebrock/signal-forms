@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { linkedSignal, signal } from '@angular/core';
-import { form, hidden, schema } from '@angular/forms/signals';
+import { signal } from '@angular/core';
+import { form, hidden } from '@angular/forms/signals';
 import { compatForm } from '@angular/forms/signals/compat';
 import { omitHiddenFields } from './omit-hidden-fields';
 import { TestBed } from '@angular/core/testing';
@@ -277,10 +277,6 @@ describe('omitHiddenFields', () => {
   });
 
   it('should return value of FormControl when using compat form', () => {
-    interface TestForm {
-      name: string;
-      age: number;
-    }
     const model = signal({ name: 'John', age: new FormControl(30) });
     const formTree = TestBed.runInInjectionContext(() => compatForm(model));
     const result = omitHiddenFields(formTree);

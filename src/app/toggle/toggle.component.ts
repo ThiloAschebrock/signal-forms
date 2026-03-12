@@ -4,7 +4,7 @@ import {
   NxCircleToggleGroupComponent,
 } from '@allianz/ng-aquila/circle-toggle';
 import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
-import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
+import { FormValueControl, ValidationError } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-toggle',
