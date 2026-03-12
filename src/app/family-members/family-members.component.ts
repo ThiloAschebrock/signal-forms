@@ -34,8 +34,8 @@ export type FamilyMember = { name: string; income: number | null };
     NxFormfieldPrefixDirective,
     NxInputDirective,
   ],
-  templateUrl: './family-members.html',
-  styleUrl: './family-members.scss',
+  templateUrl: './family-members.component.html',
+  styleUrl: './family-members.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FamilyMembers {

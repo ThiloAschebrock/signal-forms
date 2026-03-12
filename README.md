@@ -32,7 +32,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Try to focus first input with error
 - [ ] Try maskito
 - [ ] Numeric text mode inputs require $any to accept number type
-- [ ] Oxfmt does not format TS in HTML
+- [ ] Oxfmt does not format TS in HTML unless the component is suffixed with component.html
 
 ## What's not working
 
