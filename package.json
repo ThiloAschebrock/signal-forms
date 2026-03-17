@@ -8,8 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "format": "oxfmt",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix"
+    "lint": "oxlint && eslint --cache --max-warnings=0",
+    "lint:fix": "oxlint --fix && eslint --fix --cache --max-warnings=0"
   },
   "dependencies": {
     "@allianz/ng-aquila": "^21.4.0",
@@ -40,6 +40,9 @@
     "@testing-library/dom": "^10.4.1",
     "@vitest/browser": "^4.1.0",
     "@vitest/browser-playwright": "^4.1.0",
+    "angular-eslint": "^21.3.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-oxlint": "^1.56.0",
     "oxfmt": "^0.40.0",
     "oxlint": "^1.55.0",
     "oxlint-tsgolint": "^0.17.0",

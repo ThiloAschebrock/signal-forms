@@ -1,10 +1,43 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "options": {
-    // "typeAware": true,
-    // "typeCheck": true,
+    "typeAware": true,
+    "typeCheck": true,
   },
   "env": {
-    "builtin": true
-  }
+    "builtin": true,
+  },
+  "rules": {
+    "typescript/unbound-method": "off", // https://github.com/angular/angular/issues/65547
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "@angular-eslint/contextual-lifecycle": "error",
+        "@angular-eslint/no-empty-lifecycle-method": "error",
+        "@angular-eslint/no-input-rename": "error",
+        "@angular-eslint/no-inputs-metadata-property": "error",
+        "@angular-eslint/no-output-native": "error",
+        "@angular-eslint/no-output-on-prefix": "error",
+        "@angular-eslint/no-output-rename": "error",
+        "@angular-eslint/no-outputs-metadata-property": "error",
+        "@angular-eslint/prefer-inject": "error",
+        "@angular-eslint/prefer-standalone": "error",
+        "@angular-eslint/use-pipe-transform-interface": "error",
+        "@angular-eslint/use-lifecycle-interface": "warn",
+      },
+      "jsPlugins": ["@angular-eslint/eslint-plugin"],
+    },
+    {
+      "files": ["**/*.html"],
+      "rules": {
+        "@angular-eslint/template/banana-in-box": "error",
+        "@angular-eslint/template/eqeqeq": "error",
+        "@angular-eslint/template/no-negated-async": "error",
+        "@angular-eslint/template/prefer-control-flow": "error",
+      },
+      "jsPlugins": ["@angular-eslint/eslint-plugin-template"],
+    },
+  ],
 }
