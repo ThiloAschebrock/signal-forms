@@ -172,10 +172,10 @@ export class FormComponent {
       maxLength(path.firstName, 20);
       required(path.lastName, {
         message: 'Last name is required when a first name was entered',
-        when: ({ valueOf }) => !!valueOf(path.firstName).trim(),
+        when: (context) => !!context.valueOf(path.firstName).trim(),
       });
       maxLength(path.lastName, 25);
-      readonly(path.lastName, ({ valueOf }) => valueOf(path.same));
+      readonly(path.lastName, (context) => context.valueOf(path.same));
       requireBoolean(path.married, { message: 'Answer if married' });
 
       required(path.birthday, { message: 'Birthday is required' });
@@ -192,19 +192,19 @@ export class FormComponent {
       );
 
       if (path.spouse) {
-        hidden(path.spouse, ({ valueOf }) => !valueOf(path.married));
+        hidden(path.spouse, (context) => !context.valueOf(path.married));
         apply(path.spouse, spouseSchema);
       }
 
       requireBoolean(path.employFamilyMembers, {
         message: 'Answer if you employ family members',
       });
-      hidden(path.familyMembers, ({ valueOf }) => !valueOf(path.employFamilyMembers));
+      hidden(path.familyMembers, (context) => !context.valueOf(path.employFamilyMembers));
       applyEach(path.familyMembers, FamilyMembersComponent.schema);
 
       requireBoolean(path.employFamilyMembers, {
         message: 'Answer if you employ family members',
-        when: ({ valueOf }) => !!valueOf(path.married),
+        when: (context) => !!context.valueOf(path.married),
       });
       minLength(path.familyMembers, 2, {
         message: 'Minium two family members are required',

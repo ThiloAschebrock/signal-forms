@@ -7,9 +7,6 @@
   "env": {
     "builtin": true,
   },
-  "rules": {
-    "typescript/unbound-method": "off", // https://github.com/angular/angular/issues/65547
-  },
   "overrides": [
     {
       "files": ["**/*.ts"],
