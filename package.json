@@ -43,8 +43,8 @@
     "angular-eslint": "^21.3.0",
     "eslint": "^10.0.3",
     "eslint-plugin-oxlint": "^1.56.0",
-    "oxfmt": "^0.40.0",
-    "oxlint": "^1.55.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
     "oxlint-tsgolint": "^0.17.0",
     "typescript": "~5.9.3",
     "vitest": "^4.1.0"

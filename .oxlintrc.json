@@ -2,10 +2,10 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "options": {
     "typeAware": true,
-    "typeCheck": true,
+    "typeCheck": true
   },
   "env": {
-    "builtin": true,
+    "builtin": true
   },
   "overrides": [
     {
@@ -22,9 +22,9 @@
         "@angular-eslint/prefer-inject": "error",
         "@angular-eslint/prefer-standalone": "error",
         "@angular-eslint/use-pipe-transform-interface": "error",
-        "@angular-eslint/use-lifecycle-interface": "warn",
+        "@angular-eslint/use-lifecycle-interface": "warn"
       },
-      "jsPlugins": ["@angular-eslint/eslint-plugin"],
+      "jsPlugins": ["@angular-eslint/eslint-plugin"]
     },
     {
       "files": ["**/*.html"],
@@ -32,9 +32,9 @@
         "@angular-eslint/template/banana-in-box": "error",
         "@angular-eslint/template/eqeqeq": "error",
         "@angular-eslint/template/no-negated-async": "error",
-        "@angular-eslint/template/prefer-control-flow": "error",
+        "@angular-eslint/template/prefer-control-flow": "error"
       },
-      "jsPlugins": ["@angular-eslint/eslint-plugin-template"],
-    },
-  ],
+      "jsPlugins": ["@angular-eslint/eslint-plugin-template"]
+    }
+  ]
 }
