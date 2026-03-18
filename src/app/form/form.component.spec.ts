@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { render } from '@testing-library/angular';
+import { render } from '@testing-library/angular/zoneless';
 import { page } from 'vitest/browser';
 import { FormComponent } from './form.component';
 import { provideQueryClient, QueryClient } from '@tanstack/angular-query-experimental';
