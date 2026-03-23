@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --watch=false",
     "format": "oxfmt",
     "lint": "oxlint && eslint --cache --max-warnings=0",
     "lint:fix": "oxlint --fix && eslint --fix --cache --max-warnings=0"
@@ -21,7 +21,7 @@
     "@angular/platform-browser": "21.2.5",
     "@angular/platform-browser-dynamic": "21.2.5",
     "@angular/router": "21.2.5",
-    "@tanstack/angular-query-experimental": "^5.90.26",
+    "@tanstack/angular-query-experimental": "^5.95.2",
     "dayjs": "^1.11.20",
     "decimal.js": "^10.6.0",
     "i18n-iso-countries": "^7.14.0",
@@ -38,15 +38,15 @@
     "@angular/compiler-cli": "21.2.5",
     "@testing-library/angular": "^19.2.1",
     "@testing-library/dom": "^10.4.1",
-    "@vitest/browser": "^4.1.0",
-    "@vitest/browser-playwright": "^4.1.0",
+    "@vitest/browser": "^4.1.1",
+    "@vitest/browser-playwright": "^4.1.1",
     "angular-eslint": "^21.3.1",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "eslint-plugin-oxlint": "^1.56.0",
     "oxfmt": "^0.41.0",
     "oxlint": "^1.56.0",
-    "oxlint-tsgolint": "^0.17.0",
+    "oxlint-tsgolint": "^0.17.1",
     "typescript": "~5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.1"
   }
 }
