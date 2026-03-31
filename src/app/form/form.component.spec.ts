@@ -12,7 +12,7 @@ describe('FormComponent', () => {
   }
 
   beforeEach(() => {
-    vi.useFakeTimers({ shouldAdvanceTime: true, now: new Date('2024-02-03') });
+    vi.useFakeTimers({ now: new Date('2024-02-03') }).setTimerTickMode('nextTimerAsync');
   });
 
   afterEach(() => {
