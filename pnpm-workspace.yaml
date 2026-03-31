@@ -3,3 +3,5 @@ onlyBuiltDependencies:
   - esbuild
   - lmdb
   - msgpackr-extract
+
+minimumReleaseAge: 4320 # 3 days
