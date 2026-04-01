@@ -1,6 +1,5 @@
 import { JsonPipe } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -99,7 +98,6 @@ import dayjs from 'dayjs';
     ToggleComponent,
     YesNoComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
 })
@@ -164,7 +162,7 @@ export class FormComponent {
       disabled(path, () => this.form().submitting());
       readonly(path, () => this.readonly());
 
-      debounce(path.postcode, 200);
+      debounce(path.postcode, 10_000);
       required(path.postcode, { message: 'Postcode is required' });
       minLength(path.postcode, 4, { message: 'Postcode is too short' });
       maxLength(path.postcode, 4, { message: 'Postcode is too long' });
@@ -347,6 +345,7 @@ const validatePostcode = <TPathKind extends PathKind = PathKind.Root>(
         params,
         loader: ({ params }) => queryClient.ensureQueryData(options(params)),
       }),
+    debounce: 200,
     onError: () => ({
       kind: 'validation',
       message: 'Error validating postcode',

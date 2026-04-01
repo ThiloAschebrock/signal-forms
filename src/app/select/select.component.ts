@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
@@ -10,5 +10,5 @@ import { FormValueControl } from '@angular/forms/signals';
 export class SelectComponent implements FormValueControl<boolean | undefined> {
   readonly value = model<boolean | undefined>();
 
-  readonly touched = model<boolean>(false);
+  readonly touched = input<boolean>(false);
 }

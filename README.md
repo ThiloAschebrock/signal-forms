@@ -44,3 +44,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 5. Debounced values do not automatically contribute to pending state
 6. Compat fields are not disabled
 7. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
+8. debounce on validate async is not creating a pending state.

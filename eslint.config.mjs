@@ -4,6 +4,9 @@ import oxlint from 'eslint-plugin-oxlint';
 
 export default defineConfig([
   {
+    ignores: ['.angular/**', 'dist/**', 'node_modules/**', 'coverage/**', '**/__screenshots__/**'],
+  },
+  {
     files: ['**/*.ts'],
     extends: [...angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,

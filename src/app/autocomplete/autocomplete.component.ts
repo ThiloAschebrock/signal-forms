@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   computed,
@@ -46,7 +45,6 @@ export interface AutocompleteOption {
   ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent {
   readonly formField = input.required<FieldTree<string>>();

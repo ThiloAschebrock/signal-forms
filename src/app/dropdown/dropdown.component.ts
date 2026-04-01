@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  effect,
-  input,
-  inject,
-  untracked,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, effect, input, inject, untracked } from '@angular/core';
 import { FormField, FieldTree } from '@angular/forms/signals';
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
 import { NxFormfieldComponent, NxFormfieldErrorDirective } from '@allianz/ng-aquila/formfield';
@@ -32,7 +24,6 @@ export interface DropdownOption {
   ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent {
   readonly formField = input.required<FieldTree<string>>();

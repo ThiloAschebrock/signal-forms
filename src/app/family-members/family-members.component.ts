@@ -7,7 +7,6 @@ import {
 } from '@allianz/ng-aquila/formfield';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   computed,
@@ -36,7 +35,6 @@ export type FamilyMember = { name: string; income: number | null };
   ],
   templateUrl: './family-members.component.html',
   styleUrl: './family-members.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FamilyMembersComponent {
   static readonly schema = schema<FamilyMember>((path) => {

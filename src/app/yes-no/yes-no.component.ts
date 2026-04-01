@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  effect,
-  inject,
-  input,
-  untracked,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject, input, untracked } from '@angular/core';
 import {
   NxCircleToggleComponent,
   NxCircleToggleGroupComponent,
@@ -25,7 +17,6 @@ import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
   ],
   templateUrl: './yes-no.component.html',
   styleUrl: './yes-no.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YesNoComponent {
   readonly formField = input.required<FieldTree<boolean | null>>();

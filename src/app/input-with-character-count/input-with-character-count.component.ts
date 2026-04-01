@@ -5,7 +5,6 @@ import {
 } from '@allianz/ng-aquila/formfield';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   computed,
@@ -31,7 +30,6 @@ import { NxErrorComponent } from '@allianz/ng-aquila/base';
   ],
   templateUrl: './input-with-character-count.component.html',
   styleUrl: './input-with-character-count.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputWithCharacterCountComponent {
   readonly formField = input.required<FieldTree<string>>();
