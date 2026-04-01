@@ -51,5 +51,11 @@
     "oxlint-tsgolint": "0.18.1",
     "typescript": "5.9.3",
     "vitest": "4.1.2"
+  },
+  "engines": {
+    "node": ">=24.13.1",
+    "npm": "Please use pnpm instead",
+    "pnpm": ">=10.0.0",
+    "yarn": "Please use pnpm instead"
   }
 }
