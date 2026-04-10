@@ -80,10 +80,15 @@ export class AutocompleteComponent
   protected readonly valueFormatter = computed(() => {
     const formatter = this.formatter();
 
-    return untracked(() => (option: AutocompleteOption | string): string => {
+    return untracked(() => (option: AutocompleteOption | string | null): string => {
+      if (!option) {
+        return '';
+      }
+
       if (typeof option === 'string') {
         return option;
       }
+
       return formatter(option);
     });
   });
