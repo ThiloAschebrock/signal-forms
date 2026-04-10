@@ -1,22 +1,23 @@
 <nx-formfield [label]="label()">
   <input
-    type="text"
     nxInput
-    [formField]="formField()"
-    [placeholder]="placeholder()"
-    [nxAutocomplete]="auto"
-    (input)="onInput($event)"
-    (blur)="onBlur()"
+    #input
+    type="text"
+    [(ngModel)]="controlValue"
+    [ngModelOptions]="{ standalone: true }"
+    [nxAutocomplete]="autocomplete"
+    [readonly]="readonly()"
+    [disabled]="disabled()"
+    [required]="required()"
+    (blur)="handleBlur()"
+    (keydown.enter)="handleEnter($event)"
   />
-  <nx-autocomplete #auto="nxAutocomplete">
-    @for (option of filteredOptions(); track option.value) {
-      <nx-autocomplete-option [value]="option.value" [disabled]="option.disabled">
-        {{ option.label }}
-      </nx-autocomplete-option>
-    }
-  </nx-autocomplete>
-  @if (hint()) {
-    <div nxFormfieldHint>{{ hint() }}</div>
-  }
-  <nx-error nxFormfieldError> {{ formField()().errors() | error }} </nx-error>
+  <nx-error nxFormfieldError> {{ errors() | error }} </nx-error>
 </nx-formfield>
+<nx-autocomplete #autocomplete="nxAutocomplete" [valueFormatter]="valueFormatter()">
+  @for (option of options(); track option.value) {
+    <nx-autocomplete-option [value]="option">
+      {{ formatter()(option) }}
+    </nx-autocomplete-option>
+  }
+</nx-autocomplete>

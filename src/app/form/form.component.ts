@@ -114,7 +114,7 @@ export class FormComponent {
     spouse?: Spouse;
     email: string;
     cars: string;
-    city: string;
+    city: AutocompleteOption | null;
   }>({
     firstName: '',
     lastName: '',
@@ -126,7 +126,7 @@ export class FormComponent {
     familyMembers: [],
     email: '',
     cars: '',
-    city: '',
+    city: null,
   });
   protected readonly model = linkedSignal(this.initialState);
 
@@ -246,7 +246,7 @@ export class FormComponent {
     this.form.employFamilyMembers().value.set(false);
     this.form.cars().value.set('BMW');
     this.form.postcode().value.set('3121');
-    this.form.city().value.set('MUC');
+    this.form.city().value.set({ label: 'Munich', value: 'MUC' });
     this.form.email().value.set('thilo.aschebrock@tngtech.com');
   }
 
@@ -283,6 +283,8 @@ export class FormComponent {
   protected setEmployFamilyMembersToFalse(): void {
     this.form.employFamilyMembers().value.set(false);
   }
+
+  protected cityFormatter = (option: AutocompleteOption) => `${option.label} (${option.value})`;
 }
 
 function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(

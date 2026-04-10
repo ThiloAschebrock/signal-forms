@@ -32,7 +32,8 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Try to focus first input with error
 - [ ] Try maskito
 - [ ] Numeric text mode inputs require $any to accept number type
-- [ ] Oxfmt does not format TS in HTML unless the component is suffixed with component.html
+- [ ] Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
+- [ ] nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
 
 ## What's not working
 
