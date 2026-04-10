@@ -12,6 +12,9 @@
     (blur)="handleBlur()"
     (keydown.enter)="handleEnter($event)"
   />
+  @if (query.isPending()) {
+    <nx-spinner size="small" nxFormfieldSuffix />
+  }
   <nx-error nxFormfieldError> {{ errors() | error }} </nx-error>
 </nx-formfield>
 <nx-autocomplete #autocomplete="nxAutocomplete" [valueFormatter]="valueFormatter()">

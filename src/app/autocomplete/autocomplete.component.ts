@@ -1,5 +1,9 @@
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
-import { NxFormfieldComponent, NxFormfieldErrorDirective } from '@allianz/ng-aquila/formfield';
+import {
+  NxFormfieldComponent,
+  NxFormfieldErrorDirective,
+  NxFormfieldSuffixDirective,
+} from '@allianz/ng-aquila/formfield';
 import {
   NxAutocompleteComponent,
   NxAutocompleteOptionComponent,
@@ -10,6 +14,7 @@ import {
   ChangeDetectorRef,
   Component,
   computed,
+  debounced,
   effect,
   forwardRef,
   inject,
@@ -25,6 +30,8 @@ import { NxInputDirective } from '@allianz/ng-aquila/input';
 import { FormsModule } from '@angular/forms';
 import { ErrorPipe } from '../error-pipe';
 import { ErrorStateMatcher } from '@allianz/ng-aquila/utils';
+import { injectQuery, keepPreviousData } from '@tanstack/angular-query-experimental';
+import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
 
 export type AutocompleteOption = {
   label: string;
@@ -46,6 +53,8 @@ type AutocompleteFormatter = (option: AutocompleteOption) => string;
     NxFormfieldComponent,
     NxFormfieldErrorDirective,
     NxInputDirective,
+    NxSpinnerComponent,
+    NxFormfieldSuffixDirective,
   ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
@@ -56,7 +65,7 @@ export class AutocompleteComponent
 {
   readonly value = model.required<AutocompleteOption | null>();
   readonly label = input.required<string>();
-  readonly options = input.required<AutocompleteOption[]>();
+  readonly inputOptions = input.required<AutocompleteOption[]>();
 
   readonly errors = input<readonly ValidationError.WithOptionalFieldTree[]>([]);
   readonly touched = input(false, { transform: booleanAttribute });
@@ -100,6 +109,29 @@ export class AutocompleteComponent
       return formatter(option);
     });
   });
+
+  private readonly searchString = debounced(() => this.valueFormatter()(this.controlValue()), 200)
+    .value;
+
+  protected readonly query = injectQuery(() => ({
+    queryKey: ['autocomplete', this.searchString()],
+    queryFn: async () => {
+      const searchString = this.searchString();
+
+      if (!searchString) {
+        return [];
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      return this.inputOptions().filter((option) =>
+        this.valueFormatter()(option).toLowerCase().includes(searchString.toLowerCase()),
+      );
+    },
+    placeholderData: keepPreviousData,
+  }));
+
+  protected readonly options = computed(() => this.query.data() || []);
 
   protected handleBlur(): void {
     const controlValue = this.controlValue();
