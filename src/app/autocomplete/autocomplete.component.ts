@@ -73,8 +73,16 @@ export class AutocompleteComponent
   private readonly trigger = viewChild.required(NxAutocompleteTriggerDirective);
   private readonly input = viewChild.required('input', { read: HTMLInputElement });
 
+  public readonly isErrorState = computed(() => this.invalid() && this.touched());
+
+  protected readonly triggerChangeWhenTouchedEffect = effect(() => {
+    this.isErrorState();
+
+    untracked(() => this.changeDetectionRef.detectChanges());
+  });
+
   protected readonly controlValue = linkedSignal<AutocompleteOption | string>(
-    () => this.value() ?? '',
+    () => this.value() || '',
   );
 
   protected readonly valueFormatter = computed(() => {
@@ -91,14 +99,6 @@ export class AutocompleteComponent
 
       return formatter(option);
     });
-  });
-
-  public readonly isErrorState = computed(() => this.invalid() && this.touched());
-
-  protected readonly triggerChangeWhenTouchedEffect = effect(() => {
-    this.isErrorState();
-
-    untracked(() => this.changeDetectionRef.detectChanges());
   });
 
   protected handleBlur(): void {

@@ -32,8 +32,8 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Try to focus first input with error
 - [ ] Try maskito
 - [ ] Numeric text mode inputs require $any to accept number type
-- [ ] Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
-- [ ] nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
+- [ ] Autocomplete supporting string inputs as well
+- [ ] Autocomplete with query - can this be abstracted?
 
 ## What's not working
 
@@ -46,3 +46,5 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 6. Compat fields are not disabled
 7. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
 8. debounce on validate async is not creating a pending state.
+9. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
+10. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
