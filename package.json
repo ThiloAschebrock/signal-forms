@@ -15,7 +15,7 @@
     "test:all": "pnpm tsc && pnpm run lint && pnpm run format:check && pnpm test"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "21.5.0",
+    "@allianz/ng-aquila": "21.6.0",
     "@angular/cdk": "22.0.0-next.4",
     "@angular/common": "22.0.0-next.7",
     "@angular/compiler": "22.0.0-next.7",

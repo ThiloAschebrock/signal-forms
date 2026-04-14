@@ -22,7 +22,19 @@
         "@angular-eslint/prefer-inject": "error",
         "@angular-eslint/prefer-standalone": "error",
         "@angular-eslint/use-pipe-transform-interface": "error",
-        "@angular-eslint/use-lifecycle-interface": "warn"
+        "@angular-eslint/use-lifecycle-interface": "warn",
+        "no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "caughtErrorsIgnorePattern": "^_",
+            "fix": {
+              "imports": "safe-fix",
+              "variables": "off"
+            }
+          }
+        ]
       },
       "jsPlugins": ["@angular-eslint/eslint-plugin"]
     },

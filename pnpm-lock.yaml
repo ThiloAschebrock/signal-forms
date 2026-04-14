@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@allianz/ng-aquila':
-        specifier: 21.5.0
-        version: 21.5.0(@angular/cdk@22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(dayjs@1.11.20)(decimal.js@10.6.0)(i18n-iso-countries@7.14.0)(ibantools@4.5.1)(moment@2.30.1)
+        specifier: 21.6.0
+        version: 21.6.0(@angular/cdk@22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(dayjs@1.11.20)(decimal.js@10.6.0)(i18n-iso-countries@7.14.0)(ibantools@4.5.1)(moment@2.30.1)
       '@angular/cdk':
         specifier: 22.0.0-next.4
         version: 22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2)
@@ -176,8 +176,8 @@ packages:
     resolution: {integrity: sha512-xpwefe4fCOWnZgXCbkGpqQY6jgBSCf2hmgnySbyzZIccrv3SoashHKGPE4x6vVG+gdHrGciMTAcDo9HOZwH22Q==}
     engines: {node: '>= 14.0.0'}
 
-  '@allianz/ng-aquila@21.5.0':
-    resolution: {integrity: sha512-dlSWxdHZtWYt+kUuAr0EOVEeGR0Ew8dU887arCgEg9OVwGNTCW6NDU8fazx9aqu0u7V9ZQm5FjeWE2PcIOJTbA==}
+  '@allianz/ng-aquila@21.6.0':
+    resolution: {integrity: sha512-Ze5mbuvoh1I/89z7a69LvM7y7hDTpfQKmU0j/ZE0CBarJLkGh6WgzZ3F+HxutyDkIz6QqLeYrVCO1eOl+qnswA==}
     hasBin: true
     peerDependencies:
       '@angular/cdk': ^21.0.0
@@ -3676,7 +3676,7 @@ snapshots:
     dependencies:
       '@algolia/client-common': 5.50.0
 
-  '@allianz/ng-aquila@21.5.0(@angular/cdk@22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(dayjs@1.11.20)(decimal.js@10.6.0)(i18n-iso-countries@7.14.0)(ibantools@4.5.1)(moment@2.30.1)':
+  '@allianz/ng-aquila@21.6.0(@angular/cdk@22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(dayjs@1.11.20)(decimal.js@10.6.0)(i18n-iso-countries@7.14.0)(ibantools@4.5.1)(moment@2.30.1)':
     dependencies:
       '@angular/cdk': 22.0.0-next.4(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.7(@angular/common@22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@angular/common': 22.0.0-next.7(@angular/core@22.0.0-next.7(@angular/compiler@22.0.0-next.7)(rxjs@7.8.2))(rxjs@7.8.2)
