@@ -151,11 +151,19 @@ export class AutocompleteComponent
     this.handleBlur();
   }
 
+  protected handelValueChange(value: AutocompleteOption | string): void {
+    this.controlValue.set(value);
+
+    if (typeof value !== 'string') {
+      this.value.set(value);
+    }
+  }
+
   protected syncValueEffect = effect(() => {
     const value = this.controlValue();
 
     if (typeof value !== 'string') {
-      this.value.set(value);
+      return;
     }
 
     const formatter = this.formatter();

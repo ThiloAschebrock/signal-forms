@@ -3,7 +3,8 @@
     nxInput
     #input
     type="text"
-    [(ngModel)]="controlValue"
+    [ngModel]="controlValue()"
+    (ngModelChange)="handelValueChange($event)"
     [ngModelOptions]="{ standalone: true }"
     [nxAutocomplete]="autocomplete"
     [readonly]="readonly()"
