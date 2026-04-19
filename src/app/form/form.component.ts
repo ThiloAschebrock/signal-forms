@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
   Component,
   computed,
@@ -77,7 +76,6 @@ import dayjs from 'dayjs';
     FormField,
     FormRoot,
     InputWithCharacterCountComponent,
-    JsonPipe,
     NgxMaskDirective,
     NxButtonComponent,
     NxCheckboxComponent,

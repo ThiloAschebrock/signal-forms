@@ -137,6 +137,8 @@
     {{ form().dirty() ? 'true' : 'false' }}
   </div>
   @for (error of form().errorSummary(); track $index) {
-    <nx-message context="warning" class="nx-margin-top-m">{{ error | json }}</nx-message>
+    <nx-message context="warning" class="nx-margin-top-m">
+      {{ error.kind }}: {{ error.message }}
+    </nx-message>
   }
 </form>
