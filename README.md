@@ -23,10 +23,10 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
   - [x] Dropdowns
-  - [ ] Autocomplete -> Not yet working well, especially if the full option needs to be stored
+  - [x] Autocomplete -> Not yet working well, especially if the full option needs to be stored
   - [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
-- [ ] Try filtering hidden inputs on submit
+- [x] Try filtering hidden inputs on submit
 - [x] Try new debounce option
 - [x] Try new compatForm with datepicker
 - [ ] Try to focus first input with error
@@ -41,10 +41,9 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
    - Work-around: One can implement their own custom validator
 2. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 3. Datepicker: Resetting the input to null does not work, only '' works -> Can this be reproduced with Angular Material?
-4. Datepicker: Min and max validation via directives is not (yet) working? -> Signal forms will not support template driven validators according to Reddit - works with compatForm
-5. Debounced values do not automatically contribute to pending state
-6. Compat fields are not disabled
-7. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
-8. debounce on validate async is not creating a pending state.
-9. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
-10. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
+4. Debounced values do not automatically contribute to pending state
+5. Compat fields are not disabled
+6. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
+7. debounce on validate async is not creating a pending state.
+8. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
+9. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
