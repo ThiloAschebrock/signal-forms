@@ -44,10 +44,7 @@
           [formField]="$any(form.spouse.income)"
           type="text"
           inputmode="numeric"
-          mask="separator.0"
-          decimalMarker="."
-          thousandSeparator=","
-          separatorLimit="999999999"
+          [maskito]="maskitoOptions"
         />
         <nx-error nxFormfieldError>
           {{ form.spouse.income().errors() | error }}

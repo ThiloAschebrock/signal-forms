@@ -18,7 +18,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Min and max validation
 - [x] Length validation
 - [x] Validation with Zod
-- [ ] Validation with Vest -> Vest does not implement standard schema and would require a custom validation function
+- [ ] Validation with Vest
 - [x] Async validation on a single input field
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
@@ -30,7 +30,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Try new debounce option
 - [x] Try new compatForm with datepicker
 - [ ] Try to focus first input with error
-- [ ] Try maskito
+- [x] Try maskito -> Nice, found one bug - it's half the bundle size, but usage is a complicated
 - [ ] Numeric text mode inputs require $any to accept number type
 - [ ] Autocomplete supporting string inputs as well
 - [ ] Autocomplete with query - can this be abstracted?
@@ -47,3 +47,4 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 7. debounce on validate async is not creating a pending state.
 8. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
 9. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
+10. Maskito for Angular correctly work when miniumFractionDigits are provided (independent of signal forms)

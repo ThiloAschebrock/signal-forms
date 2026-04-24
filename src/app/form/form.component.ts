@@ -55,7 +55,6 @@ import { NxCheckboxComponent } from '@allianz/ng-aquila/checkbox';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
 import { YesNoComponent } from '../yes-no/yes-no.component';
 import { ToggleComponent } from '../toggle/toggle.component';
-import { NgxMaskDirective } from 'ngx-mask';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembersComponent } from '../family-members/family-members.component';
 import { ErrorPipe } from '../error-pipe';
@@ -64,6 +63,8 @@ import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.componen
 import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
+import { MaskitoDirective } from '@maskito/angular';
+import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 import dayjs from 'dayjs';
 
 @Component({
@@ -76,7 +77,6 @@ import dayjs from 'dayjs';
     FormField,
     FormRoot,
     InputWithCharacterCountComponent,
-    NgxMaskDirective,
     NxButtonComponent,
     NxCheckboxComponent,
     NxDatefieldDirective,
@@ -95,6 +95,7 @@ import dayjs from 'dayjs';
     ReactiveFormsModule,
     ToggleComponent,
     YesNoComponent,
+    MaskitoDirective,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
@@ -153,6 +154,16 @@ export class FormComponent {
 
   protected readonly maxBirthday = this.MAX_BIRTHDAY.format('YYYY-MM-DD');
   protected readonly minBirthday = this.MIN_BIRTHDAY.format('YYYY-MM-DD');
+
+  protected readonly maskitoOptions = maskitoNumberOptionsGenerator({
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    thousandSeparator: ',',
+    decimalSeparator: '.',
+    min: 0,
+    max: 999_999_999,
+    prefix: '$',
+  });
 
   protected readonly form = form(
     this.model,
