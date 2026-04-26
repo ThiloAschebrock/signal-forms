@@ -34,6 +34,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Numeric text mode inputs require $any to accept number type
 - [ ] Autocomplete supporting string inputs as well
 - [ ] Autocomplete with query - can this be abstracted?
+- [ ] Number input component that works with number
 
 ## What's not working
 

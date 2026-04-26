@@ -158,11 +158,9 @@ export class FormComponent {
   protected readonly maskitoOptions = maskitoNumberOptionsGenerator({
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-    thousandSeparator: ',',
-    decimalSeparator: '.',
-    min: 0,
     max: 999_999_999,
-    prefix: '$',
+    decimalSeparator: '.',
+    thousandSeparator: ',',
   });
 
   protected readonly form = form(
@@ -278,7 +276,7 @@ export class FormComponent {
       if (married) {
         this.model.update((model) => ({
           ...model,
-          spouse: { income: null, abn: '' },
+          spouse: { income: '', abn: '' },
         }));
       } else {
         this.model.update((model) => ({
@@ -313,7 +311,7 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
 }
 
 type Spouse = {
-  income: number | null;
+  income: string;
   abn: string;
 };
 
