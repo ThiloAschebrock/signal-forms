@@ -1,0 +1,20 @@
+<nx-formfield [label]="label()">
+  <span nxFormfieldPrefix>$</span>
+  <input
+    nxInput
+    #input
+    type="text"
+    inputmode="numeric"
+    [min]="min()"
+    [max]="max()"
+    [maskito]="maskitoOptions()"
+    [ngModel]="controlValue()"
+    (ngModelChange)="handelValueChange($event)"
+    [ngModelOptions]="{ standalone: true }"
+    [readonly]="readonly()"
+    [disabled]="disabled()"
+    [required]="required()"
+    (blur)="handleBlur()"
+  />
+  <nx-error nxFormfieldError> {{ errors() | error }} </nx-error>
+</nx-formfield>

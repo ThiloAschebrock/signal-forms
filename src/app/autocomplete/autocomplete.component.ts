@@ -84,7 +84,7 @@ export class AutocompleteComponent
 
   public readonly isErrorState = computed(() => this.invalid() && this.touched());
 
-  protected readonly triggerChangeWhenTouchedEffect = effect(() => {
+  protected readonly triggerChangeWhenInErrorStateEffect = effect(() => {
     this.isErrorState();
 
     untracked(() => this.changeDetectionRef.detectChanges());

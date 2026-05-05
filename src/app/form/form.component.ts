@@ -24,6 +24,7 @@ import {
   minLength,
   maxLength,
   min,
+  max,
   schema,
   apply,
   applyEach,
@@ -45,7 +46,6 @@ import {
   NxFormfieldComponent,
   NxFormfieldErrorDirective,
   NxFormfieldHintDirective,
-  NxFormfieldPrefixDirective,
   NxFormfieldSuffixDirective,
 } from '@allianz/ng-aquila/formfield';
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
@@ -63,9 +63,9 @@ import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.componen
 import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
-import { MaskitoDirective } from '@maskito/angular';
 import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 import dayjs from 'dayjs';
+import { NumberInputComponent } from '../number-input/number-input.component';
 
 @Component({
   selector: 'app-form',
@@ -86,7 +86,6 @@ import dayjs from 'dayjs';
     NxFormfieldComponent,
     NxFormfieldErrorDirective,
     NxFormfieldHintDirective,
-    NxFormfieldPrefixDirective,
     NxFormfieldSuffixDirective,
     NxInputDirective,
     NxMaskDirective,
@@ -95,7 +94,7 @@ import dayjs from 'dayjs';
     ReactiveFormsModule,
     ToggleComponent,
     YesNoComponent,
-    MaskitoDirective,
+    NumberInputComponent,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
@@ -276,7 +275,7 @@ export class FormComponent {
       if (married) {
         this.model.update((model) => ({
           ...model,
-          spouse: { income: '', abn: '' },
+          spouse: { income: null, abn: '' },
         }));
       } else {
         this.model.update((model) => ({
@@ -311,13 +310,14 @@ function requireBoolean<TValue, TPathKind extends PathKind = PathKind.Root>(
 }
 
 type Spouse = {
-  income: string;
+  income: number | null;
   abn: string;
 };
 
 const spouseSchema = schema<Spouse>((path) => {
   required(path.income, { message: 'Spouse income is required' });
-  min(path.income, 1, { message: 'Minium income is 1' });
+  min(path.income, 1, { message: 'Minimum income is $1' });
+  max(path.income, 999_999_999, { message: 'Maximum income is $999,999,999' });
   required(path.abn, { message: 'ABN is required' });
   minLength(path.abn, 11, { message: 'ABN is too short' });
 });

@@ -37,19 +37,7 @@
   @if (form.spouse && !form.spouse().hidden()) {
     <fieldset>
       <legend>Spouse</legend>
-      <nx-formfield label="Spouse Income">
-        <span nxFormfieldPrefix>$</span>
-        <input
-          nxInput
-          [formField]="form.spouse.income"
-          type="text"
-          inputmode="numeric"
-          [maskito]="maskitoOptions"
-        />
-        <nx-error nxFormfieldError>
-          {{ form.spouse.income().errors() | error }}
-        </nx-error>
-      </nx-formfield>
+      <app-number-input [formField]="form.spouse.income" label="Spouse Income" />
       <nx-formfield label="ABN">
         <input
           nxInput
