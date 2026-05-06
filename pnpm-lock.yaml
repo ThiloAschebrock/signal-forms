@@ -45,8 +45,8 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2(@maskito/core@5.2.2)
       '@tanstack/angular-query-experimental':
-        specifier: ~5.100.7
-        version: 5.100.7(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))
+        specifier: ~5.100.8
+        version: 5.100.8(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))
       dayjs:
         specifier: ~1.11.20
         version: 1.11.20
@@ -1879,17 +1879,17 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@tanstack/angular-query-experimental@5.100.7':
-    resolution: {integrity: sha512-L08SvL38PEM4/L8wUFX41o0A3UNYiTTKoM/PEz3+U4W4QIJjk+nggqjmo7R4HUs/zeUMclsZCngpSP9+/vWxQg==}
+  '@tanstack/angular-query-experimental@5.100.8':
+    resolution: {integrity: sha512-1lKZv6w2SStLGQ5ag+Pv4+AvYir+36TDZnzDu6tUC36e4+QbepmI5uArDhvi/QagehWG8r77hIOiEv9n4/0AeQ==}
     peerDependencies:
       '@angular/common': '>=16.0.0'
       '@angular/core': '>=16.0.0'
 
-  '@tanstack/query-core@5.100.7':
-    resolution: {integrity: sha512-5R7i6ENJLhVeeJrrUz7jKBXUXv/BJrxf9FQJSkR13bPrb3zOcE8A0Z0PxYCcsKPOsiIlTibrBL/zZbtUO1TFyQ==}
+  '@tanstack/query-core@5.100.8':
+    resolution: {integrity: sha512-ceYwSFOqjPwET5TA6IOYxzxlGc0ekyH/gfOtWkP0PX43rzX9bxW48Iuw8KAduKCToi4rJAQ6nRy2kAe8gszdmg==}
 
-  '@tanstack/query-devtools@5.100.7':
-    resolution: {integrity: sha512-bgn0QV1kEGgHHRDaX6JHb+m7KHZ0r/TIyjARYhGhG/PBpbzR74qwpRhdjW+45CtwNseSU4HcqWJVDw1VozCU6w==}
+  '@tanstack/query-devtools@5.100.8':
+    resolution: {integrity: sha512-29D6k564h7eudwNdfRcq6Je2VFUWGxHwADPg1xC2yHxrovYBwZiqzIv/DkPRsK/EMoOIPIvPq+IU0uCxiQXYPA==}
 
   '@testing-library/angular@19.2.1':
     resolution: {integrity: sha512-COWnkcTKFwb4fReLlInNATH1cPYmujWINnVMXdy0oJHidz0XIrdJopx/jwCBDIAgD4qtz+wEDsUWM4gI78Hakw==}
@@ -2376,8 +2376,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.348:
-    resolution: {integrity: sha512-QC2X59nRlycQQMc4ZXjSVBX+tSgJfgRtcrYHbIZLgOV2dCvefoQGegLR7lLXKgpPpSuVmJU19LMzGrSa2C7k3Q==}
+  electron-to-chromium@1.5.349:
+    resolution: {integrity: sha512-QsWVGyRuY07Aqb234QytTfwd5d9AJlfNIQ5wIOl1L+PZDzI9d9+Fn0FRale/QYlFxt/bUnB0/nLd1jFPGxGK1A==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -3008,8 +3008,8 @@ packages:
     resolution: {integrity: sha512-P0efT1C9jIdVRefqjzOQ9Xml57zpOXnIuS+csaB4MdZbTdmGDLo8XhzBG1N7aO11gKDDkJvBLULeFTo46wwreA==}
     hasBin: true
 
-  msgpackr@1.11.10:
-    resolution: {integrity: sha512-iCZNq+HszvF+fC3anCm4nBmWEnbeIAfpDs6IStAEKhQ2YSgkjzVG2FF9XJqwwQh5bH3N9OUTUt4QwVN6MLMLtA==}
+  msgpackr@1.11.12:
+    resolution: {integrity: sha512-RBdJ1Un7yGlXWajrkxcSa93nvQ0w4zBf60c0yYv7YtBelP8H2FA7XsfBbMHtXKXUMUxH7zV3Zuozh+kUQWhHvg==}
 
   mute-stream@3.0.0:
     resolution: {integrity: sha512-dkEJPVvun4FryqBmZ5KhDo0K9iDXAwn08tMLDinNdRBNPcYEDiWYysLcc6k3mjTMlbP9KyylvRpd4wFtwrT9rw==}
@@ -3512,11 +3512,11 @@ packages:
     resolution: {integrity: sha512-Bf+ILmBgretUrdJxzXM0SgXLZ3XfiaUuOj/IKQHuTXip+05Xn+uyEYdVg0kYDipTBcLrCVyUzAPz7QmArb0mmw==}
     engines: {node: '>=14.0.0'}
 
-  tldts-core@7.0.29:
-    resolution: {integrity: sha512-W99NuU7b1DcG3uJ3v9k9VztCH3WialNbBkBft5wCs8V8mexu0XQqaZEYb9l9RNNzK8+3EJ9PKWB0/RUtTQ/o+Q==}
+  tldts-core@7.0.30:
+    resolution: {integrity: sha512-uiHN8PIB1VmWyS98eZYja4xzlYqeFZVjb4OuYlJQnZAuJhMw4PbKQOKgHKhBdJR3FE/t5mUQ1Kd80++B+qhD1Q==}
 
-  tldts@7.0.29:
-    resolution: {integrity: sha512-JIXCerhudr/N6OWLwLF1HVsTTUo7ry6qHa5eWZEkiMuxsIiAACL55tGLfqfHfoH7QaMQUW8fngD7u7TxWexYQg==}
+  tldts@7.0.30:
+    resolution: {integrity: sha512-ELrFxuqsDdHUwoh0XxDbxuLD3Wnz49Z57IFvTtvWy1hJdcMZjXLIuonjilCiWHlT2GbE4Wlv1wKVTzDFnXH1aw==}
     hasBin: true
 
   toidentifier@1.0.1:
@@ -5237,17 +5237,17 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@tanstack/angular-query-experimental@5.100.7(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))':
+  '@tanstack/angular-query-experimental@5.100.8(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))':
     dependencies:
       '@angular/common': 22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2)
-      '@tanstack/query-core': 5.100.7
+      '@tanstack/query-core': 5.100.8
     optionalDependencies:
-      '@tanstack/query-devtools': 5.100.7
+      '@tanstack/query-devtools': 5.100.8
 
-  '@tanstack/query-core@5.100.7': {}
+  '@tanstack/query-core@5.100.8': {}
 
-  '@tanstack/query-devtools@5.100.7':
+  '@tanstack/query-devtools@5.100.8':
     optional: true
 
   '@testing-library/angular@19.2.1(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.10(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2)))(@angular/router@22.0.0-next.10(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(@angular/platform-browser@22.0.0-next.10(@angular/common@22.0.0-next.10(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0-next.10(@angular/compiler@22.0.0-next.10)(rxjs@7.8.2)))(rxjs@7.8.2))(@testing-library/dom@10.4.1)':
@@ -5626,7 +5626,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.25
       caniuse-lite: 1.0.30001791
-      electron-to-chromium: 1.5.348
+      electron-to-chromium: 1.5.349
       node-releases: 2.0.38
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
@@ -5823,7 +5823,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.348: {}
+  electron-to-chromium@1.5.349: {}
 
   emoji-regex@10.6.0: {}
 
@@ -6387,7 +6387,7 @@ snapshots:
   lmdb@3.5.4:
     dependencies:
       '@harperfast/extended-iterable': 1.0.3
-      msgpackr: 1.11.10
+      msgpackr: 1.11.12
       node-addon-api: 6.1.0
       node-gyp-build-optional-packages: 5.2.2
       ordered-binary: 1.6.1
@@ -6537,7 +6537,7 @@ snapshots:
       '@msgpackr-extract/msgpackr-extract-win32-x64': 3.0.3
     optional: true
 
-  msgpackr@1.11.10:
+  msgpackr@1.11.12:
     optionalDependencies:
       msgpackr-extract: 3.0.3
     optional: true
@@ -7161,12 +7161,12 @@ snapshots:
 
   tinyrainbow@3.1.0: {}
 
-  tldts-core@7.0.29:
+  tldts-core@7.0.30:
     optional: true
 
-  tldts@7.0.29:
+  tldts@7.0.30:
     dependencies:
-      tldts-core: 7.0.29
+      tldts-core: 7.0.30
     optional: true
 
   toidentifier@1.0.1: {}
@@ -7175,7 +7175,7 @@ snapshots:
 
   tough-cookie@6.0.1:
     dependencies:
-      tldts: 7.0.29
+      tldts: 7.0.30
     optional: true
 
   tr46@6.0.0:
