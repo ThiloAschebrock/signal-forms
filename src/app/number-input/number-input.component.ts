@@ -57,7 +57,7 @@ export class NumberInputComponent
   readonly touch = output();
 
   protected handelValueChange(value: string): void {
-    const numericValue = maskitoParseNumber(value ?? '', this.numberConfig());
+    const numericValue = maskitoParseNumber(value, this.numberConfig());
     this.value.set(isNaN(numericValue) ? null : numericValue);
   }
 

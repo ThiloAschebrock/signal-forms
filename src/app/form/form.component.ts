@@ -64,6 +64,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
 import dayjs from 'dayjs';
 import { NumberInputComponent } from '../number-input/number-input.component';
+import { trackErrorState } from '../core/error-state-tracker';
 
 @Component({
   selector: 'app-form',
@@ -222,6 +223,8 @@ export class FormComponent {
       },
     },
   );
+
+  protected readonly errorTracking = trackErrorState(this.form);
 
   protected readonly readonly = signal(false);
 

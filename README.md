@@ -35,6 +35,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Autocomplete with query - can this be abstracted?
 - [x] Number input component that works with number
 - [ ] Tracking form value errors only when visible
+- [x] Can we derive the tracking id from the fieldTree Name?
 
 ## What's not working
 
