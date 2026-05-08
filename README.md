@@ -18,7 +18,6 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Min and max validation
 - [x] Length validation
 - [x] Validation with Zod
-- [ ] Validation with Vest
 - [x] Async validation on a single input field
 - [x] Async validation on submit
 - [x] Date inputs with build-in validators
@@ -44,10 +43,10 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
    - Work-around: One can implement their own custom validator
 2. NDBX components with field inputs do not update when the submitted status changes (e.g., when submitted or reset), unless one is listing to `touched`, e.g., by logging it in the template, or implements an effect to trigger change detection.
 3. Datepicker: Resetting the input to null does not work, only '' works -> Can this be reproduced with Angular Material?
-4. Debounced values do not automatically contribute to pending state
-5. Compat fields are not disabled
+4. Debounced values do not automatically contribute to pending state -> one can use async validator
+5. Compat fields are not disabled when parent is disabled
 6. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
 7. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
-8. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
+8. nx-brand-kit: The label is only moving the position delayed
 9. Maskito for Angular only works with strings
 10. Focusing first control does not work with NDBX natively
