@@ -5,10 +5,12 @@ import {
 } from '@allianz/ng-aquila/circle-toggle';
 import { FormField, FieldTree } from '@angular/forms/signals';
 import { NxErrorComponent, NxLabelComponent } from '@allianz/ng-aquila/base';
+import { ErrorPipe } from '../shared/error-pipe';
 
 @Component({
   selector: 'app-yes-no',
   imports: [
+    ErrorPipe,
     FormField,
     NxCircleToggleComponent,
     NxCircleToggleGroupComponent,

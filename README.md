@@ -22,9 +22,9 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Async validation on a single input field
 - [ ] Async validation on submit
 - [x] Date inputs with build-in validators
-  - [x] Dropdowns
-  - [x] Autocomplete -> Not yet working well, especially if the full option needs to be stored
-  - [x] NxMask, e.g., for ABN: works, however, no mask validation
+- [x] Dropdowns
+- [x] Autocomplete -> Not yet working well, especially if the full option needs to be stored
+- [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
 - [x] Try filtering hidden inputs on submit
 - [x] Try new debounce option
@@ -34,6 +34,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Autocomplete supporting string inputs as well
 - [ ] Autocomplete with query - can this be abstracted?
 - [x] Number input component that works with number
+- [ ] Tracking form value errors only when visible
 
 ## What's not working
 
@@ -44,8 +45,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 4. Debounced values do not automatically contribute to pending state
 5. Compat fields are not disabled
 6. ngmask output transform is working different (it's always returning string even it the number is converted to number - strange but "works"). An alternative could be Maskito.
-7. debounce on validate async is not creating a pending state.
-8. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
-9. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
-10. Maskito for Angular only works with strings
-11. Focusing first control does not work with NDBX natively
+7. Oxfmt does not format TS in HTML unless the component is suffixed with component.html, see https://github.com/oxc-project/oxc/issues/17852
+8. nx-brand-kit: The label is not correctly moving position if the value is not set via user input: Can this be reproduced outside of the context of signal forms?
+9. Maskito for Angular only works with strings
+10. Focusing first control does not work with NDBX natively

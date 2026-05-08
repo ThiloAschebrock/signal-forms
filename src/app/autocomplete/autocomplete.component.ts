@@ -11,13 +11,10 @@ import {
 } from '@allianz/ng-aquila/autocomplete';
 import {
   booleanAttribute,
-  ChangeDetectorRef,
   Component,
   computed,
   debounced,
   effect,
-  forwardRef,
-  inject,
   input,
   linkedSignal,
   model,
@@ -28,10 +25,10 @@ import {
 import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import { FormsModule } from '@angular/forms';
-import { ErrorPipe } from '../error-pipe';
-import { ErrorStateMatcher } from '@allianz/ng-aquila/utils';
+import { ErrorPipe } from '../shared/error-pipe';
 import { injectQuery, keepPreviousData } from '@tanstack/angular-query-experimental';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
+import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-bridge';
 
 export type AutocompleteOption = {
   label: string;
@@ -58,10 +55,11 @@ type AutocompleteFormatter = (option: AutocompleteOption) => string;
   ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
-  providers: [{ provide: ErrorStateMatcher, useExisting: forwardRef(() => AutocompleteComponent) }],
+  providers: [provideErrorStateBridge(AutocompleteComponent)],
 })
 export class AutocompleteComponent
-  implements FormValueControl<AutocompleteOption | null>, ErrorStateMatcher
+  extends ErrorStateBridge
+  implements FormValueControl<AutocompleteOption | null>
 {
   readonly value = model.required<AutocompleteOption | null>();
   readonly label = input.required<string>();
@@ -78,17 +76,8 @@ export class AutocompleteComponent
 
   readonly touch = output();
 
-  private readonly changeDetectionRef = inject(ChangeDetectorRef);
   private readonly trigger = viewChild.required(NxAutocompleteTriggerDirective);
   private readonly input = viewChild.required('input', { read: HTMLInputElement });
-
-  public readonly isErrorState = computed(() => this.invalid() && this.touched());
-
-  protected readonly triggerChangeWhenInErrorStateEffect = effect(() => {
-    this.isErrorState();
-
-    untracked(() => this.changeDetectionRef.detectChanges());
-  });
 
   protected readonly controlValue = linkedSignal<AutocompleteOption | string>(
     () => this.value() || '',

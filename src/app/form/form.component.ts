@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { z } from 'zod';
 import {
-  debounce,
   FormField,
   required,
   readonly,
@@ -57,7 +56,7 @@ import { YesNoComponent } from '../yes-no/yes-no.component';
 import { ToggleComponent } from '../toggle/toggle.component';
 import { NxMaskDirective } from '@allianz/ng-aquila/mask';
 import { FamilyMember, FamilyMembersComponent } from '../family-members/family-members.component';
-import { ErrorPipe } from '../error-pipe';
+import { ErrorPipe } from '../shared/error-pipe';
 import { InputWithCharacterCountComponent } from '../input-with-character-count/input-with-character-count.component';
 import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.component';
 import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
@@ -156,10 +155,8 @@ export class FormComponent {
   protected readonly form = form(
     this.model,
     (path) => {
-      disabled(path, () => this.form().submitting());
-      readonly(path, () => this.readonly());
-
-      debounce(path.postcode, 10_000);
+      disabled(path, { when: () => this.form().submitting() });
+      readonly(path, { when: () => this.readonly() });
       required(path.postcode, { message: 'Postcode is required' });
       minLength(path.postcode, 4, { message: 'Postcode is too short' });
       maxLength(path.postcode, 4, { message: 'Postcode is too long' });
@@ -170,7 +167,7 @@ export class FormComponent {
         when: (context) => !!context.valueOf(path.firstName).trim(),
       });
       maxLength(path.lastName, 25);
-      readonly(path.lastName, (context) => context.valueOf(path.same));
+      readonly(path.lastName, { when: (context) => context.valueOf(path.same) });
       requireBoolean(path.married, { message: 'Answer if married' });
 
       required(path.birthday, { message: 'Birthday is required' });
@@ -187,14 +184,14 @@ export class FormComponent {
       );
 
       if (path.spouse) {
-        hidden(path.spouse, (context) => !context.valueOf(path.married));
+        hidden(path.spouse, { when: (context) => !context.valueOf(path.married) });
         apply(path.spouse, spouseSchema);
       }
 
       requireBoolean(path.employFamilyMembers, {
         message: 'Answer if you employ family members',
       });
-      hidden(path.familyMembers, (context) => !context.valueOf(path.employFamilyMembers));
+      hidden(path.familyMembers, { when: (context) => !context.valueOf(path.employFamilyMembers) });
       applyEach(path.familyMembers, FamilyMembersComponent.schema);
 
       requireBoolean(path.employFamilyMembers, {

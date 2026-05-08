@@ -8,7 +8,7 @@ import { routes } from './app.routes';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { withDevtools } from '@tanstack/angular-query-experimental/devtools';
-import { provideLocaleDate } from './date.provider';
+import { provideLocaleDate } from './core/date.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [

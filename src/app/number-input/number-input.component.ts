@@ -5,19 +5,7 @@ import {
   NxFormfieldPrefixDirective,
 } from '@allianz/ng-aquila/formfield';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
-import {
-  booleanAttribute,
-  ChangeDetectorRef,
-  Component,
-  computed,
-  effect,
-  forwardRef,
-  inject,
-  input,
-  model,
-  output,
-  untracked,
-} from '@angular/core';
+import { booleanAttribute, Component, computed, input, model, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import {
@@ -27,8 +15,8 @@ import {
   maskitoStringifyNumber,
 } from '@maskito/kit';
 import { MaskitoDirective } from '@maskito/angular';
-import { ErrorPipe } from '../error-pipe';
-import { ErrorStateMatcher } from '@allianz/ng-aquila/utils';
+import { ErrorPipe } from '../shared/error-pipe';
+import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-bridge';
 
 @Component({
   selector: 'app-number-input',
@@ -44,9 +32,12 @@ import { ErrorStateMatcher } from '@allianz/ng-aquila/utils';
     NxFormfieldPrefixDirective,
     NxInputDirective,
   ],
-  providers: [{ provide: ErrorStateMatcher, useExisting: forwardRef(() => NumberInputComponent) }],
+  providers: [provideErrorStateBridge(NumberInputComponent)],
 })
-export class NumberInputComponent implements FormValueControl<number | null>, ErrorStateMatcher {
+export class NumberInputComponent
+  extends ErrorStateBridge
+  implements FormValueControl<number | null>
+{
   readonly value = model.required<number | null>();
   readonly label = input.required<string>();
   readonly fractionDigits = input(0);
@@ -64,16 +55,6 @@ export class NumberInputComponent implements FormValueControl<number | null>, Er
   readonly max = input<number>();
 
   readonly touch = output();
-
-  public readonly isErrorState = computed(() => this.invalid() && this.touched());
-
-  private readonly changeDetectionRef = inject(ChangeDetectorRef);
-
-  protected readonly triggerChangeWhenInErrorStateEffect = effect(() => {
-    this.isErrorState();
-
-    untracked(() => this.changeDetectionRef.detectChanges());
-  });
 
   protected handelValueChange(value: string): void {
     const numericValue = maskitoParseNumber(value ?? '', this.numberConfig());

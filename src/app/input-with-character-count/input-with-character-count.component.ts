@@ -14,7 +14,7 @@ import {
   untracked,
 } from '@angular/core';
 import { FormField, FieldTree } from '@angular/forms/signals';
-import { ErrorPipe } from '../error-pipe';
+import { ErrorPipe } from '../shared/error-pipe';
 import { NxErrorComponent } from '@allianz/ng-aquila/base';
 
 @Component({

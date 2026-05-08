@@ -23,8 +23,7 @@
   <nx-formfield label="Postcode">
     <input nxInput [formField]="form.postcode" type="text" inputmode="numeric" />
     @if (
-      this.form.postcode().pending() ||
-      this.form.postcode().value() !== this.form.postcode().controlValue()
+      this.form.postcode().pending()
     ) {
       <nx-spinner nxFormfieldSuffix />
     }

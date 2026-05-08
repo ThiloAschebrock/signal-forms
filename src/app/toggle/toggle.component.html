@@ -1,14 +1,13 @@
 <nx-circle-toggle-group
-  [(value)]="value"
+  [(ngModel)]="value"
+  [ngModelOptions]="{ standalone: true }"
   [readonly]="readonly()"
   [disabled]="disabled()"
+  [required]="required()"
   class="nx-margin-bottom-s"
 >
   <nx-label [disabled]="disabled()">{{ label() }}</nx-label>
-  <nx-circle-toggle [value]="true" circleText="Yes" [class.has-error]="showError()" />
-  <nx-circle-toggle [value]="false" circleText="No" [class.has-error]="showError()" />
+  <nx-circle-toggle [value]="true" circleText="Yes"/>
+  <nx-circle-toggle [value]="false" circleText="No" />
+  <nx-error> {{ errors() | error }} </nx-error>
 </nx-circle-toggle-group>
-@if (showError()) {
-  <nx-error class="nx-margin-top-xs"> {{ errors().at(0)?.message }} </nx-error>
-}
-<div class="nx-margin-bottom-m">Dirty: {{ dirty() }}, Touched: {{ touched() }}</div>
