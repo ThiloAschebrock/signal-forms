@@ -217,6 +217,8 @@ export class FormComponent {
           const filteredValue = omitHiddenFields(form);
           console.log('Submitted', filteredValue);
           await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+          return { kind: 'taken', message: 'This email is already taken', fieldTree: form.email };
         },
         onInvalid: (form) => {
           console.warn('Invalid submission', form().errorSummary());
@@ -233,8 +235,7 @@ export class FormComponent {
   protected readonly isLastNameRequired = computed(() => this.form.lastName().required());
 
   protected reset(): void {
-    this.initialState.update((value) => ({ ...value }));
-    this.form().reset();
+    this.form().reset(this.initialState());
   }
 
   protected setName(): void {

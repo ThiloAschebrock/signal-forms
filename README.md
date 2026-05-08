@@ -20,7 +20,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] Validation with Zod
 - [ ] Validation with Vest
 - [x] Async validation on a single input field
-- [ ] Async validation on submit
+- [x] Async validation on submit
 - [x] Date inputs with build-in validators
 - [x] Dropdowns
 - [x] Autocomplete -> Not yet working well, especially if the full option needs to be stored
