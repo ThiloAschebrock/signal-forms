@@ -63,7 +63,6 @@ import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.componen
 import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { omitHiddenFields } from './omit-hidden-fields';
-import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 import dayjs from 'dayjs';
 import { NumberInputComponent } from '../number-input/number-input.component';
 
@@ -153,14 +152,6 @@ export class FormComponent {
 
   protected readonly maxBirthday = this.MAX_BIRTHDAY.format('YYYY-MM-DD');
   protected readonly minBirthday = this.MIN_BIRTHDAY.format('YYYY-MM-DD');
-
-  protected readonly maskitoOptions = maskitoNumberOptionsGenerator({
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    max: 999_999_999,
-    decimalSeparator: '.',
-    thousandSeparator: ',',
-  });
 
   protected readonly form = form(
     this.model,
