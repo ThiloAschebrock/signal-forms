@@ -8,7 +8,13 @@ import { FieldTree } from '@angular/forms/signals';
   },
 })
 export class TrackingDirective {
-  readonly formField = input<FieldTree<unknown>>();
-  readonly appTracking = input<string>();
-  protected readonly name = computed(() => this.formField()?.().name() ?? this.appTracking());
+  readonly appTracking = input.required<string | FieldTree<unknown>>();
+  protected readonly name = computed(() => {
+    const trackingValue = this.appTracking();
+    if (typeof trackingValue === 'string') {
+      return trackingValue;
+    }
+
+    return trackingValue?.().name;
+  });
 }
