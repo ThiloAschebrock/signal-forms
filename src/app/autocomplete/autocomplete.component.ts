@@ -29,6 +29,7 @@ import { ErrorPipe } from '../shared/error-pipe';
 import { injectQuery, keepPreviousData } from '@tanstack/angular-query-experimental';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
 import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-bridge';
+import { TrackingDirective } from '../core/tracking.directive';
 
 export type AutocompleteOption = {
   label: string;
@@ -52,6 +53,7 @@ type AutocompleteFormatter = (option: AutocompleteOption) => string;
     NxInputDirective,
     NxSpinnerComponent,
     NxFormfieldSuffixDirective,
+    TrackingDirective,
   ],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss',
@@ -63,8 +65,8 @@ export class AutocompleteComponent
 {
   readonly value = model.required<AutocompleteOption | null>();
   readonly label = input.required<string>();
+  readonly name = input.required<string>();
   readonly inputOptions = input.required<AutocompleteOption[]>();
-
   readonly errors = input<readonly ValidationError.WithOptionalFieldTree[]>([]);
   readonly touched = input(false, { transform: booleanAttribute });
   readonly readonly = input(false, { transform: booleanAttribute });

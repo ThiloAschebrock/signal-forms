@@ -21,10 +21,8 @@
     </nx-error>
   </nx-formfield>
   <nx-formfield label="Postcode">
-    <input nxInput [formField]="form.postcode" type="text" inputmode="numeric" />
-    @if (
-      this.form.postcode().pending()
-    ) {
+    <input nxInput [formField]="form.postcode" appTracking type="text" inputmode="numeric" />
+    @if (this.form.postcode().pending()) {
       <nx-spinner nxFormfieldSuffix />
     }
     <nx-error nxFormfieldError>

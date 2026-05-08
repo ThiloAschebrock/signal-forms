@@ -65,6 +65,7 @@ import { omitHiddenFields } from './omit-hidden-fields';
 import dayjs from 'dayjs';
 import { NumberInputComponent } from '../number-input/number-input.component';
 import { trackErrorState } from '../core/error-state-tracker';
+import { TrackingDirective } from '../core/tracking.directive';
 
 @Component({
   selector: 'app-form',
@@ -94,6 +95,7 @@ import { trackErrorState } from '../core/error-state-tracker';
     ToggleComponent,
     YesNoComponent,
     NumberInputComponent,
+    TrackingDirective,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',

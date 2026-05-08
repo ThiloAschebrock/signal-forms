@@ -3,6 +3,7 @@
     nxInput
     #input
     type="text"
+    [appTracking]="name()"
     [ngModel]="controlValue()"
     (ngModelChange)="handelValueChange($event)"
     [ngModelOptions]="{ standalone: true }"

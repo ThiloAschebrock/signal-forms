@@ -34,8 +34,9 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [ ] Autocomplete supporting string inputs as well
 - [ ] Autocomplete with query - can this be abstracted?
 - [x] Number input component that works with number
-- [ ] Tracking form value errors only when visible
+- [x] Tracking form value errors only when visible
 - [x] Can we derive the tracking id from the fieldTree Name?
+- [x] Are protected inputs now possible? At least the language server is blocking it
 
 ## What's not working
 

@@ -1,5 +1,5 @@
 <nx-formfield [label]="fieldState().required() ? label() : `${label()} (optional)`">
-  <input nxInput [formField]="formField()" />
+  <input nxInput [formField]="formField()" appTracking />
   @if (hint()) {
     <span nxFormfieldHint> {{ hint() }} </span>
   }
