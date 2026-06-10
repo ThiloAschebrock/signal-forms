@@ -11,6 +11,7 @@
     "format:check": "oxfmt --check",
     "lint": "oxlint && eslint --cache --max-warnings=0",
     "lint:fix": "oxlint --fix && eslint --fix --cache --max-warnings=0",
+    "lint:migrate": "npx @oxlint/migrate@latest --type-aware --merge",
     "tsc": "tsc --noEmit",
     "test:all": "pnpm tsc && pnpm run lint && pnpm run format:check && pnpm test"
   },
