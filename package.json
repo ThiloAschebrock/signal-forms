@@ -16,18 +16,18 @@
     "test:all": "pnpm tsc && pnpm run lint && pnpm run format:check && pnpm test"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "~21.9.0",
+    "@allianz/ng-aquila": "~21.10.0",
     "@angular/cdk": "~22.0.2",
-    "@angular/common": "~22.0.2",
-    "@angular/compiler": "~22.0.2",
-    "@angular/core": "~22.0.2",
-    "@angular/forms": "~22.0.2",
-    "@angular/platform-browser": "~22.0.2",
-    "@angular/router": "~22.0.2",
+    "@angular/common": "~22.0.3",
+    "@angular/compiler": "~22.0.3",
+    "@angular/core": "~22.0.3",
+    "@angular/forms": "~22.0.3",
+    "@angular/platform-browser": "~22.0.3",
+    "@angular/router": "~22.0.3",
     "@maskito/angular": "~5.3.1",
     "@maskito/core": "~5.3.1",
     "@maskito/kit": "~5.3.1",
-    "@tanstack/angular-query-experimental": "~5.101.0",
+    "@tanstack/angular-query-experimental": "~5.101.1",
     "dayjs": "~1.11.21",
     "decimal.js": "~10.6.0",
     "i18n-iso-countries": "~7.14.0",
@@ -39,21 +39,21 @@
     "zod": "~4.4.3"
   },
   "devDependencies": {
-    "@angular/build": "~22.0.3",
-    "@angular/cli": "~22.0.3",
-    "@angular/compiler-cli": "~22.0.2",
+    "@angular/build": "~22.0.4",
+    "@angular/cli": "~22.0.4",
+    "@angular/compiler-cli": "~22.0.3",
     "@testing-library/angular": "~19.4.1",
     "@testing-library/dom": "~10.4.1",
     "@vitest/browser": "~4.1.9",
     "@vitest/browser-playwright": "~4.1.9",
     "angular-eslint": "~22.0.0",
     "eslint": "~10.5.0",
-    "eslint-plugin-oxlint": "~1.70.0",
-    "oxfmt": "~0.55.0",
-    "oxlint": "~1.70.0",
+    "eslint-plugin-oxlint": "~1.71.0",
+    "oxfmt": "~0.56.0",
+    "oxlint": "~1.71.0",
     "oxlint-tsgolint": "~0.23.0",
     "typescript": "~6.0.3",
-    "typescript-eslint": "~8.61.1",
+    "typescript-eslint": "~8.62.0",
     "vitest": "~4.1.9"
   },
   "engines": {
@@ -61,5 +61,6 @@
     "npm": "Please use pnpm instead",
     "pnpm": ">=10.0.0",
     "yarn": "Please use pnpm instead"
-  }
+  },
+  "packageManager": "pnpm@11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b"
 }
