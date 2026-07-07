@@ -9,7 +9,7 @@ import { booleanAttribute, Component, computed, input, model, output } from '@an
 import { FormsModule } from '@angular/forms';
 import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import {
-  maskitoNumberOptionsGenerator,
+  maskitoNumber,
   MaskitoNumberParams,
   maskitoParseNumber,
   maskitoStringifyNumber,
@@ -78,6 +78,6 @@ export class NumberInputComponent
   });
 
   protected readonly maskitoOptions = computed(() =>
-    maskitoNumberOptionsGenerator(this.numberConfig()),
+    maskitoNumber(this.numberConfig()),
   );
 }
