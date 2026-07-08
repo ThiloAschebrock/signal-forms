@@ -5,6 +5,8 @@ onlyBuiltDependencies:
   - msgpackr-extract
 
 minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeExclude:
+  - '@allianz/ng-aquila'
 safePrefix: '~'
 allowBuilds:
   '@parcel/watcher': true

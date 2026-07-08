@@ -77,7 +77,5 @@ export class NumberInputComponent
     };
   });
 
-  protected readonly maskitoOptions = computed(() =>
-    maskitoNumber(this.numberConfig()),
-  );
+  protected readonly maskitoOptions = computed(() => maskitoNumber(this.numberConfig()));
 }
