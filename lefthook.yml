@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: '*.{css,html,js,json,scss,ts,yaml,yml}'
+      run: pnpm exec oxfmt {staged_files}
+      stage_fixed: true
+    lint:
+      glob: '*.{html,js,ts}'
+      run: pnpm exec oxlint --fix {staged_files} && pnpm exec eslint --fix --cache --max-warnings=0 {staged_files}
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    typecheck:
+      run: pnpm run tsc
+    test:
+      run: pnpm test
