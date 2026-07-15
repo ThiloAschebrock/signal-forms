@@ -13,7 +13,6 @@ export function trackErrorState(
       const baseName = fieldTree().name();
 
       return summary.reduce<ErrorMap>((acc, error) => {
-        // TODO: Verify if hidden is needed? Likely it is not
         if (error.fieldTree().touched() && error.fieldTree().invalid()) {
           const fieldName = normalizeFieldName(baseName, error.fieldTree().name());
 
