@@ -4,7 +4,7 @@ onlyBuiltDependencies:
   - lmdb
   - msgpackr-extract
 
-# minimumReleaseAge: 4320 # 3 days
+minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
   - '@allianz/ng-aquila'
 allowBuilds:
