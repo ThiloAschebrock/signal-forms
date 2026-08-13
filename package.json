@@ -17,7 +17,7 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^22.1.0",
+    "@allianz/ng-aquila": "^22.2.0",
     "@angular/cdk": "^22.1.1",
     "@angular/common": "^22.1.1",
     "@angular/compiler": "^22.1.1",
@@ -50,13 +50,13 @@
     "@vitest/browser-playwright": "^4.1.10",
     "angular-eslint": "^22.1.0",
     "eslint": "^10.8.1",
-    "eslint-plugin-oxlint": "^1.77.0",
+    "eslint-plugin-oxlint": "^1.78.0",
     "lefthook": "^2.1.10",
-    "oxfmt": "^0.62.0",
-    "oxlint": "^1.77.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
     "oxlint-tsgolint": "^7.0.2001",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.66.0",
+    "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.10"
   },
   "engines": {
