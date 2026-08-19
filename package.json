@@ -29,7 +29,7 @@
     "@maskito/core": "^5.4.0",
     "@maskito/kit": "^5.4.0",
     "@tanstack/angular-query-experimental": "^5.101.4",
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.22",
     "decimal.js": "^10.6.0",
     "i18n-iso-countries": "^7.14.0",
     "iban": "^0.0.14",
