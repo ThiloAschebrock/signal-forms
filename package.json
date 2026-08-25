@@ -28,7 +28,7 @@
     "@maskito/angular": "^5.4.0",
     "@maskito/core": "^5.4.0",
     "@maskito/kit": "^5.4.0",
-    "@tanstack/angular-query-experimental": "^5.101.4",
+    "@tanstack/angular-query-experimental": "^5.102.0",
     "dayjs": "^1.11.23",
     "decimal.js": "^10.6.0",
     "i18n-iso-countries": "^7.14.0",
