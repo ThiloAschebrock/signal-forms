@@ -15,13 +15,13 @@ describe('trackErrorState', () => {
         required(path.email, { message: 'Email is required' });
       }),
     );
-    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 
     formTree.email().markAsTouched();
     const tracker = TestBed.runInInjectionContext(() => trackErrorState(formTree));
     TestBed.tick();
 
-    expect(consoleError).toHaveBeenCalledWith(
+    expect(consoleWarn).toHaveBeenCalledWith(
       'Showing form field error for field "email": Email is required',
     );
 
@@ -34,12 +34,12 @@ describe('trackErrorState', () => {
         required(path.email, { message: 'Email is required' });
       }),
     );
-    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 
     const tracker = TestBed.runInInjectionContext(() => trackErrorState(formTree));
     TestBed.tick();
 
-    expect(consoleError).not.toHaveBeenCalled();
+    expect(consoleWarn).not.toHaveBeenCalled();
 
     tracker.destroy();
   });
@@ -52,7 +52,7 @@ describe('trackErrorState', () => {
         hidden(path.internalReference, { when: () => true });
       }),
     );
-    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 
     formTree.email().markAsTouched();
     formTree.internalReference().markAsTouched();
@@ -65,10 +65,10 @@ describe('trackErrorState', () => {
     const tracker = TestBed.runInInjectionContext(() => trackErrorState(formTree));
     TestBed.tick();
 
-    expect(consoleError).toHaveBeenCalledWith(
+    expect(consoleWarn).toHaveBeenCalledWith(
       'Showing form field error for field "email": Email is required',
     );
-    expect(consoleError).not.toHaveBeenCalledWith(
+    expect(consoleWarn).not.toHaveBeenCalledWith(
       'Showing form field error for field "internalReference": Internal reference is required',
     );
 
