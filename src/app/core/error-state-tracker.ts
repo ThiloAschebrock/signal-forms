@@ -31,7 +31,7 @@ export function trackErrorState(
 
   return effect(() => {
     for (const error of errors()) {
-      console.error(`Showing form field error for field "${error.field}": ${error.error}`);
+      console.warn(`Showing form field error for field "${error.field}": ${error.error}`);
     }
   });
 }

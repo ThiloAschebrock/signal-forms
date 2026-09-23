@@ -4,9 +4,9 @@ import {
   effect,
   linkedSignal,
   signal,
-  resource,
   untracked,
   inject,
+  resource,
 } from '@angular/core';
 import { z } from 'zod';
 import {
@@ -35,7 +35,7 @@ import {
   FormRoot,
 } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
-import { QueryClient, queryOptions } from '@tanstack/angular-query-experimental';
+import { QueryClient, queryOptions } from '@tanstack/angular-query';
 import {
   NxDatefieldDirective,
   NxDatepickerComponent,
@@ -334,8 +334,9 @@ const validatePostcode = <TPathKind extends PathKind = PathKind.Root>(
   const options = (postcode: string) =>
     queryOptions({
       queryKey: ['postcode', postcode],
-      queryFn: () => isValidPostcode(postcode ?? ''),
+      queryFn: () => isValidPostcode(postcode),
       enabled: postcode?.length === 4,
+      staleTime: 'static',
     });
 
   validateAsync(path, {
@@ -346,7 +347,7 @@ const validatePostcode = <TPathKind extends PathKind = PathKind.Root>(
     factory: (params) =>
       resource({
         params,
-        loader: ({ params }) => queryClient.ensureQueryData(options(params)),
+        loader: ({ params }) => queryClient.query(options(params)),
       }),
     debounce: 200,
     onError: () => ({

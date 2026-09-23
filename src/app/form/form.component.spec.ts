@@ -2,12 +2,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/angular/zoneless';
 import { page } from 'vitest/browser';
 import { FormComponent } from './form.component';
-import { provideQueryClient, QueryClient } from '@tanstack/angular-query-experimental';
+import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query';
 
 describe('FormComponent', () => {
   async function renderComponent() {
     return render(FormComponent, {
-      providers: [provideQueryClient(new QueryClient())],
+      providers: [provideTanStackQuery(() => new QueryClient())],
     });
   }
 

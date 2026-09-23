@@ -6,8 +6,8 @@ import {
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
-import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
-import { withDevtools } from '@tanstack/angular-query-experimental/devtools';
+import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query';
+import { withDevtools } from '@tanstack/angular-query-devtools';
 import { provideLocaleDate } from './core/date.provider';
 
 export const appConfig: ApplicationConfig = {
@@ -19,6 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideEnvironmentNgxMask({
       outputTransformFn: (value) => (value === '' ? null : value),
     }),
-    provideTanStackQuery(new QueryClient(), withDevtools()),
+    provideTanStackQuery(() => new QueryClient(), withDevtools()),
   ],
 };

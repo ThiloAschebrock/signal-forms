@@ -26,7 +26,7 @@ import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import { NxInputDirective } from '@allianz/ng-aquila/input';
 import { FormsModule } from '@angular/forms';
 import { ErrorPipe } from '../shared/error-pipe';
-import { injectQuery, keepPreviousData } from '@tanstack/angular-query-experimental';
+import { injectQuery, keepPreviousData } from '@tanstack/angular-query';
 import { NxSpinnerComponent } from '@allianz/ng-aquila/spinner';
 import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-bridge';
 import { TrackingDirective } from '../core/tracking.directive';
