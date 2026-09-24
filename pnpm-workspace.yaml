@@ -8,6 +8,8 @@ minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
   - '@allianz/ng-aquila'
   - '@angular/*'
+  - '@angular-devkit/*'
+  - '@schematics/angular'
   - '@tanstack/*'
 allowBuilds:
   '@parcel/watcher': true
