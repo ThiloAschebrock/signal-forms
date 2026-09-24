@@ -45,6 +45,7 @@ Thumbs.db
 #Testing 
 __screenshots__/
 .vitest-attachments/
+.vitest
 
 # Linter
 .eslintcache

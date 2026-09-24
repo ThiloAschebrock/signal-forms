@@ -47,8 +47,8 @@
     "@testing-library/angular": "^19.5.0",
     "@testing-library/dom": "^10.4.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "@vitest/browser": "^4.1.11",
-    "@vitest/browser-playwright": "^4.1.11",
+    "@vitest/browser": "^5.0.1",
+    "@vitest/browser-playwright": "^5.0.1",
     "angular-eslint": "^22.5.0",
     "eslint": "^10.11.0",
     "eslint-plugin-oxlint": "^1.84.0",
@@ -56,9 +56,10 @@
     "oxfmt": "^0.70.0",
     "oxlint": "^1.85.0",
     "oxlint-tsgolint": "^7.0.2002",
+    "playwright": "^1.63.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.70.1",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.1"
   },
   "engines": {
     "node": ">=24.15.0",
