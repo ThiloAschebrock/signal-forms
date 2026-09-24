@@ -16,7 +16,7 @@ describe('omitHiddenFields', () => {
   it('should omit hidden top-level primitive field', () => {
     const formTree = TestBed.runInInjectionContext(() =>
       form(signal<string>('test'), (path) => {
-        hidden(path, () => true);
+        hidden(path);
       }),
     );
     const result = omitHiddenFields(formTree);
@@ -26,7 +26,7 @@ describe('omitHiddenFields', () => {
   it('should return undefined for hidden number field', () => {
     const formTree = TestBed.runInInjectionContext(() =>
       form(signal<number>(42), (path) => {
-        hidden(path, () => true);
+        hidden(path);
       }),
     );
     const result = omitHiddenFields(formTree);
@@ -36,7 +36,7 @@ describe('omitHiddenFields', () => {
   it('should return undefined for hidden boolean field', () => {
     const formTree = TestBed.runInInjectionContext(() =>
       form(signal<boolean>(true), (path) => {
-        hidden(path, () => true);
+        hidden(path);
       }),
     );
     const result = omitHiddenFields(formTree);
@@ -77,7 +77,7 @@ describe('omitHiddenFields', () => {
     }
     const formTree = TestBed.runInInjectionContext(() =>
       form<TestForm>(signal({ name: 'John', age: 30 }), (path) => {
-        hidden(path.age, () => true);
+        hidden(path.age);
       }),
     );
     const result = omitHiddenFields(formTree);
@@ -94,8 +94,8 @@ describe('omitHiddenFields', () => {
     }
     const formTree = TestBed.runInInjectionContext(() =>
       form<TestForm>(signal({ name: 'John', age: 30 }), (path) => {
-        hidden(path.name, () => true);
-        hidden(path.age, () => true);
+        hidden(path.name);
+        hidden(path.age);
       }),
     );
     const result = omitHiddenFields(formTree) as Partial<TestForm>;
@@ -142,7 +142,7 @@ describe('omitHiddenFields', () => {
           address: { street: '123 Main St', city: 'New York' },
         }),
         (path) => {
-          hidden(path.address.city, () => true);
+          hidden(path.address.city);
         },
       ),
     );
@@ -169,8 +169,8 @@ describe('omitHiddenFields', () => {
           address: { street: '123 Main St', city: 'New York' },
         }),
         (path) => {
-          hidden(path.address.street, () => true);
-          hidden(path.address.city, () => true);
+          hidden(path.address.street);
+          hidden(path.address.city);
         },
       ),
     );
@@ -200,8 +200,8 @@ describe('omitHiddenFields', () => {
           address: { street: '123 Main St', city: 'New York', zip: '10001' },
         }),
         (path) => {
-          hidden(path.lastName, () => true);
-          hidden(path.address.city, () => true);
+          hidden(path.lastName);
+          hidden(path.address.city);
         },
       ),
     );
@@ -237,8 +237,8 @@ describe('omitHiddenFields', () => {
           },
         }),
         (path) => {
-          hidden(path.address.street, () => true);
-          hidden(path.address.contact.email, () => true);
+          hidden(path.address.street);
+          hidden(path.address.contact.email);
         },
       ),
     );
@@ -293,7 +293,7 @@ describe('omitHiddenFields', () => {
     }
     const formTree = TestBed.runInInjectionContext(() =>
       form<TestForm>(signal({ names: ['John', 'Jane'], age: 30 }), (path) => {
-        hidden(path.names, () => true);
+        hidden(path.names);
       }),
     );
     const result = omitHiddenFields(formTree);

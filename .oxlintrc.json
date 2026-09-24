@@ -18,6 +18,7 @@
     {
       "files": ["**/*.ts"],
       "rules": {
+        "typescript/no-deprecated": "error",
         "@angular-eslint/contextual-lifecycle": "error",
         "@angular-eslint/no-empty-lifecycle-method": "error",
         "@angular-eslint/no-input-rename": "error",
