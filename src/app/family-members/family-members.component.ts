@@ -58,7 +58,7 @@ export class FamilyMembersComponent {
   });
 
   protected readonly addFamilyMembersEffect = effect(() => {
-    if (!this.formField()().hidden()) {
+    if (this.formField()().hidden()) {
       return;
     }
 

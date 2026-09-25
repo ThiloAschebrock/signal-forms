@@ -65,4 +65,22 @@ describe('FormComponent', () => {
     await birthdayInput.fill('03/02/1924');
     await expect.element(birthdayError).not.toBeInTheDocument();
   });
+
+  it('shows a fresh family member when the hidden section is shown again', async () => {
+    await renderComponent();
+
+    const familyMembersToggle = page.getByRole('radiogroup').nth(1);
+    await expect.element(page.getByText('Family member 1')).not.toBeInTheDocument();
+
+    await familyMembersToggle.getByText('Yes').last().click();
+    await expect.element(page.getByText('Family member 1')).toBeVisible();
+    await page.getByLabelText('Name').fill('Jane');
+
+    await familyMembersToggle.getByText('No').last().click();
+    await expect.element(page.getByText('Family member 1')).not.toBeInTheDocument();
+
+    await familyMembersToggle.getByText('Yes').last().click();
+    await expect.element(page.getByText('Family member 1')).toBeVisible();
+    await expect.element(page.getByLabelText('Name')).toHaveValue('');
+  });
 });

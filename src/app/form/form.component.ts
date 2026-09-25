@@ -61,7 +61,7 @@ import { InputWithCharacterCountComponent } from '../input-with-character-count/
 import { DropdownComponent, DropdownOption } from '../dropdown/dropdown.component';
 import { AutocompleteComponent, AutocompleteOption } from '../autocomplete/autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { omitHiddenFields } from './omit-hidden-fields';
+import { hiddenWithReset } from './hidden-with-reset';
 import dayjs from 'dayjs';
 import { NumberInputComponent } from '../number-input/number-input.component';
 import { trackErrorState } from '../core/error-state-tracker';
@@ -194,7 +194,9 @@ export class FormComponent {
       requireBoolean(path.employFamilyMembers, {
         message: 'Answer if you employ family members',
       });
-      hidden(path.familyMembers, { when: (context) => !context.valueOf(path.employFamilyMembers) });
+      hiddenWithReset(path.familyMembers, [], {
+        when: (context) => !context.valueOf(path.employFamilyMembers),
+      });
       applyEach(path.familyMembers, FamilyMembersComponent.schema);
 
       requireBoolean(path.employFamilyMembers, {
@@ -214,8 +216,7 @@ export class FormComponent {
     {
       submission: {
         action: async (form) => {
-          const filteredValue = omitHiddenFields(form);
-          console.log('Submitted', filteredValue);
+          console.log('Submitted', form().value());
           await new Promise((resolve) => setTimeout(resolve, 1_000));
 
           return { kind: 'taken', message: 'This email is already taken', fieldTree: form.email };

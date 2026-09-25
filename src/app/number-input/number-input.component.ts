@@ -20,8 +20,6 @@ import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-b
 
 @Component({
   selector: 'app-number-input',
-  templateUrl: './number-input.component.html',
-  styleUrl: './number-input.component.scss',
   imports: [
     ErrorPipe,
     FormsModule,
@@ -32,6 +30,8 @@ import { ErrorStateBridge, provideErrorStateBridge } from '../core/error-state-b
     NxFormfieldPrefixDirective,
     NxInputDirective,
   ],
+  templateUrl: './number-input.component.html',
+  styleUrl: './number-input.component.scss',
   providers: [provideErrorStateBridge(NumberInputComponent)],
 })
 export class NumberInputComponent

@@ -1,7 +1,5 @@
 # Testing Signal Forms
 
-https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/signals/docs/signal-forms.md
-
 ## TODO
 
 - [x] Regular validation
@@ -26,6 +24,7 @@ https://github.com/angular/angular/blob/prototype/signal-forms/packages/forms/si
 - [x] NxMask, e.g., for ABN: works, however, no mask validation
 - [x] ngxmask for numbers: works
 - [x] Try filtering hidden inputs on submit
+- [x] Reset hidden fields to chosen values when hidden
 - [x] Try new debounce option
 - [x] Try new compatForm with datepicker
 - [x] Try to focus first input with error

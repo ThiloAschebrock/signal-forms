@@ -1,4 +1,4 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { provideLocaleDate } from './app/core/date.provider';
+import { provideMask } from './app/core/mask.provider';
 
-export default [provideZonelessChangeDetection(), provideLocaleDate()];
+export default [provideLocaleDate(), provideMask()];

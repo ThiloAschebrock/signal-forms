@@ -11,6 +11,8 @@ export default defineConfig([
     extends: [...angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,
     rules: {
+      '@angular-eslint/sort-keys-in-type-decorator': 'warn',
+      '@angular-eslint/prefer-service-decorator': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
