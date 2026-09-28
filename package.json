@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^22.2.0",
     "@angular/router": "^22.2.0",
     "@maskito/angular": "^5.5.0",
-    "@maskito/core": "^5.4.0",
+    "@maskito/core": "^5.5.0",
     "@maskito/kit": "^5.5.0",
     "@tanstack/angular-query": "^5.0.0-rc.0",
     "@tanstack/angular-query-devtools": "5.0.0-rc.0",
@@ -47,8 +47,8 @@
     "@testing-library/angular": "^19.5.0",
     "@testing-library/dom": "^10.4.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "@vitest/browser": "^5.0.1",
-    "@vitest/browser-playwright": "^5.0.1",
+    "@vitest/browser": "^5.0.2",
+    "@vitest/browser-playwright": "^5.0.2",
     "angular-eslint": "^22.5.0",
     "eslint": "^10.11.0",
     "eslint-plugin-oxlint": "^1.85.0",
@@ -59,7 +59,7 @@
     "playwright": "^1.63.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.70.1",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.2"
   },
   "engines": {
     "node": ">=24.15.0",
