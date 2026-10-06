@@ -67,5 +67,5 @@
     "pnpm": ">=10.0.0",
     "yarn": "Please use pnpm instead"
   },
-  "packageManager": "pnpm@12.5.1"
+  "packageManager": "pnpm@12.9.1"
 }
