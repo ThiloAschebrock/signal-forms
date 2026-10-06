@@ -17,7 +17,7 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^22.3.0",
+    "@allianz/ng-aquila": "^22.4.0",
     "@angular/cdk": "^22.2.1",
     "@angular/common": "^22.2.1",
     "@angular/compiler": "^22.2.1",
@@ -50,7 +50,7 @@
     "@vitest/browser": "^5.0.3",
     "@vitest/browser-playwright": "^5.0.3",
     "angular-eslint": "^22.5.0",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "eslint-plugin-oxlint": "^1.86.0",
     "lefthook": "^2.1.16",
     "oxfmt": "^0.71.0",
