@@ -17,7 +17,7 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^22.4.0",
+    "@allianz/ng-aquila": "^22.5.0",
     "@angular/cdk": "^22.2.2",
     "@angular/common": "^22.2.2",
     "@angular/compiler": "^22.2.2",
@@ -28,7 +28,7 @@
     "@maskito/angular": "^5.6.0",
     "@maskito/core": "^5.6.0",
     "@maskito/kit": "^5.6.0",
-    "@tanstack/angular-query": "^5.0.0-rc.1",
+    "@tanstack/angular-query": "^5.0.0-rc.2",
     "@tanstack/angular-query-devtools": "5.0.0-rc.0",
     "dayjs": "^1.11.23",
     "decimal.js": "^10.6.0",
@@ -52,13 +52,13 @@
     "angular-eslint": "^22.5.0",
     "eslint": "^10.12.0",
     "eslint-plugin-oxlint": "^1.87.0",
-    "lefthook": "^2.1.17",
+    "lefthook": "^2.2.1",
     "oxfmt": "^0.72.0",
     "oxlint": "^1.87.0",
     "oxlint-tsgolint": "^7.0.2003",
-    "playwright": "^1.63.0",
+    "playwright": "^1.64.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.71.0",
+    "typescript-eslint": "^8.71.1",
     "vitest": "^5.0.3"
   },
   "engines": {
