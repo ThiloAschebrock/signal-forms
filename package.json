@@ -38,17 +38,17 @@
     "ngx-mask": "^22.2.1",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1",
-    "zod": "^4.6.6"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.2",
-    "@angular/cli": "^22.2.2",
+    "@angular/build": "^22.2.3",
+    "@angular/cli": "^22.2.3",
     "@angular/compiler-cli": "^22.2.3",
     "@testing-library/angular": "^19.5.0",
     "@testing-library/dom": "^10.4.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "@vitest/browser": "^5.0.3",
-    "@vitest/browser-playwright": "^5.0.3",
+    "@vitest/browser": "^5.0.4",
+    "@vitest/browser-playwright": "^5.0.4",
     "angular-eslint": "^22.6.0",
     "eslint": "^10.12.0",
     "eslint-plugin-oxlint": "^1.87.0",
@@ -58,8 +58,8 @@
     "oxlint-tsgolint": "^7.0.2004",
     "playwright": "^1.64.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.71.1",
-    "vitest": "^5.0.3"
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.4"
   },
   "engines": {
     "node": ">=24.15.0",
