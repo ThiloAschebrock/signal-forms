@@ -243,8 +243,8 @@ importers:
         specifier: ^22.2.3
         version: 22.2.3(@angular/compiler@22.2.3)(@typescript/typescript6@6.0.2)
       '@testing-library/angular':
-        specifier: ^19.5.0
-        version: 19.5.0(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/router@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@testing-library/dom@10.4.2)
+        specifier: ^19.6.0
+        version: 19.6.0(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/router@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@testing-library/dom@10.4.2)
       '@testing-library/dom':
         specifier: ^10.4.2
         version: 10.4.2
@@ -1922,8 +1922,8 @@ packages:
   '@tanstack/query-devtools@5.103.2':
     resolution: {integrity: sha512-QW+uVtT7dZcc9KMmKQ846Yw25h7WPhM1cfCYYaSkkmPqkK39g+Cj1tcAt+Ege+6rBVFQvNyYln0FgAAHcYGSdA==}
 
-  '@testing-library/angular@19.5.0':
-    resolution: {integrity: sha512-wGSWTsibHaaQ0zMMlvqD1OEn+u3J2lu5BLFs7ULcUdy+kdqAFlDulexHFMpugdcJK1sTPu7yfJtI+cHf5si61w==}
+  '@testing-library/angular@19.6.0':
+    resolution: {integrity: sha512-NruHlQHQK00qJ+8NCbsmWGknCqprPN9js4jM/sxDNwsvpv1NOjw3D+t9WY5q6J4+2VAUOS51Yca36Pr+bPUAsw==}
     peerDependencies:
       '@angular/core': '>= 21.0.0'
       '@angular/router': '>= 21.0.0'
@@ -4866,7 +4866,7 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@testing-library/angular@19.5.0(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/router@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@testing-library/dom@10.4.2)':
+  '@testing-library/angular@19.6.0(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/router@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@testing-library/dom@10.4.2)':
     dependencies:
       '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)
       '@angular/router': 22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2)
