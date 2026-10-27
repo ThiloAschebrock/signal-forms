@@ -17,7 +17,7 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@allianz/ng-aquila": "^22.5.0",
+    "@allianz/ng-aquila": "^22.6.0",
     "@angular/cdk": "^22.2.4",
     "@angular/common": "^22.2.3",
     "@angular/compiler": "^22.2.3",

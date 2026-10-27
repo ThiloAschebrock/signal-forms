@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@allianz/ng-aquila':
-        specifier: ^22.5.0
-        version: 22.5.0(13f7ed3802a7b7b94809a853cb04af86)
+        specifier: ^22.6.0
+        version: 22.6.0(13f7ed3802a7b7b94809a853cb04af86)
       '@angular/cdk':
         specifier: ^22.2.4
         version: 22.2.4(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/forms@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2)
@@ -293,8 +293,8 @@ importers:
 
 packages:
 
-  '@allianz/ng-aquila@22.5.0':
-    resolution: {integrity: sha512-JSKMzUq7g7dBUHxYqsK9K14GaFZoBw4BaXRaUH42Z/sSoVNmiiLWn7psgDYeMlp6HwxeQpU7pqdEquX8HvFjJw==}
+  '@allianz/ng-aquila@22.6.0':
+    resolution: {integrity: sha512-51lPcdrHOKSHKgdOyWsQNNh5JXqFHDWHqAVZ0m9NXjRZq21s9xQx7J8ZeLAcEjlfxQMzs6KeYAf04LBQkDjMuw==}
     hasBin: true
     peerDependencies:
       '@angular/cdk': ^22.0.0
@@ -3602,7 +3602,7 @@ packages:
 
 snapshots:
 
-  '@allianz/ng-aquila@22.5.0(13f7ed3802a7b7b94809a853cb04af86)':
+  '@allianz/ng-aquila@22.6.0(13f7ed3802a7b7b94809a853cb04af86)':
     dependencies:
       '@angular/cdk': 22.2.4(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/forms@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@angular/common': 22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2))(rxjs@7.8.2)
