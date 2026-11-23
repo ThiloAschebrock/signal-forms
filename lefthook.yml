@@ -3,7 +3,7 @@ pre-commit:
   commands:
     format:
       glob: '*.{css,html,js,json,scss,ts,yaml,yml}'
-      run: pnpm exec oxfmt {staged_files}
+      run: pnpm exec oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     lint:
       glob: '*.{html,js,ts}'
